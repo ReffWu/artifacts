@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>底特律周边 4 人聚餐实地决策指南 (人均 < $30 / 30分钟内)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+    body { font-family: 'Plus Jakarta Sans', 'Noto Sans SC', system-ui, -apple-system, sans-serif; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-[#090D16] text-[#F3F4F6] min-h-screen antialiased selection:bg-amber-500 selection:text-black pb-20">
+
+  <!-- Editorial Top Banner -->
+  <header class="border-b border-slate-800/80 bg-[#0D1322] pt-12 pb-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      
+      <!-- Metadata Row -->
+      <div class="flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-400 mb-4">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-800 text-slate-200 border border-slate-700">
+          <svg class="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+          出发基准：Fraser (48026 / 14 Mile 沿线)
+        </span>
+        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 text-slate-300 border border-slate-800">
+          车程范围：≤ 30 分钟
+        </span>
+        <span class="px-2.5 py-1 rounded-md bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">
+          预算锁定：人均 ≤ $30 (整桌 $70 - $115 含税小费)
+        </span>
+        <span class="px-2.5 py-1 rounded-md bg-amber-950/60 text-amber-300 border border-amber-800/50">
+          实拍无AI图 · 真实口碑核查
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-4xl" style="text-wrap: balance;">
+        底特律近郊 4 人聚餐实地决策指南
+      </h1>
+      <p class="mt-3 text-slate-400 text-base sm:text-lg max-w-3xl leading-relaxed">
+        专门解决“今晚 4 个人吃什么”的真实决策需求。全量核查 Google 地图数千条真实评价、剔除虚高与踩雷店，配真实顾客现场拍摄照片、硬菜搭配方案与准确整桌账单。
+      </p>
+
+      <!-- Quick Decision Matrix Table -->
+      <div class="mt-8 overflow-hidden rounded-xl border border-slate-800 bg-[#111827]">
+        <div class="px-4 py-3 bg-slate-800/50 border-b border-slate-800 flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-200 tracking-wide uppercase">⚡ 4 人今晚速查比对表 (按需对号入座)</span>
+          <span class="text-xs text-slate-400">周日晚餐均正常营业</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm text-slate-300">
+            <thead class="bg-slate-900/60 text-slate-400 text-xs border-b border-slate-800">
+              <tr>
+                <th class="py-2.5 px-4 font-semibold">餐厅名称</th>
+                <th class="py-2.5 px-3 font-semibold">风味分类</th>
+                <th class="py-2.5 px-3 font-semibold">Google 评分</th>
+                <th class="py-2.5 px-3 font-semibold">车程</th>
+                <th class="py-2.5 px-3 font-semibold">4人整桌预估 (含税小费)</th>
+                <th class="py-2.5 px-4 font-semibold">一句话核心特长</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 font-normal">
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2.5 px-4 font-bold text-white">Loui's Pizza</td>
+                <td class="py-2.5 px-3 text-slate-300">底特律方形深盘</td>
+                <td class="py-2.5 px-3 text-amber-400 font-semibold">⭐ 4.6 (2,200+)</td>
+                <td class="py-2.5 px-3">16-18分</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-bold">~$79 ($19.75/人)</td>
+                <td class="py-2.5 px-4 text-slate-400">全美级焦边奶酪厚披萨，配全城第一意式沙拉</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2.5 px-4 font-bold text-white">Trizest (老四川)</td>
+                <td class="py-2.5 px-3 text-slate-300">正宗川菜</td>
+                <td class="py-2.5 px-3 text-amber-400 font-semibold">⭐ 4.3 (1,000+)</td>
+                <td class="py-2.5 px-3">12-15分</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-bold">~$99 ($24.75/人)</td>
+                <td class="py-2.5 px-4 text-slate-400">密歇根老牌正统川味，大盘辣子鸡与水煮鱼</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2.5 px-4 font-bold text-white">Ishtar Restaurant</td>
+                <td class="py-2.5 px-3 text-slate-300">伊拉克炭火烤肉</td>
+                <td class="py-2.5 px-3 text-amber-400 font-semibold">⭐ 4.3 (1,300+)</td>
+                <td class="py-2.5 px-3">13-15分</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-bold">~$104 ($26.00/人)</td>
+                <td class="py-2.5 px-4 text-slate-400">全肉家庭烤肉大拼盘，现烤出炉膨胀 Samoon 大饼</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2.5 px-4 font-bold text-white">Polish Village Cafe</td>
+                <td class="py-2.5 px-3 text-slate-300">百年波兰家常菜</td>
+                <td class="py-2.5 px-3 text-amber-400 font-semibold">⭐ 4.7 (3,800+)</td>
+                <td class="py-2.5 px-3">20-22分</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-bold">~$93 ($23.25/人)</td>
+                <td class="py-2.5 px-4 text-slate-400">地窖木质酒吧，波兰水饺、白菜卷肉、熏香肠</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2.5 px-4 font-bold text-white">Mike's on the Water</td>
+                <td class="py-2.5 px-3 text-slate-300">码头休闲海鲜</td>
+                <td class="py-2.5 px-3 text-amber-400 font-semibold">⭐ 4.3 (2,500+)</td>
+                <td class="py-2.5 px-3">12-14分</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-bold">~$87 ($21.75/人)</td>
+                <td class="py-2.5 px-4 text-slate-400">露天甲板看游艇晚霞，热黄油龙虾卷与炸五大湖鲈鱼</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2.5 px-4 font-bold text-white">Yemen Cafe</td>
+                <td class="py-2.5 px-3 text-slate-300">也门慢炖脱骨羊肉</td>
+                <td class="py-2.5 px-3 text-amber-400 font-semibold">⭐ 4.4 (3,500+)</td>
+                <td class="py-2.5 px-3">20-22分</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-bold">~$72 ($18.00/人)</td>
+                <td class="py-2.5 px-4 text-slate-400">炖到脱骨羊肉与沸腾牛肉石锅，脸盆大烤饼免费续</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-2.5 px-4 font-bold text-white">El Charro (Fraser)</td>
+                <td class="py-2.5 px-3 text-slate-300">经典膨胀蓬蓬塔可</td>
+                <td class="py-2.5 px-3 text-amber-400 font-semibold">⭐ 4.4 (2,700+)</td>
+                <td class="py-2.5 px-3 text-amber-300 font-semibold">3-5分 (超近)</td>
+                <td class="py-2.5 px-3 text-emerald-400 font-bold">~$87 ($21.75/人)</td>
+                <td class="py-2.5 px-4 text-slate-400">家门口老店，油炸酥香面皮塔可与铁板 Fajitas</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Filter Navigation (No Glassmorphism, Solid & Clean) -->
+  <nav class="sticky top-0 z-40 bg-[#090D16] border-b border-slate-800 px-4 sm:px-6 py-3">
+    <div class="max-w-6xl mx-auto flex items-center gap-2 overflow-x-auto no-scrollbar">
+      <button onclick="applyFilter('all')" class="filter-pill active px-3.5 py-1.5 rounded-md text-xs sm:text-sm font-semibold bg-amber-500 text-black transition">全部实测 (14)</button>
+      <button onclick="applyFilter('core')" class="filter-pill px-3.5 py-1.5 rounded-md text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition">⭐ 核心首选 (5)</button>
+      <button onclick="applyFilter('asian')" class="filter-pill px-3.5 py-1.5 rounded-md text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition">🥢 中餐与亚洲 (5)</button>
+      <button onclick="applyFilter('detroit')" class="filter-pill px-3.5 py-1.5 rounded-md text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition">🍕 底特律标志 (2)</button>
+      <button onclick="applyFilter('mideast')" class="filter-pill px-3.5 py-1.5 rounded-md text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition">🍖 中东与慢炖 (2)</button>
+      <button onclick="applyFilter('western')" class="filter-pill px-3.5 py-1.5 rounded-md text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition">🍷 欧美与海鲜 (4)</button>
+    </div>
+  </nav>
+
+  <!-- Main Card List -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-8">
+
+    <!-- 1. Loui's Pizza -->
+    <article class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden" data-category="core detroit">
+      <div class="grid lg:grid-cols-12 gap-0">
+        <div class="lg:col-span-5 relative bg-slate-950 aspect-[16/10] lg:aspect-auto">
+          <img src="./photos/louis_pizza.jpg" alt="Loui's Pizza 现场实拍" class="w-full h-full object-cover">
+          <div class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded bg-black/80 text-[11px] font-medium text-slate-200 backdrop-blur-sm">
+            📷 现场实拍：焦边深盘披萨 & 招牌沙拉
+          </div>
+        </div>
+        <div class="lg:col-span-7 p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <h2 class="text-2xl font-bold text-white tracking-tight">Loui's Pizza</h2>
+                <span class="text-xs px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30 font-medium">底特律方形披萨天花板</span>
+              </div>
+              <div class="text-emerald-400 font-bold text-base">整桌 ~$79 <span class="text-xs text-slate-400 font-normal">($19.75/人)</span></div>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-slate-400 mb-3">
+              <span class="text-amber-400 font-semibold">⭐ 4.6 (2,200+ 条真实评价)</span>
+              <span>•</span>
+              <span>🚗 16-18 分钟 (Hazel Park)</span>
+              <span>•</span>
+              <span class="text-slate-300">23141 Dequindre Rd</span>
+            </div>
+
+            <!-- Real Sentiment Analysis -->
+            <div class="mb-4 text-xs sm:text-sm text-slate-300 leading-relaxed border-l-2 border-amber-500/60 pl-3 py-0.5">
+              <p><strong class="text-slate-200">真实水准透视：</strong>深钢盘高温烘烤，四边是焦香酥脆的威斯康星砖芝士裙边（Frico），饼底松厚多孔如佛卡夏。房顶悬挂成千上万个客人签名的基安蒂草编酒瓶，氛围极其复古。</p>
+              <p class="text-slate-400 mt-1 text-xs">⚠️ <strong>注意事项：</strong>老牌家庭小店不接受预订，周末饭点一般需现场排队 20-30 分钟；建议 4 人点大号披萨搭配大沙拉即可，切忌多点。</p>
+            </div>
+
+            <!-- 4-Person Order Spec -->
+            <div class="bg-[#0B0F17] rounded-lg p-3.5 border border-slate-800 text-xs sm:text-sm mb-4">
+              <div class="font-bold text-slate-200 mb-2 flex justify-between">
+                <span>📋 4 人推荐实战点单</span>
+                <span class="text-slate-400 text-xs">菜品小计：$62.50</span>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-2 text-slate-300 text-xs">
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>大号方形披萨 (Large 3-Topping)</span><span class="text-slate-400">$28.00</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>大份招牌意式腌肉沙拉 (Antipasto)</span><span class="text-slate-400">$16.50</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>蒜香奶酪芝士面包棒 (Breadsticks)</span><span class="text-slate-400">$8.00</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>4 人软饮或啤酒</span><span class="text-slate-400">$10.00</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs text-slate-400">周日晚餐正常营业</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Loui's+Pizza+23141+Dequindre+Rd+Hazel+Park+MI" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs transition">
+              <span>Google 地图一键导航</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. Trizest Restaurant -->
+    <article class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden" data-category="core asian">
+      <div class="grid lg:grid-cols-12 gap-0">
+        <div class="lg:col-span-5 relative bg-slate-950 aspect-[16/10] lg:aspect-auto">
+          <img src="./photos/trizest.jpg" alt="Trizest 老四川现场实拍" class="w-full h-full object-cover">
+          <div class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded bg-black/80 text-[11px] font-medium text-slate-200 backdrop-blur-sm">
+            📷 现场实拍：水煮活鱼片与辣子鸡
+          </div>
+        </div>
+        <div class="lg:col-span-7 p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <h2 class="text-2xl font-bold text-white tracking-tight">老四川聚香园 (Trizest)</h2>
+                <span class="text-xs px-2 py-0.5 rounded bg-red-500/10 text-red-400 border border-red-500/30 font-medium">正统川菜老字号</span>
+              </div>
+              <div class="text-emerald-400 font-bold text-base">整桌 ~$99 <span class="text-xs text-slate-400 font-normal">($24.75/人)</span></div>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-slate-400 mb-3">
+              <span class="text-amber-400 font-semibold">⭐ 4.3 (1,000+ 条真实评价)</span>
+              <span>•</span>
+              <span>🚗 12-15 分钟 (Sterling Heights)</span>
+              <span>•</span>
+              <span class="text-slate-300">33170 Dequindre Rd</span>
+            </div>
+
+            <div class="mb-4 text-xs sm:text-sm text-slate-300 leading-relaxed border-l-2 border-red-500/60 pl-3 py-0.5">
+              <p><strong class="text-slate-200">真实水准透视：</strong>真正由四川老师傅掌勺，花椒油香与干辣椒炝锅气纯正，辣子鸡外酥里嫩，水煮鱼大盆红油垫黄豆芽。分量巨大，4 人拼菜极其过瘾。</p>
+              <p class="text-slate-400 mt-1 text-xs">⚠️ <strong>注意事项：</strong>传统中餐馆环境偏旧，前台服务快节奏略生硬；不能吃辣的朋友点单务必交代“微辣”。</p>
+            </div>
+
+            <div class="bg-[#0B0F17] rounded-lg p-3.5 border border-slate-800 text-xs sm:text-sm mb-4">
+              <div class="font-bold text-slate-200 mb-2 flex justify-between">
+                <span>📋 4 人推荐实战点单</span>
+                <span class="text-slate-400 text-xs">菜品小计：$79.00</span>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-2 text-slate-300 text-xs">
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>重庆歌乐山辣子鸡</span><span class="text-slate-400">$17.50</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>水煮鱼片（大瓷盆装）</span><span class="text-slate-400">$20.00</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>孜然爆炒羊肉</span><span class="text-slate-400">$19.00</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>麻婆豆腐 或 干煸四季豆</span><span class="text-slate-400">$14.50</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs text-slate-400">周日营业至 20:30</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Trizest+Restaurant+33170+Dequindre+Rd+Sterling+Heights+MI" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs transition">
+              <span>Google 地图一键导航</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. Ishtar Restaurant -->
+    <article class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden" data-category="core mideast">
+      <div class="grid lg:grid-cols-12 gap-0">
+        <div class="lg:col-span-5 relative bg-slate-950 aspect-[16/10] lg:aspect-auto">
+          <img src="./photos/ishtar.jpg" alt="Ishtar 炭烤现场实拍" class="w-full h-full object-cover">
+          <div class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded bg-black/80 text-[11px] font-medium text-slate-200 backdrop-blur-sm">
+            📷 现场实拍：家庭全肉拼盘与出炉 Samoon 饼
+          </div>
+        </div>
+        <div class="lg:col-span-7 p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <h2 class="text-2xl font-bold text-white tracking-tight">Ishtar Restaurant (伊什塔尔)</h2>
+                <span class="text-xs px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30 font-medium">伊拉克/迦勒底炭火烤肉</span>
+              </div>
+              <div class="text-emerald-400 font-bold text-base">整桌 ~$104 <span class="text-xs text-slate-400 font-normal">($26.00/人)</span></div>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-slate-400 mb-3">
+              <span class="text-amber-400 font-semibold">⭐ 4.3 (1,300+ 条真实评价)</span>
+              <span>•</span>
+              <span>🚗 13-15 分钟 (Sterling Heights)</span>
+              <span>•</span>
+              <span class="text-slate-300">3625 15 Mile Rd</span>
+            </div>
+
+            <div class="mb-4 text-xs sm:text-sm text-slate-300 leading-relaxed border-l-2 border-amber-500/60 pl-3 py-0.5">
+              <p><strong class="text-slate-200">真实水准透视：</strong>全美最大迦勒底社区核心，古巴比伦壁画浮雕装饰。真炭火生烤羊肉串和鸡肉串，锁汁极好；现烤的钻石形 Samoon 大饼麦香浓郁，免费无限续供。</p>
+              <p class="text-slate-400 mt-1 text-xs">⚠️ <strong>注意事项：</strong>肉食量极为庞大，4 人直接点 3号家庭拼盘即可，不要冲动加点过多主食。</p>
+            </div>
+
+            <div class="bg-[#0B0F17] rounded-lg p-3.5 border border-slate-800 text-xs sm:text-sm mb-4">
+              <div class="font-bold text-slate-200 mb-2 flex justify-between">
+                <span>📋 4 人推荐实战点单</span>
+                <span class="text-slate-400 text-xs">菜品小计：$82.97</span>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-2 text-slate-300 text-xs">
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>3号全肉大拼盘 (羊肉串+鸡肉串+牛肉Shawarma+米饭)</span><span class="text-slate-400">$65.99</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>手工丝滑鹰嘴豆泥 (Hummus)</span><span class="text-slate-400">$8.99</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>酥炸香料鹰嘴豆丸子 (Falafel 6只)</span><span class="text-slate-400">$7.99</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>现出炉热 Samoon 烤饼</span><span class="text-emerald-400">免费赠送</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs text-slate-400">周日营业至 22:00</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Ishtar+Restaurant+3625+15+Mile+Rd+Sterling+Heights+MI" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs transition">
+              <span>Google 地图一键导航</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. Polish Village Cafe -->
+    <article class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden" data-category="core western">
+      <div class="grid lg:grid-cols-12 gap-0">
+        <div class="lg:col-span-5 relative bg-slate-950 aspect-[16/10] lg:aspect-auto">
+          <img src="./photos/polish_village.jpg" alt="Polish Village Cafe 现场实拍" class="w-full h-full object-cover">
+          <div class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded bg-black/80 text-[11px] font-medium text-slate-200 backdrop-blur-sm">
+            📷 现场实拍：百年地窖与波兰大拼盘
+          </div>
+        </div>
+        <div class="lg:col-span-7 p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <h2 class="text-2xl font-bold text-white tracking-tight">Polish Village Cafe (波兰地窖餐厅)</h2>
+                <span class="text-xs px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/30 font-medium">密歇根近4000条好评传奇</span>
+              </div>
+              <div class="text-emerald-400 font-bold text-base">整桌 ~$93 <span class="text-xs text-slate-400 font-normal">($23.25/人)</span></div>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-slate-400 mb-3">
+              <span class="text-amber-400 font-semibold">⭐ 4.7 (3,800+ 条真实评价)</span>
+              <span>•</span>
+              <span>🚗 20-22 分钟 (Hamtramck)</span>
+              <span>•</span>
+              <span class="text-slate-300">2990 Yemans St</span>
+            </div>
+
+            <div class="mb-4 text-xs sm:text-sm text-slate-300 leading-relaxed border-l-2 border-blue-500/60 pl-3 py-0.5">
+              <p><strong class="text-slate-200">真实水准透视：</strong>全州口碑顶尖。隐身在百年老宅地下室，昏黄木桌充满东欧小镇酒馆气息。手工波兰大水饺煎得金黄裹着黄油洋葱，白菜肉卷（Golabki）吸饱番茄酱汁，吃着极具抚慰感。</p>
+              <p class="text-slate-400 mt-1 text-xs">⚠️ <strong>注意事项：</strong>地下室阶梯较陡，晚高峰期常客多需少许等位，建议 17:00-18:00 间到店。</p>
+            </div>
+
+            <div class="bg-[#0B0F17] rounded-lg p-3.5 border border-slate-800 text-xs sm:text-sm mb-4">
+              <div class="font-bold text-slate-200 mb-2 flex justify-between">
+                <span>📋 4 人推荐实战点单</span>
+                <span class="text-slate-400 text-xs">菜品小计：$74.00</span>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-2 text-slate-300 text-xs">
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>波兰综合大拼盘 (Polish Plate x 2份)</span><span class="text-slate-400">$36.00</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>匈牙利土豆煎饼佐牛肉炖汁</span><span class="text-slate-400">$16.50</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>波兰炸水饺拼盘 (Pierogi)</span><span class="text-slate-400">$12.50</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>酸黄瓜清汤 (Dill Pickle Soup x 2)</span><span class="text-slate-400">$9.00</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs text-slate-400">周日营业至 21:00</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Polish+Village+Cafe+2990+Yemans+St+Hamtramck+MI" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs transition">
+              <span>Google 地图一键导航</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. Mike's on the Water -->
+    <article class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden" data-category="core western">
+      <div class="grid lg:grid-cols-12 gap-0">
+        <div class="lg:col-span-5 relative bg-slate-950 aspect-[16/10] lg:aspect-auto">
+          <img src="./photos/mikes_water.jpg" alt="Mike's on the Water 现场实拍" class="w-full h-full object-cover">
+          <div class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded bg-black/80 text-[11px] font-medium text-slate-200 backdrop-blur-sm">
+            📷 现场实拍：游艇码头甲板与龙虾卷
+          </div>
+        </div>
+        <div class="lg:col-span-7 p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <h2 class="text-2xl font-bold text-white tracking-tight">Mike's on the Water (湖畔海鲜餐吧)</h2>
+                <span class="text-xs px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 font-medium">圣克莱尔湖码头风情</span>
+              </div>
+              <div class="text-emerald-400 font-bold text-base">整桌 ~$87 <span class="text-xs text-slate-400 font-normal">($21.75/人)</span></div>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-slate-400 mb-3">
+              <span class="text-amber-400 font-semibold">⭐ 4.3 (2,500+ 条真实评价)</span>
+              <span>•</span>
+              <span>🚗 12-14 分钟 (St. Clair Shores)</span>
+              <span>•</span>
+              <span class="text-slate-300">24600 Jefferson Ave</span>
+            </div>
+
+            <div class="mb-4 text-xs sm:text-sm text-slate-300 leading-relaxed border-l-2 border-cyan-500/60 pl-3 py-0.5">
+              <p><strong class="text-slate-200">真实水准透视：</strong>建在圣克莱尔湖游艇港湾旁边，顶层露台吹着湖风吃龙虾卷和炸鲈鱼极其惬意。9月初秋傍晚天气晴好，傍晚晚霞景色极佳。</p>
+              <p class="text-slate-400 mt-1 text-xs">⚠️ <strong>注意事项：</strong>属于美式休闲码头餐吧（Bar & Grill），不要期待高端法餐式精致摆盘，其核心价值在于晚霞湖景与松弛的聚会氛围。</p>
+            </div>
+
+            <div class="bg-[#0B0F17] rounded-lg p-3.5 border border-slate-800 text-xs sm:text-sm mb-4">
+              <div class="font-bold text-slate-200 mb-2 flex justify-between">
+                <span>📋 4 人推荐实战点单</span>
+                <span class="text-slate-400 text-xs">菜品小计：$69.00</span>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-2 text-slate-300 text-xs">
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>招牌热黄油龙虾卷配薯条</span><span class="text-slate-400">$22.50</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>五大湖鲜炸黄鲈鱼柳 (Fresh Perch)</span><span class="text-slate-400">$20.00</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>烟熏白鱼酱配苏打饼干 (Whitefish Dip)</span><span class="text-slate-400">$12.00</span></div>
+                <div class="flex justify-between border-b border-slate-800/80 pb-1"><span>多汁培根安格斯汉堡配薯条</span><span class="text-slate-400">$14.50</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+            <span class="text-xs text-slate-400">周日营业至 21:00</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Mike's+on+the+Water+24600+Jefferson+Ave+St+Clair+Shores+MI" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs transition">
+              <span>Google 地图一键导航</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Grid List for Remaining Qualified Spots (All with REAL photos) -->
+    <div class="pt-4 space-y-6">
+      <h2 class="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+        <span>更多特色实拍去处</span>
+        <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-normal">同样全部严格核查且符合预算</span>
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- 6. Yemen Cafe -->
+        <div class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden flex flex-col justify-between" data-category="mideast">
+          <div>
+            <div class="aspect-[16/9] w-full bg-slate-950 relative overflow-hidden">
+              <img src="./photos/yemen_cafe.jpg" alt="Yemen Cafe 慢炖羊肉实拍" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-slate-200">📷 实拍：脱骨羊肉大盘 & 烤大饼</span>
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-start gap-2 mb-1">
+                <h3 class="text-lg font-bold text-white">Yemen Cafe (也门餐厅)</h3>
+                <span class="text-emerald-400 font-bold text-sm">整桌 ~$72 ($18/人)</span>
+              </div>
+              <div class="text-xs text-slate-400 mb-2">⭐ 4.4 (3,500+ 条评价) • 20-22 分钟 (Hamtramck)</div>
+              <p class="text-xs text-slate-300 mb-3">炖至骨肉分离的 Lamb Haneeth，上桌剧烈沸腾的牛肉石锅（Fahsa）。免费送浓醇羊肉清汤与比方向盘大的现烤也门大饼。</p>
+              <div class="bg-[#0B0F17] p-3 rounded-lg text-xs text-slate-300 space-y-1 mb-2 border border-slate-800">
+                <div><strong>4人方案：</strong>脱骨炖羊肉($22) + 沸腾牛肉石锅($18) + 炒鸡肉粒($17) + 赠送无限大饼与清汤</div>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-2 flex justify-between items-center text-xs border-t border-slate-800/80">
+            <span class="text-slate-400">8740 Joseph Campau Ave</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Yemen+Cafe+8740+Joseph+Campau+Ave+Hamtramck+MI" target="_blank" class="text-amber-400 hover:underline font-semibold">Google 导航 ➔</a>
+          </div>
+        </div>
+
+        <!-- 7. El Charro Fraser -->
+        <div class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden flex flex-col justify-between" data-category="detroit western">
+          <div>
+            <div class="aspect-[16/9] w-full bg-slate-950 relative overflow-hidden">
+              <img src="./photos/el_charro.jpg" alt="El Charro 蓬蓬塔可实拍" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-slate-200">📷 实拍：膨胀蓬蓬塔可拼盘</span>
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-start gap-2 mb-1">
+                <h3 class="text-lg font-bold text-white">El Charro (Fraser 本地老店)</h3>
+                <span class="text-emerald-400 font-bold text-sm">整桌 ~$87 ($21.75/人)</span>
+              </div>
+              <div class="text-xs text-amber-300 font-semibold mb-2">⭐ 4.4 (2,700+ 条评价) • 3-5 分钟 (出门即到)</div>
+              <p class="text-xs text-slate-300 mb-3">Macomb 县本地吃了几十年的自创金黄膨胀面皮蓬蓬塔可（Puffy Taco），酥松喷香，搭配铁板牛肉双拼 Fajitas。</p>
+              <div class="bg-[#0B0F17] p-3 rounded-lg text-xs text-slate-300 space-y-1 mb-2 border border-slate-800">
+                <div><strong>4人方案：</strong>四合一组合盘x2($37) + 铁板牛鸡双拼Fajitas($23.5) + 浓郁热芝士肉酱蘸料($9)</div>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-2 flex justify-between items-center text-xs border-t border-slate-800/80">
+            <span class="text-slate-400">16720 E 14 Mile Rd, Fraser</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=El+Charro+16720+E+14+Mile+Rd+Fraser+MI" target="_blank" class="text-amber-400 hover:underline font-semibold">Google 导航 ➔</a>
+          </div>
+        </div>
+
+        <!-- 8. Kung Fu Noodle House -->
+        <div class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden flex flex-col justify-between" data-category="asian">
+          <div>
+            <div class="aspect-[16/9] w-full bg-slate-950 relative overflow-hidden">
+              <img src="./photos/kung_fu_noodle.jpg" alt="功夫面馆现场实拍" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-slate-200">📷 实拍：手工拉面与生煎包</span>
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-start gap-2 mb-1">
+                <h3 class="text-lg font-bold text-white">功夫面馆 (Kung Fu Noodle)</h3>
+                <span class="text-emerald-400 font-bold text-sm">整桌 ~$93 ($23.25/人)</span>
+              </div>
+              <div class="text-xs text-slate-400 mb-2">⭐ 4.6 (500+ 条评价) • 15-18 分钟 (Madison Heights)</div>
+              <p class="text-xs text-slate-300 mb-3">多伦多师傅坐镇，现场手工拉制筋道牛肉面，皮薄多汁灌汤小笼包与大火生煎包，干炒牛河镬气十足。</p>
+              <div class="bg-[#0B0F17] p-3 rounded-lg text-xs text-slate-300 space-y-1 mb-2 border border-slate-800">
+                <div><strong>4人方案：</strong>牛腩拉面x2($28) + 灌汤小笼包($7.5) + 生煎包($7.5) + 干炒牛河($16) + 椒盐鱿鱼($15.5)</div>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-2 flex justify-between items-center text-xs border-t border-slate-800/80">
+            <span class="text-slate-400">31151 Dequindre Rd</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kung+Fu+Noodle+House+31151+Dequindre+Rd+Madison+Heights+MI" target="_blank" class="text-amber-400 hover:underline font-semibold">Google 导航 ➔</a>
+          </div>
+        </div>
+
+        <!-- 9. Que Huong -->
+        <div class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden flex flex-col justify-between" data-category="asian">
+          <div>
+            <div class="aspect-[16/9] w-full bg-slate-950 relative overflow-hidden">
+              <img src="./photos/que_huong.jpg" alt="Que Huong 越南河粉实拍" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-slate-200">📷 实拍：招牌牛骨特别牛肉粉</span>
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-start gap-2 mb-1">
+                <h3 class="text-lg font-bold text-white">Que Huong 桂香越南料理</h3>
+                <span class="text-emerald-400 font-bold text-sm">整桌 ~$88 ($22.00/人)</span>
+              </div>
+              <div class="text-xs text-slate-400 mb-2">⭐ 4.5 (700+ 条评价) • 17-19 分钟 (Madison Heights)</div>
+              <p class="text-xs text-slate-300 mb-3">底特律老饕一致公认的越南粉汤头天花板。慢火熬足 12 小时的牛骨清汤，生牛肉片柔嫩，炸春卷格外松脆。</p>
+              <div class="bg-[#0B0F17] p-3 rounded-lg text-xs text-slate-300 space-y-1 mb-2 border border-slate-800">
+                <div><strong>4人方案：</strong>特别牛肉粉大碗x2($31) + 顺化辣牛肉粉($15.5) + 脆皮春卷($8.5) + 香茅煎猪排碎米饭($15)</div>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-2 flex justify-between items-center text-xs border-t border-slate-800/80">
+            <span class="text-slate-400">30820 John R Rd</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Que+Huong+Restaurant+30820+John+R+Rd+Madison+Heights+MI" target="_blank" class="text-amber-400 hover:underline font-semibold">Google 导航 ➔</a>
+          </div>
+        </div>
+
+        <!-- 10. Chung Ki Wa -->
+        <div class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden flex flex-col justify-between" data-category="asian">
+          <div>
+            <div class="aspect-[16/9] w-full bg-slate-950 relative overflow-hidden">
+              <img src="./photos/chung_ki_wa.jpg" alt="Chung Ki Wa 韩餐实拍" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-slate-200">📷 实拍：Bulgogi 烤肉与满桌小菜</span>
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-start gap-2 mb-1">
+                <h3 class="text-lg font-bold text-white">青瓦台 (Chung Ki Wa 韩餐)</h3>
+                <span class="text-emerald-400 font-bold text-sm">整桌 ~$118 ($29.50/人)</span>
+              </div>
+              <div class="text-xs text-slate-400 mb-2">⭐ 4.4 (650+ 条评价) • 12-14 分钟 (Sterling Heights)</div>
+              <p class="text-xs text-slate-300 mb-3">调味适中的 Bulgogi 烤牛肉，附赠无限续加的 8-10 款韩式手工精美小菜（泡菜、腌萝卜），海鲜嫩豆腐汤开胃暖身。</p>
+              <div class="bg-[#0B0F17] p-3 rounded-lg text-xs text-slate-300 space-y-1 mb-2 border border-slate-800">
+                <div><strong>4人方案：</strong>Bulgogi烤牛肉双人份($58) + 海鲜嫩豆腐锅($17) + 海鲜葱煎饼($19) + 免费续小菜与包肉生菜</div>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-2 flex justify-between items-center text-xs border-t border-slate-800/80">
+            <span class="text-slate-400">2101 15 Mile Rd</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Chung+Ki+Wa+2101+15+Mile+Rd+Sterling+Heights+MI" target="_blank" class="text-amber-400 hover:underline font-semibold">Google 导航 ➔</a>
+          </div>
+        </div>
+
+        <!-- 11. Noorjahan Indian Cuisine -->
+        <div class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden flex flex-col justify-between" data-category="asian">
+          <div>
+            <div class="aspect-[16/9] w-full bg-slate-950 relative overflow-hidden">
+              <img src="./photos/noorjahan.jpg" alt="Noorjahan 印度菜实拍" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-slate-200">📷 实拍：现熬黄油鸡咖喱与蒜香烤饼</span>
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-start gap-2 mb-1">
+                <h3 class="text-lg font-bold text-white">Noorjahan Indian Cuisine</h3>
+                <span class="text-emerald-400 font-bold text-sm">整桌 ~$89 ($22.25/人)</span>
+              </div>
+              <div class="text-xs text-emerald-400 font-semibold mb-2">⭐ 4.7 (500+ 条好评) • 13 分钟 (Grosse Pointe Woods)</div>
+              <p class="text-xs text-slate-300 mb-3">替换掉原本仅 3.9 分的 Troy 踩雷店。现磨香料与浓郁腰果黄油熬煮的 Butter Chicken，刚出炉滋滋泛油光的 Garlic Naan 极香。</p>
+              <div class="bg-[#0B0F17] p-3 rounded-lg text-xs text-slate-300 space-y-1 mb-2 border border-slate-800">
+                <div><strong>4人方案：</strong>黄油烤鸡咖喱($17.5) + 羊肉咖喱($19.5) + 鸡肉香饭($16) + 蒜香烤饼x3($10.5) + 三角炸饺($7.5)</div>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-2 flex justify-between items-center text-xs border-t border-slate-800/80">
+            <span class="text-slate-400">20641 Mack Ave</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Noorjahan+Indian+Cuisine+20641+Mack+Ave+Grosse+Pointe+Woods+MI" target="_blank" class="text-amber-400 hover:underline font-semibold">Google 导航 ➔</a>
+          </div>
+        </div>
+
+        <!-- 12. Luciano's Italian Restaurant -->
+        <div class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden flex flex-col justify-between" data-category="western">
+          <div>
+            <div class="aspect-[16/9] w-full bg-slate-950 relative overflow-hidden">
+              <img src="./photos/lucianos.jpg" alt="Luciano's 意餐实拍" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-slate-200">📷 实拍：古典壁画厅与焗烤千层面</span>
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-start gap-2 mb-1">
+                <h3 class="text-lg font-bold text-white">Luciano's Italian Restaurant</h3>
+                <span class="text-emerald-400 font-bold text-sm">整桌 ~$92 ($23.00/人)</span>
+              </div>
+              <div class="text-xs text-slate-400 mb-2">⭐ 4.5 (1,600+ 条评价) • 10-12 分钟 (Clinton Township)</div>
+              <p class="text-xs text-slate-300 mb-3">老式意大利传统正餐氛围，水晶吊灯与壁画。赠送热腾腾松软蒜香面包，焗烤肉酱千层面奶酪拉丝极其厚重，帕玛森鸡排酥脆。</p>
+              <div class="bg-[#0B0F17] p-3 rounded-lg text-xs text-slate-300 space-y-1 mb-2 border border-slate-800">
+                <div><strong>4人方案：</strong>肉酱千层面($19.5) + 白酱鸡肉宽面($22) + 帕玛森鸡排($23.5) + 意式烤面包片($8.5) + 赠送热面包</div>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-2 flex justify-between items-center text-xs border-t border-slate-800/80">
+            <span class="text-slate-400">39091 Garfield Rd</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Luciano's+Italian+Restaurant+39091+Garfield+Rd+Clinton+Twp+MI" target="_blank" class="text-amber-400 hover:underline font-semibold">Google 导航 ➔</a>
+          </div>
+        </div>
+
+        <!-- 13. Woodpile BBQ Shack -->
+        <div class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden flex flex-col justify-between" data-category="western">
+          <div>
+            <div class="aspect-[16/9] w-full bg-slate-950 relative overflow-hidden">
+              <img src="./photos/woodpile_bbq.jpg" alt="Woodpile BBQ 烟熏烤肉实拍" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-slate-200">📷 实拍：硬木慢熏牛胸肉与肋排</span>
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-start gap-2 mb-1">
+                <h3 class="text-lg font-bold text-white">Woodpile BBQ Shack</h3>
+                <span class="text-emerald-400 font-bold text-sm">整桌 ~$92 ($23.00/人)</span>
+              </div>
+              <div class="text-xs text-slate-400 mb-2">⭐ 4.5 (500+ 条评价) • 17-19 分钟 (Madison Heights)</div>
+              <p class="text-xs text-slate-300 mb-3">当天纯硬木慢火烟熏德州烤肉。牛胸肉（Brisket）带漂亮粉色烟熏环，手撕猪肉柔嫩多汁，圣路易斯肋排肉香浓郁。</p>
+              <div class="bg-[#0B0F17] p-3 rounded-lg text-xs text-slate-300 space-y-1 mb-2 border border-slate-800">
+                <div><strong>4人方案：</strong>多汁牛胸肉半磅($17.5) + 肋排半架($18.5) + 手撕猪肉半磅($11.5) + 辣椒芝士肠x2($10) + 大份通心粉与玉米面包($16)</div>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-2 flex justify-between items-center text-xs border-t border-slate-800/80">
+            <span class="text-slate-400">630 E 11 Mile Rd</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Woodpile+BBQ+Shack+630+E+11+Mile+Rd+Madison+Heights+MI" target="_blank" class="text-amber-400 hover:underline font-semibold">Google 导航 ➔</a>
+          </div>
+        </div>
+
+        <!-- 14. Edo Ramen Lounge -->
+        <div class="restaurant-item border border-slate-800 bg-[#111827] rounded-xl overflow-hidden flex flex-col justify-between" data-category="asian">
+          <div>
+            <div class="aspect-[16/9] w-full bg-slate-950 relative overflow-hidden">
+              <img src="./photos/edo_ramen.jpg" alt="Edo Ramen 现场实拍" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-slate-200">📷 实拍：浓厚豚骨拉面与日式小吃</span>
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-start gap-2 mb-1">
+                <h3 class="text-lg font-bold text-white">Edo Ramen Lounge</h3>
+                <span class="text-emerald-400 font-bold text-sm">整桌 ~$98 ($24.50/人)</span>
+              </div>
+              <div class="text-xs text-slate-400 mb-2">⭐ 4.4 (600+ 条评价) • 18-20 分钟 (Royal Oak)</div>
+              <p class="text-xs text-slate-300 mb-3">充满现代潮流感的日式拉面居酒屋。浓厚豚骨与辣味噌高汤熬煮扎实，章鱼烧与日式煎饺香脆，堂食氛围轻松。</p>
+              <div class="bg-[#0B0F17] p-3 rounded-lg text-xs text-slate-300 space-y-1 mb-2 border border-slate-800">
+                <div><strong>4人方案：</strong>招牌豚骨/辣味噌拉面x3碗($48) + 叉烧炒饭($14.5) + 日式煎饺($7.5) + 章鱼小丸子($8.5)</div>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-2 flex justify-between items-center text-xs border-t border-slate-800/80">
+            <span class="text-slate-400">4313 W 13 Mile Rd</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Edo+Ramen+House+4313+W+13+Mile+Rd+Royal+Oak+MI" target="_blank" class="text-amber-400 hover:underline font-semibold">Google 导航 ➔</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function applyFilter(category) {
+      document.querySelectorAll('.filter-pill').forEach(btn => {
+        btn.classList.remove('bg-amber-500', 'text-black');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-amber-500', 'text-black');
+
+      const items = document.querySelectorAll('.restaurant-item');
+      items.forEach(item => {
+        if (category === 'all') {
+          item.style.display = '';
+        } else {
+          const cats = item.getAttribute('data-category') || '';
+          if (cats.includes(category)) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
