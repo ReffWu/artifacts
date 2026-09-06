@@ -3,73 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>底特律周边 4 人聚餐实地决策指南 (人均 < $30 / 30分钟内)</title>
-  <meta name="description" content="以 Fraser (48026) 为圆心半小时自驾圈。全实拍顾客到店照片、穿透核查数千条真实口碑、剔除踩雷店，带精准 4 人点单价格与 Google 地图一键导航。">
+  <title>底特律近郊 4 人聚餐指南</title>
+  <meta name="description" content="以 Fraser 为中心 30 分钟自驾圈，人均 $30 内。14 家全现场实拍、真实口碑核实、4 人推荐菜品与预算清单。">
   <style>
     :root {
       --bg: #000000;
-      --panel: rgba(255, 255, 255, 0.035);
-      --panel-solid: #0c0c0d;
-      --card: #141415;
+      --card: #0c0c0d;
+      --card-hover: #121214;
       --stroke: rgba(255, 255, 255, 0.08);
       --stroke-hover: rgba(255, 255, 255, 0.16);
       --hairline: rgba(255, 255, 255, 0.06);
-      
-      --accent: #5cc8ec;
-      --viewed: #59c7e8;
-      --freed: #70e3b5;
-      --favorite: #ffc85c;
-      --delete: #ff6b6b;
 
       --text: #f5f5f7;
-      --text-dim: rgba(245, 245, 247, 0.64);
-      --text-faint: rgba(245, 245, 247, 0.44);
+      --text-dim: rgba(245, 245, 247, 0.65);
+      --text-faint: rgba(245, 245, 247, 0.40);
+
+      --accent: #5cc8ec;
+      --green: #70e3b5;
+      --amber: #ffc85c;
 
       --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--font);
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
-    ::selection {
-      background: var(--accent);
-      color: #000;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    ::selection { background: var(--accent); color: #000; }
+    a { color: inherit; text-decoration: none; }
 
     .shell {
-      max-width: 1120px;
+      max-width: 1040px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    /* Top Navigation */
-    .nav {
+    /* Top Nav */
+    nav.top-nav {
       position: sticky;
       top: 0;
       z-index: 50;
       background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--hairline);
-      height: 56px;
+      height: 52px;
       display: flex;
       align-items: center;
     }
@@ -81,129 +65,70 @@
       width: 100%;
     }
 
-    .nav-brand {
+    .back-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-      transition: opacity 0.15s;
-    }
-    .nav-brand:hover {
-      opacity: 0.8;
-    }
-
-    .nav-brand-badge {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--viewed);
-      box-shadow: 0 0 10px rgba(89, 199, 232, 0.6);
-    }
-
-    .nav-crumbs {
-      display: flex;
-      align-items: center;
       gap: 0.4rem;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--text); }
+
+    .nav-right {
+      font-size: 0.8rem;
       color: var(--text-faint);
     }
 
-    .nav-crumb-active {
-      color: var(--text-dim);
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 3.5rem 0 2rem;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
+    /* Hero */
+    header.hero {
+      padding: 3rem 0 2rem;
     }
 
     h1 {
-      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
       font-weight: 600;
       letter-spacing: -0.025em;
-      line-height: 1.1;
       color: var(--text);
-      margin-bottom: 1rem;
-      text-wrap: balance;
+      margin-bottom: 0.75rem;
     }
 
-    .hero p.lede {
-      font-size: 1.05rem;
-      color: var(--text-dim);
-      line-height: 1.6;
-      max-width: 780px;
-      margin-bottom: 1.8rem;
-    }
-
-    /* Metadata Badges Bar */
-    .meta-bar {
+    .hero-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.6rem;
+      align-items: center;
+      gap: 0.5rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text-dim);
       margin-bottom: 2rem;
     }
-
-    .meta-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--panel);
-      border: 1px solid var(--stroke);
-      border-radius: 999px;
-      padding: 0.35rem 0.8rem;
-      font-size: 0.78rem;
-      color: var(--text-dim);
-    }
-    .meta-pill strong {
+    .hero-meta strong {
       color: var(--text);
-      font-weight: 600;
+      font-weight: 500;
     }
-    .meta-pill.highlight {
-      border-color: rgba(112, 227, 181, 0.3);
-      color: var(--freed);
-      background: rgba(112, 227, 181, 0.05);
+    .hero-meta .tag-green {
+      color: var(--green);
+      font-weight: 500;
     }
 
     /* Quick Comparison Table */
-    .table-container {
-      background: var(--panel-solid);
+    .table-box {
+      background: var(--card);
       border: 1px solid var(--stroke);
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
 
-    .table-header {
-      padding: 0.85rem 1.25rem;
-      background: rgba(255, 255, 255, 0.02);
+    .table-box-head {
+      padding: 0.75rem 1.25rem;
       border-bottom: 1px solid var(--hairline);
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
-    .table-header h2 {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: 0.02em;
-    }
-    .table-header span {
-      font-size: 0.75rem;
-      color: var(--text-faint);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      font-weight: 500;
     }
 
     .table-scroll {
@@ -218,72 +143,54 @@
     }
 
     th {
-      padding: 0.75rem 1.25rem;
+      padding: 0.65rem 1.25rem;
       font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      font-weight: 500;
+      letter-spacing: 0.04em;
       color: var(--text-faint);
       border-bottom: 1px solid var(--hairline);
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.015);
       white-space: nowrap;
     }
 
     td {
-      padding: 0.85rem 1.25rem;
+      padding: 0.75rem 1.25rem;
       border-bottom: 1px solid var(--hairline);
       color: var(--text-dim);
       white-space: nowrap;
     }
-    tr:last-child td {
-      border-bottom: none;
-    }
-    tr:hover td {
-      background: rgba(255, 255, 255, 0.015);
-    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255, 255, 255, 0.02); }
 
-    .td-title {
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .td-rating {
-      color: var(--favorite);
-      font-weight: 500;
-    }
-
-    .td-price {
-      color: var(--freed);
-      font-weight: 600;
-    }
+    .td-name { font-weight: 600; color: var(--text); }
+    .td-rating { color: var(--amber); }
+    .td-price { color: var(--green); font-weight: 500; }
 
     /* Filter Segments */
-    .filter-wrapper {
+    .filter-wrap {
       position: sticky;
-      top: 56px;
+      top: 52px;
       z-index: 40;
       background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--hairline);
-      padding: 0.75rem 0;
+      padding: 0.65rem 0;
       margin-bottom: 2rem;
     }
 
-    .filter-segment {
+    .filter-group {
       display: inline-flex;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--hairline);
       border-radius: 999px;
-      padding: 3px;
+      padding: 2px;
       gap: 2px;
       overflow-x: auto;
       max-width: 100%;
       scrollbar-width: none;
     }
-    .filter-segment::-webkit-scrollbar {
-      display: none;
-    }
+    .filter-group::-webkit-scrollbar { display: none; }
 
     .filter-btn {
       border: none;
@@ -292,136 +199,107 @@
       font-family: var(--font);
       font-size: 0.8rem;
       font-weight: 500;
-      padding: 0.4rem 1rem;
+      padding: 0.35rem 0.9rem;
       border-radius: 999px;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.16s ease;
+      transition: all 0.15s ease;
     }
-    .filter-btn:hover {
-      color: var(--text);
-    }
+    .filter-btn:hover { color: var(--text); }
     .filter-btn.active {
       background: #f5f5f7;
-      color: #000000;
+      color: #000;
       font-weight: 600;
     }
 
-    /* Core Featured Cards (Detailed Layout) */
-    .core-section {
+    /* Cards Layout */
+    .cards-list {
       display: flex;
       flex-direction: column;
-      gap: 1.75rem;
+      gap: 1.5rem;
       margin-bottom: 3.5rem;
     }
 
-    .lead-card {
-      background: var(--panel-solid);
+    .card {
+      background: var(--card);
       border: 1px solid var(--stroke);
       border-radius: 14px;
       overflow: hidden;
       display: grid;
       grid-template-columns: 1fr;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.2s;
     }
-    .lead-card:hover {
-      border-color: var(--stroke-hover);
-    }
+    .card:hover { border-color: var(--stroke-hover); }
 
-    @media (min-width: 860px) {
-      .lead-card {
-        grid-template-columns: 420px 1fr;
+    @media (min-width: 800px) {
+      .card {
+        grid-template-columns: 380px 1fr;
       }
     }
 
-    .card-photo-box {
-      position: relative;
+    .card-photo {
       background: #050505;
-      min-height: 240px;
+      min-height: 220px;
       overflow: hidden;
+      position: relative;
     }
-    .card-photo-box img {
+    .card-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.4s ease;
+      transition: transform 0.35s ease;
     }
-    .lead-card:hover .card-photo-box img {
-      transform: scale(1.025);
-    }
-
-    .photo-tag {
-      position: absolute;
-      bottom: 0.75rem;
-      left: 0.75rem;
-      background: rgba(0, 0, 0, 0.78);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--hairline);
-      color: var(--text-dim);
-      font-size: 0.7rem;
-      padding: 0.25rem 0.65rem;
-      border-radius: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
+    .card:hover .card-photo img {
+      transform: scale(1.02);
     }
 
-    .card-content {
-      padding: 1.75rem;
+    .card-body {
+      padding: 1.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
-    .card-top {
-      margin-bottom: 1.25rem;
-    }
-
     .card-title-row {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
-      gap: 0.6rem;
-      margin-bottom: 0.5rem;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
     }
 
     .card-title-group {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
-    .lead-card h3 {
-      font-size: 1.35rem;
+    .card h2 {
+      font-size: 1.25rem;
       font-weight: 600;
-      letter-spacing: -0.015em;
       color: var(--text);
+      letter-spacing: -0.015em;
     }
 
-    .badge-pill {
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid var(--hairline);
-      color: var(--accent);
-      background: rgba(92, 200, 236, 0.08);
+    .cuisine-tag {
+      font-size: 0.75rem;
+      color: var(--text-faint);
     }
 
-    .price-total {
-      font-size: 1.05rem;
+    .card-price {
+      font-size: 0.95rem;
       font-weight: 600;
-      color: var(--freed);
+      color: var(--green);
     }
-    .price-per-person {
-      font-size: 0.78rem;
+    .card-price small {
+      font-size: 0.76rem;
       font-weight: 400;
       color: var(--text-faint);
     }
 
-    .card-submeta {
+    .card-sub {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -430,166 +308,129 @@
       color: var(--text-faint);
       margin-bottom: 1rem;
     }
-    .card-submeta .rating {
-      color: var(--favorite);
-      font-weight: 500;
-    }
-    .card-submeta .drive {
-      color: var(--text-dim);
-    }
+    .card-sub .rating { color: var(--amber); }
 
-    /* Honest Assessment Block */
-    .assessment-box {
-      border-left: 2px solid var(--accent);
-      padding: 0.5rem 0 0.5rem 0.85rem;
-      margin-bottom: 1.2rem;
-      font-size: 0.82rem;
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
       line-height: 1.6;
-    }
-    .assessment-box p {
-      color: var(--text-dim);
-      margin-bottom: 0.4rem;
-    }
-    .assessment-box p strong {
-      color: var(--text);
-    }
-    .assessment-box .caveat {
-      color: var(--text-faint);
-      font-size: 0.76rem;
-    }
-    .assessment-box .caveat strong {
-      color: var(--delete);
-    }
-
-    /* 4-Person Plan Box */
-    .plan-box {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--hairline);
-      border-radius: 10px;
-      padding: 1rem;
       margin-bottom: 1rem;
     }
-
-    .plan-box-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .card-desc strong { color: var(--text); }
+    .card-desc .tip {
+      margin-top: 0.35rem;
       font-size: 0.78rem;
+      color: var(--text-faint);
+    }
+
+    /* 4-Person Dish Plan */
+    .dish-plan {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--hairline);
+      border-radius: 8px;
+      padding: 0.75rem 0.9rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .dish-plan-title {
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--text);
-      margin-bottom: 0.75rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--hairline);
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
     }
-    .plan-subtotal {
-      font-size: 0.75rem;
+    .dish-plan-title span {
       font-weight: 400;
       color: var(--text-faint);
     }
 
-    .dish-grid {
+    .dish-list {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 0.4rem;
+      gap: 0.35rem;
     }
-    @media (min-width: 600px) {
-      .dish-grid {
+    @media (min-width: 500px) {
+      .dish-list {
         grid-template-columns: 1fr 1fr;
-        gap: 0.5rem 1.25rem;
+        gap: 0.35rem 1rem;
       }
     }
 
     .dish-item {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--text-dim);
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
-      padding-bottom: 0.3rem;
     }
-    .dish-price {
+    .dish-item span:last-child {
       color: var(--text-faint);
       font-variant-numeric: tabular-nums;
     }
 
-    /* Card Footer */
     .card-foot {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 1rem;
+      padding-top: 0.85rem;
       border-top: 1px solid var(--hairline);
       font-size: 0.78rem;
     }
+    .card-foot .hours {
+      color: var(--text-faint);
+    }
 
-    .r-btn {
+    .nav-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.35rem;
       border-radius: 999px;
       background: #f5f5f7;
-      color: #000000;
+      color: #000;
+      font-size: 0.78rem;
       font-weight: 600;
-      font-size: 0.8rem;
-      padding: 0.5rem 1.1rem;
-      transition: opacity 0.15s, transform 0.15s;
+      padding: 0.45rem 1rem;
+      transition: opacity 0.15s;
     }
-    .r-btn:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
+    .nav-btn:hover { opacity: 0.9; }
 
-    /* 2-Column Grid for Secondary Curated Spots */
-    .subgrid-head {
-      margin-bottom: 1.5rem;
-    }
-    .subgrid-head h2 {
-      font-size: 1.35rem;
+    /* Secondary 2-Col Grid */
+    .sec-head {
+      margin: 2.5rem 0 1.25rem;
+      font-size: 1.15rem;
       font-weight: 600;
-      letter-spacing: -0.015em;
       color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .subgrid-head p {
-      font-size: 0.85rem;
-      color: var(--text-faint);
-      margin-top: 0.25rem;
+      letter-spacing: -0.01em;
     }
 
     .grid-2col {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 1.25rem;
       margin-bottom: 4rem;
     }
-    @media (min-width: 768px) {
+    @media (min-width: 720px) {
       .grid-2col {
         grid-template-columns: 1fr 1fr;
       }
     }
 
     .compact-card {
-      background: var(--panel-solid);
+      background: var(--card);
       border: 1px solid var(--stroke);
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: border-color 0.2s;
     }
-    .compact-card:hover {
-      border-color: var(--stroke-hover);
-    }
+    .compact-card:hover { border-color: var(--stroke-hover); }
 
     .compact-photo {
-      aspect-ratio: 16/9;
-      position: relative;
-      overflow: hidden;
+      aspect-ratio: 16 / 9;
       background: #050505;
+      overflow: hidden;
     }
     .compact-photo img {
       width: 100%;
@@ -599,11 +440,11 @@
       transition: transform 0.3s;
     }
     .compact-card:hover .compact-photo img {
-      transform: scale(1.025);
+      transform: scale(1.02);
     }
 
     .compact-body {
-      padding: 1.25rem;
+      padding: 1.15rem;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -612,10 +453,10 @@
 
     .compact-title-row {
       display: flex;
-      align-items: flex-start;
+      align-items: baseline;
       justify-content: space-between;
-      gap: 0.5rem;
-      margin-bottom: 0.35rem;
+      gap: 0.4rem;
+      margin-bottom: 0.3rem;
     }
     .compact-title-row h3 {
       font-size: 1.05rem;
@@ -627,25 +468,22 @@
       font-size: 0.8rem;
       color: var(--text-dim);
       line-height: 1.55;
-      margin: 0.6rem 0 0.85rem;
+      margin: 0.5rem 0 0.8rem;
     }
 
     .compact-plan {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--hairline);
-      border-radius: 8px;
-      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      padding: 0.55rem 0.75rem;
       font-size: 0.75rem;
       color: var(--text-dim);
-      margin-bottom: 1rem;
+      margin-bottom: 0.85rem;
       line-height: 1.45;
-    }
-    .compact-plan strong {
-      color: var(--accent);
     }
 
     .compact-foot {
-      padding-top: 0.85rem;
+      padding-top: 0.75rem;
       border-top: 1px solid var(--hairline);
       display: flex;
       align-items: center;
@@ -653,226 +491,180 @@
       font-size: 0.78rem;
     }
     .compact-foot a {
-      color: var(--viewed);
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      transition: gap 0.15s;
+      color: var(--accent);
+      font-weight: 500;
     }
-    .compact-foot a:hover {
-      gap: 0.5rem;
-    }
-
-    /* Semantic Dots */
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-    .dot.viewed { background: var(--viewed); }
-    .dot.freed { background: var(--freed); }
-    .dot.favorite { background: var(--favorite); }
-    .dot.delete { background: var(--delete); }
 
     /* Footer */
     footer {
       border-top: 1px solid var(--hairline);
-      padding: 3rem 0;
-      color: var(--text-faint);
+      padding: 2rem 0;
       font-size: 0.8rem;
+      color: var(--text-faint);
     }
     .foot-inner {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation -->
-  <nav class="nav">
+  <!-- Top Bar -->
+  <nav class="top-nav">
     <div class="shell nav-inner">
-      <a href="../" class="nav-brand">
-        <span class="nav-brand-badge"></span>
-        <span>Reff · Artifacts Hub</span>
+      <a href="../" class="back-link">
+        <span>←</span>
+        <span>Reff / Artifacts</span>
       </a>
-      <div class="nav-crumbs">
-        <span>Artifacts</span>
-        <span>/</span>
-        <span class="nav-crumb-active">Detroit Dining</span>
-      </div>
+      <span class="nav-right">14 家实测</span>
     </div>
   </nav>
 
-  <!-- Shell Content -->
   <main class="shell">
 
     <!-- Hero -->
     <header class="hero">
-      <div class="eyebrow">
-        <span>FIELD DECISION GUIDE</span>
-      </div>
-      <h1>底特律近郊 4 人聚餐实地决策指南</h1>
-      <p class="lede">
-        以 Fraser (48026 / 14 Mile 沿线) 为基准自驾 30 分钟内。穿透核查 Google Maps 真实评价，剔除虚高与踩雷店；配到店真实顾客实拍照片、4人硬菜点单方案与精准预算。
-      </p>
-
-      <!-- Metadata Pills Bar -->
-      <div class="meta-bar">
-        <div class="meta-pill">
-          <span class="dot viewed"></span>
-          <span>基准锚点：<strong>Fraser, MI (48026)</strong></span>
-        </div>
-        <div class="meta-pill">
-          <span class="dot favorite"></span>
-          <span>车程半径：<strong>≤ 30 分钟</strong></span>
-        </div>
-        <div class="meta-pill highlight">
-          <span class="dot freed"></span>
-          <span>预算锁定：<strong>人均 &lt; $30 (整桌 $70 - $115 含税小费)</strong></span>
-        </div>
-        <div class="meta-pill">
-          <span class="dot delete"></span>
-          <span>标准：<strong>全量现场实拍 · 拒绝 AI 虚假图</strong></span>
-        </div>
+      <h1>底特律近郊 4 人聚餐指南</h1>
+      <div class="hero-meta">
+        <span>出发点：<strong>Fraser (48026)</strong></span>
+        <span>•</span>
+        <span>车程：<strong>≤ 30 分钟</strong></span>
+        <span>•</span>
+        <span>预算：<strong class="tag-green">人均 ≤ $30</strong> (整桌 $70–$115 含税小费)</span>
       </div>
 
       <!-- Quick Comparison Table -->
-      <div class="table-container">
-        <div class="table-header">
-          <h2>⚡ 4 人今晚速查比对表 (按需对号入座)</h2>
-          <span>14 家全系核查 · 周日晚餐均正常营业</span>
+      <div class="table-box">
+        <div class="table-box-head">
+          <span>⚡ 今晚速查比对表</span>
+          <span>14 家全系核验 · 周日晚均正常营业</span>
         </div>
         <div class="table-scroll">
           <table>
             <thead>
               <tr>
                 <th>餐厅名称</th>
-                <th>风味定位</th>
+                <th>风味分类</th>
                 <th>Google 评分</th>
-                <th>自驾车程</th>
-                <th>4人整桌预估 (含税小费)</th>
-                <th>一句话核心特长</th>
+                <th>车程</th>
+                <th>4 人整桌预估 (含税小费)</th>
+                <th>核心特长</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="td-title">Loui's Pizza</td>
+                <td class="td-name">Loui's Pizza</td>
                 <td>底特律方形深盘</td>
                 <td class="td-rating">⭐ 4.6 (2,200+)</td>
-                <td>16-18 分钟</td>
+                <td>16-18 分</td>
                 <td class="td-price">~$79 ($19.75/人)</td>
-                <td>全美级焦边奶酪厚披萨，配全城第一意式沙拉</td>
+                <td>焦边奶酪厚披萨，配全城第一意式沙拉</td>
               </tr>
               <tr>
-                <td class="td-title">老四川聚香园 (Trizest)</td>
-                <td>正宗经典川菜</td>
+                <td class="td-name">老四川聚香园 (Trizest)</td>
+                <td>经典川菜</td>
                 <td class="td-rating">⭐ 4.3 (1,000+)</td>
-                <td>12-15 分钟</td>
+                <td>12-15 分</td>
                 <td class="td-price">~$99 ($24.75/人)</td>
-                <td>密歇根老牌正统川味，大盘歌乐山辣子鸡与水煮鱼</td>
+                <td>老师傅掌勺正统川味，大盘辣子鸡与水煮鱼</td>
               </tr>
               <tr>
-                <td class="td-title">Ishtar Restaurant</td>
+                <td class="td-name">Ishtar Restaurant</td>
                 <td>伊拉克炭火烤肉</td>
                 <td class="td-rating">⭐ 4.3 (1,300+)</td>
-                <td>13-15 分钟</td>
+                <td>13-15 分</td>
                 <td class="td-price">~$104 ($26.00/人)</td>
-                <td>全肉家庭烤肉大拼盘，现烤出炉膨胀 Samoon 麦香大饼</td>
+                <td>真炭火家庭烤肉大拼盘，现烤膨胀麦香大饼</td>
               </tr>
               <tr>
-                <td class="td-title">Polish Village Cafe</td>
+                <td class="td-name">Polish Village Cafe</td>
                 <td>百年波兰家常菜</td>
                 <td class="td-rating">⭐ 4.7 (3,800+)</td>
-                <td>20-22 分钟</td>
+                <td>20-22 分</td>
                 <td class="td-price">~$93 ($23.25/人)</td>
-                <td>百年地窖木质酒馆，波兰大水饺、白菜卷肉、熏香肠</td>
+                <td>百年地窖木质酒馆，波兰大水饺与白菜卷肉</td>
               </tr>
               <tr>
-                <td class="td-title">Mike's on the Water</td>
-                <td>码头休闲海鲜</td>
+                <td class="td-name">Mike's on the Water</td>
+                <td>休闲码头海鲜</td>
                 <td class="td-rating">⭐ 4.3 (2,500+)</td>
-                <td>12-14 分钟</td>
+                <td>12-14 分</td>
                 <td class="td-price">~$87 ($21.75/人)</td>
-                <td>露天甲板看游艇晚霞，热黄油龙虾卷与炸五大湖黄鲈鱼</td>
+                <td>甲板看游艇晚霞，热黄油龙虾卷与炸鲈鱼</td>
               </tr>
               <tr>
-                <td class="td-title">Yemen Cafe</td>
-                <td>也门慢炖脱骨羊肉</td>
+                <td class="td-name">Yemen Cafe</td>
+                <td>也门慢炖羊肉</td>
                 <td class="td-rating">⭐ 4.4 (3,500+)</td>
-                <td>20-22 分钟</td>
+                <td>20-22 分</td>
                 <td class="td-price">~$72 ($18.00/人)</td>
-                <td>脱骨嫩羊肉与沸腾牛肉石锅，比方向盘还大的现烤饼</td>
+                <td>脱骨嫩羊肉与沸腾牛肉石锅，脸盆大现烤饼</td>
               </tr>
               <tr>
-                <td class="td-title">El Charro (Fraser)</td>
-                <td>本地膨胀蓬蓬塔可</td>
+                <td class="td-name">El Charro (Fraser)</td>
+                <td>蓬蓬塔可</td>
                 <td class="td-rating">⭐ 4.4 (2,700+)</td>
-                <td>3-5 分钟</td>
+                <td>3-5 分</td>
                 <td class="td-price">~$87 ($21.75/人)</td>
-                <td>出门即到老店，油炸酥香面皮塔可与铁板 Fajitas</td>
+                <td>出门即到老店，油炸酥香面皮塔可与铁板牛排</td>
               </tr>
               <tr>
-                <td class="td-title">功夫面馆 (Kung Fu Noodle)</td>
+                <td class="td-name">功夫面馆 (Kung Fu Noodle)</td>
                 <td>手工拉面生煎</td>
                 <td class="td-rating">⭐ 4.6 (500+)</td>
-                <td>15-18 分钟</td>
+                <td>15-18 分</td>
                 <td class="td-price">~$93 ($23.25/人)</td>
-                <td>师傅现场拉面，皮薄多汁灌汤小笼包与大火生煎包</td>
+                <td>现场手工拉面，灌汤小笼包与大火生煎包</td>
               </tr>
               <tr>
-                <td class="td-title">Que Huong 桂香</td>
+                <td class="td-name">Que Huong 桂香</td>
                 <td>越南清汤河粉</td>
                 <td class="td-rating">⭐ 4.5 (700+)</td>
-                <td>17-19 分钟</td>
+                <td>17-19 分</td>
                 <td class="td-price">~$88 ($22.00/人)</td>
-                <td>熬足12小时醇美牛骨清汤，生牛肉片柔嫩，炸春卷松脆</td>
+                <td>熬足12小时牛骨清汤，生牛肉片柔嫩，炸春卷松脆</td>
               </tr>
               <tr>
-                <td class="td-title">青瓦台 (Chung Ki Wa)</td>
+                <td class="td-name">青瓦台 (Chung Ki Wa)</td>
                 <td>传统韩式烤肉</td>
                 <td class="td-rating">⭐ 4.4 (650+)</td>
-                <td>12-14 分钟</td>
+                <td>12-14 分</td>
                 <td class="td-price">~$118 ($29.50/人)</td>
-                <td>调味适中烤牛肉，送 8-10 款手工精美小菜无限续</td>
+                <td>Bulgogi烤牛肉，送8-10款手工精美小菜无限续</td>
               </tr>
               <tr>
-                <td class="td-title">Noorjahan Indian</td>
+                <td class="td-name">Noorjahan Indian</td>
                 <td>北印香料咖喱</td>
                 <td class="td-rating">⭐ 4.7 (500+)</td>
-                <td>13 分钟</td>
+                <td>13 分</td>
                 <td class="td-price">~$89 ($22.25/人)</td>
-                <td>替换低分踩雷店，现磨香料浓郁腰果黄油鸡，大蒜烤饼</td>
+                <td>现磨香料浓郁黄油鸡咖喱，大蒜现烤麦饼</td>
               </tr>
               <tr>
-                <td class="td-title">Luciano's Italian</td>
+                <td class="td-name">Luciano's Italian</td>
                 <td>老派意式正餐</td>
                 <td class="td-rating">⭐ 4.5 (1,600+)</td>
-                <td>10-12 分钟</td>
+                <td>10-12 分</td>
                 <td class="td-price">~$92 ($23.00/人)</td>
-                <td>传统古典氛围，肉酱千层面奶酪拉丝厚重，赠蒜香面包</td>
+                <td>传统古典氛围，肉酱千层面奶酪拉丝厚重，赠热面包</td>
               </tr>
               <tr>
-                <td class="td-title">Woodpile BBQ Shack</td>
-                <td>硬木慢熏德州烤肉</td>
+                <td class="td-name">Woodpile BBQ Shack</td>
+                <td>硬木慢熏烤肉</td>
                 <td class="td-rating">⭐ 4.5 (500+)</td>
-                <td>17-19 分钟</td>
+                <td>17-19 分</td>
                 <td class="td-price">~$92 ($23.00/人)</td>
-                <td>当天纯硬木慢火烟熏，粉色烟熏环牛胸肉，手撕猪肉</td>
+                <td>当天硬木慢熏，粉色烟熏环牛胸肉与手撕猪肉</td>
               </tr>
               <tr>
-                <td class="td-title">Edo Ramen Lounge</td>
+                <td class="td-name">Edo Ramen Lounge</td>
                 <td>日式拉面居酒屋</td>
                 <td class="td-rating">⭐ 4.4 (600+)</td>
-                <td>18-20 分钟</td>
+                <td>18-20 分</td>
                 <td class="td-price">~$98 ($24.50/人)</td>
-                <td>浓厚豚骨与辣味噌高汤，章鱼小丸子与日式煎饺香脆</td>
+                <td>浓厚豚骨与辣味噌高汤，章鱼小丸子与日式煎饺</td>
               </tr>
             </tbody>
           </table>
@@ -880,578 +672,476 @@
       </div>
     </header>
 
-    <!-- Filter Bar -->
-    <div class="filter-wrapper">
-      <div class="filter-segment">
-        <button onclick="applyFilter('all', this)" class="filter-btn active">全部实测 (14)</button>
+    <!-- Filter Toggle -->
+    <div class="filter-wrap">
+      <div class="filter-group">
+        <button onclick="applyFilter('all', this)" class="filter-btn active">全部 (14)</button>
         <button onclick="applyFilter('core', this)" class="filter-btn">⭐ 核心首选 (5)</button>
-        <button onclick="applyFilter('asian', this)" class="filter-btn">🥢 中餐与亚洲 (5)</button>
-        <button onclick="applyFilter('detroit', this)" class="filter-btn">🍕 底特律标志 (2)</button>
-        <button onclick="applyFilter('mideast', this)" class="filter-btn">🍖 中东炭烤慢炖 (2)</button>
+        <button onclick="applyFilter('asian', this)" class="filter-btn">🥢 亚洲风味 (5)</button>
+        <button onclick="applyFilter('detroit', this)" class="filter-btn">🍕 底特律特色 (2)</button>
+        <button onclick="applyFilter('mideast', this)" class="filter-btn">🍖 中东烧烤 (2)</button>
         <button onclick="applyFilter('western', this)" class="filter-btn">🍷 欧美与海鲜 (4)</button>
       </div>
     </div>
 
-    <!-- Core 5 Spots (Lead Detail Cards) -->
-    <section class="core-section">
+    <!-- 5 Lead Spots -->
+    <div class="cards-list">
 
       <!-- 1. Loui's Pizza -->
-      <article class="lead-card" data-category="core detroit">
-        <div class="card-photo-box">
-          <img src="./photos/louis_pizza.jpg" alt="Loui's Pizza 现场顾客实拍" loading="lazy">
-          <div class="photo-tag">
-            <span class="dot favorite"></span>
-            <span>实拍：焦边深盘披萨 & 招牌意式沙拉</span>
-          </div>
+      <article class="card" data-category="core detroit">
+        <div class="card-photo">
+          <img src="./photos/louis_pizza.jpg" alt="Loui's Pizza" loading="lazy">
         </div>
-        <div class="card-content">
-          <div class="card-top">
+        <div class="card-body">
+          <div>
             <div class="card-title-row">
               <div class="card-title-group">
-                <h3>Loui's Pizza</h3>
-                <span class="badge-pill">底特律方形披萨天花板</span>
+                <h2>Loui's Pizza</h2>
+                <span class="cuisine-tag">底特律方形厚披萨</span>
               </div>
-              <div>
-                <span class="price-total">整桌 ~$79</span>
-                <span class="price-per-person">($19.75/人)</span>
-              </div>
+              <div class="card-price">整桌 ~$79 <small>($19.75/人)</small></div>
             </div>
-            <div class="card-submeta">
-              <span class="rating">⭐ 4.6 (2,200+ 条真实评价)</span>
+            <div class="card-sub">
+              <span class="rating">⭐ 4.6 (2,200+ 评价)</span>
               <span>•</span>
-              <span class="drive">🚗 16-18 分钟 (Hazel Park)</span>
+              <span>🚗 16-18 分钟 (Hazel Park)</span>
               <span>•</span>
               <span>23141 Dequindre Rd</span>
             </div>
-
-            <div class="assessment-box">
-              <p><strong>真实水准透视：</strong>深钢盘高温烘烤，四边是焦香酥脆的威斯康星砖芝士裙边（Frico），饼底松厚多孔如佛卡夏。房顶悬挂成千上万个客人签名的基安蒂草编酒瓶，氛围极其复古。</p>
-              <div class="caveat"><strong>避坑提醒：</strong>老牌家庭小店不接受预订，周末晚餐需现场排队 20-30 分钟；建议 4 人点大号披萨搭配大沙拉即可，切忌多点。</div>
+            <div class="card-desc">
+              <p>深钢盘高温烘烤，四边是焦香酥脆的威斯康星砖芝士裙边（Frico），饼底松厚多孔。房顶悬挂成千上万个客人签名的基安蒂草编酒瓶，复古氛围极浓。</p>
+              <p class="tip">建议：不接受预订，周末需现场等位 20-30 分钟；4 人点大号披萨加一份招牌大沙拉刚好，切忌多点。</p>
             </div>
-
-            <div class="plan-box">
-              <div class="plan-box-head">
-                <span>📋 4 人推荐实战点单方案</span>
-                <span class="plan-subtotal">菜品小计：$62.50</span>
+            <div class="dish-plan">
+              <div class="dish-plan-title">
+                <strong>4 人实战推荐</strong>
+                <span>菜品小计：$62.50</span>
               </div>
-              <div class="dish-grid">
-                <div class="dish-item"><span>大号方形披萨 (Large 3-Topping)</span><span class="dish-price">$28.00</span></div>
-                <div class="dish-item"><span>大份招牌意式腌肉沙拉 (Antipasto)</span><span class="dish-price">$16.50</span></div>
-                <div class="dish-item"><span>蒜香奶酪芝士面包棒 (Breadsticks)</span><span class="dish-price">$8.00</span></div>
-                <div class="dish-item"><span>4 人软饮或精酿啤酒</span><span class="dish-price">$10.00</span></div>
+              <div class="dish-list">
+                <div class="dish-item"><span>大号方形披萨 (Large 3-Topping)</span><span>$28.00</span></div>
+                <div class="dish-item"><span>招牌意式腌肉大沙拉 (Antipasto)</span><span>$16.50</span></div>
+                <div class="dish-item"><span>蒜香奶酪面包棒 (Breadsticks)</span><span>$8.00</span></div>
+                <div class="dish-item"><span>4 人软饮或精酿啤酒</span><span>$10.00</span></div>
               </div>
             </div>
           </div>
-
           <div class="card-foot">
-            <span style="color: var(--text-faint);">周日晚餐正常营业</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=Loui's+Pizza+23141+Dequindre+Rd+Hazel+Park+MI" target="_blank" class="r-btn">
-              <span>Google 地图一键导航</span>
-              <span>→</span>
-            </a>
+            <span class="hours">周日晚餐正常营业</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Loui's+Pizza+23141+Dequindre+Rd+Hazel+Park+MI" target="_blank" class="nav-btn">Google 导航 →</a>
           </div>
         </div>
       </article>
 
-      <!-- 2. Trizest Restaurant -->
-      <article class="lead-card" data-category="core asian">
-        <div class="card-photo-box">
-          <img src="./photos/trizest.jpg" alt="Trizest 老四川现场实拍" loading="lazy">
-          <div class="photo-tag">
-            <span class="dot viewed"></span>
-            <span>实拍：水煮活鱼片与重庆辣子鸡</span>
-          </div>
+      <!-- 2. Trizest -->
+      <article class="card" data-category="core asian">
+        <div class="card-photo">
+          <img src="./photos/trizest.jpg" alt="老四川聚香园" loading="lazy">
         </div>
-        <div class="card-content">
-          <div class="card-top">
+        <div class="card-body">
+          <div>
             <div class="card-title-row">
               <div class="card-title-group">
-                <h3>老四川聚香园 (Trizest)</h3>
-                <span class="badge-pill">正统川菜老字号</span>
+                <h2>老四川聚香园 (Trizest)</h2>
+                <span class="cuisine-tag">正统川菜</span>
               </div>
-              <div>
-                <span class="price-total">整桌 ~$99</span>
-                <span class="price-per-person">($24.75/人)</span>
-              </div>
+              <div class="card-price">整桌 ~$99 <small>($24.75/人)</small></div>
             </div>
-            <div class="card-submeta">
-              <span class="rating">⭐ 4.3 (1,000+ 条真实评价)</span>
+            <div class="card-sub">
+              <span class="rating">⭐ 4.3 (1,000+ 评价)</span>
               <span>•</span>
-              <span class="drive">🚗 12-15 分钟 (Sterling Heights)</span>
+              <span>🚗 12-15 分钟 (Sterling Heights)</span>
               <span>•</span>
               <span>33170 Dequindre Rd</span>
             </div>
-
-            <div class="assessment-box">
-              <p><strong>真实水准透视：</strong>真正由四川老师傅掌勺，花椒油香与干辣椒炝锅气纯正，辣子鸡外酥里嫩，水煮鱼大盆红油垫黄豆芽。分量巨大，4 人拼菜极其过瘾。</p>
-              <div class="caveat"><strong>避坑提醒：</strong>传统中餐馆环境偏旧，前台服务快节奏略生硬；不能吃辣的朋友点单务必交代“微辣”。</div>
+            <div class="card-desc">
+              <p>四川老师傅掌勺，花椒油香与干辣椒炝锅气纯正，歌乐山辣子鸡外酥里嫩，水煮鱼大盆红油垫黄豆芽。分量巨大，4 人拼菜过瘾。</p>
+              <p class="tip">建议：传统老店环境普通，服务快节奏；不能吃辣的朋友点单务必交代“微辣”。</p>
             </div>
-
-            <div class="plan-box">
-              <div class="plan-box-head">
-                <span>📋 4 人推荐实战点单方案</span>
-                <span class="plan-subtotal">菜品小计：$79.00</span>
+            <div class="dish-plan">
+              <div class="dish-plan-title">
+                <strong>4 人实战推荐</strong>
+                <span>菜品小计：$79.00</span>
               </div>
-              <div class="dish-grid">
-                <div class="dish-item"><span>重庆歌乐山辣子鸡</span><span class="dish-price">$17.50</span></div>
-                <div class="dish-item"><span>水煮鱼片（大瓷盆装）</span><span class="dish-price">$20.00</span></div>
-                <div class="dish-item"><span>孜然爆炒羊肉</span><span class="dish-price">$19.00</span></div>
-                <div class="dish-item"><span>麻婆豆腐 或 干煸四季豆</span><span class="dish-price">$14.50</span></div>
+              <div class="dish-list">
+                <div class="dish-item"><span>重庆歌乐山辣子鸡</span><span>$17.50</span></div>
+                <div class="dish-item"><span>水煮鱼片（大盆装）</span><span>$20.00</span></div>
+                <div class="dish-item"><span>孜然爆炒羊肉</span><span>$19.00</span></div>
+                <div class="dish-item"><span>麻婆豆腐 或 干煸四季豆</span><span>$14.50</span></div>
               </div>
             </div>
           </div>
-
           <div class="card-foot">
-            <span style="color: var(--text-faint);">周日营业至 20:30</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=Trizest+Restaurant+33170+Dequindre+Rd+Sterling+Heights+MI" target="_blank" class="r-btn">
-              <span>Google 地图一键导航</span>
-              <span>→</span>
-            </a>
+            <span class="hours">周日营业至 20:30</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Trizest+Restaurant+33170+Dequindre+Rd+Sterling+Heights+MI" target="_blank" class="nav-btn">Google 导航 →</a>
           </div>
         </div>
       </article>
 
-      <!-- 3. Ishtar Restaurant -->
-      <article class="lead-card" data-category="core mideast">
-        <div class="card-photo-box">
-          <img src="./photos/ishtar.jpg" alt="Ishtar 炭烤现场实拍" loading="lazy">
-          <div class="photo-tag">
-            <span class="dot freed"></span>
-            <span>实拍：全肉大拼盘与现烤 Samoon 饼</span>
-          </div>
+      <!-- 3. Ishtar -->
+      <article class="card" data-category="core mideast">
+        <div class="card-photo">
+          <img src="./photos/ishtar.jpg" alt="Ishtar Restaurant" loading="lazy">
         </div>
-        <div class="card-content">
-          <div class="card-top">
+        <div class="card-body">
+          <div>
             <div class="card-title-row">
               <div class="card-title-group">
-                <h3>Ishtar Restaurant (伊什塔尔)</h3>
-                <span class="badge-pill">伊拉克/迦勒底炭火烤肉</span>
+                <h2>Ishtar Restaurant</h2>
+                <span class="cuisine-tag">伊拉克炭火烤肉</span>
               </div>
-              <div>
-                <span class="price-total">整桌 ~$104</span>
-                <span class="price-per-person">($26.00/人)</span>
-              </div>
+              <div class="card-price">整桌 ~$104 <small>($26.00/人)</small></div>
             </div>
-            <div class="card-submeta">
-              <span class="rating">⭐ 4.3 (1,300+ 条真实评价)</span>
+            <div class="card-sub">
+              <span class="rating">⭐ 4.3 (1,300+ 评价)</span>
               <span>•</span>
-              <span class="drive">🚗 13-15 分钟 (Sterling Heights)</span>
+              <span>🚗 13-15 分钟 (Sterling Heights)</span>
               <span>•</span>
               <span>3625 15 Mile Rd</span>
             </div>
-
-            <div class="assessment-box">
-              <p><strong>真实水准透视：</strong>全美最大迦勒底社区核心，古巴比伦壁画浮雕装饰。真炭火生烤羊肉串和鸡肉串，锁汁极好；现烤的钻石形 Samoon 大饼麦香浓郁，免费无限续供。</p>
-              <div class="caveat"><strong>避坑提醒：</strong>肉食分量极为庞大，4 人直接点 3号家庭拼盘即可，不要冲动加点过多主食。</div>
+            <div class="card-desc">
+              <p>全美最大迦勒底社区核心，真炭火生烤羊肉串和鸡肉串，锁汁饱满；现出炉的钻石形 Samoon 大饼麦香浓郁，免费无限续供。</p>
+              <p class="tip">建议：肉食量非常大，4 人点 3 号全肉家庭大拼盘即可，无需单点过多主食。</p>
             </div>
-
-            <div class="plan-box">
-              <div class="plan-box-head">
-                <span>📋 4 人推荐实战点单方案</span>
-                <span class="plan-subtotal">菜品小计：$82.97</span>
+            <div class="dish-plan">
+              <div class="dish-plan-title">
+                <strong>4 人实战推荐</strong>
+                <span>菜品小计：$82.97</span>
               </div>
-              <div class="dish-grid">
-                <div class="dish-item"><span>3号全肉大拼盘 (羊肉串+鸡肉串+牛肉Shawarma+香米饭)</span><span class="dish-price">$65.99</span></div>
-                <div class="dish-item"><span>手工丝滑鹰嘴豆泥 (Hummus)</span><span class="dish-price">$8.99</span></div>
-                <div class="dish-item"><span>酥炸香料鹰嘴豆丸子 (Falafel 6只)</span><span class="dish-price">$7.99</span></div>
-                <div class="dish-item"><span>现出炉热 Samoon 烤麦饼</span><span class="dish-price" style="color: var(--freed);">免费赠送</span></div>
+              <div class="dish-list">
+                <div class="dish-item"><span>3号全肉大拼盘 (羊肉串+鸡肉串+牛肉Shawarma+米饭)</span><span>$65.99</span></div>
+                <div class="dish-item"><span>丝滑鹰嘴豆泥 (Hummus)</span><span>$8.99</span></div>
+                <div class="dish-item"><span>炸鹰嘴豆丸子 (Falafel 6只)</span><span>$7.99</span></div>
+                <div class="dish-item"><span>现烤热 Samoon 麦饼</span><span style="color: var(--green);">免费赠送</span></div>
               </div>
             </div>
           </div>
-
           <div class="card-foot">
-            <span style="color: var(--text-faint);">周日营业至 22:00</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=Ishtar+Restaurant+3625+15+Mile+Rd+Sterling+Heights+MI" target="_blank" class="r-btn">
-              <span>Google 地图一键导航</span>
-              <span>→</span>
-            </a>
+            <span class="hours">周日营业至 22:00</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Ishtar+Restaurant+3625+15+Mile+Rd+Sterling+Heights+MI" target="_blank" class="nav-btn">Google 导航 →</a>
           </div>
         </div>
       </article>
 
       <!-- 4. Polish Village Cafe -->
-      <article class="lead-card" data-category="core western">
-        <div class="card-photo-box">
-          <img src="./photos/polish_village.jpg" alt="Polish Village Cafe 现场实拍" loading="lazy">
-          <div class="photo-tag">
-            <span class="dot viewed"></span>
-            <span>实拍：百年地窖酒馆与波兰大拼盘</span>
-          </div>
+      <article class="card" data-category="core western">
+        <div class="card-photo">
+          <img src="./photos/polish_village.jpg" alt="Polish Village Cafe" loading="lazy">
         </div>
-        <div class="card-content">
-          <div class="card-top">
+        <div class="card-body">
+          <div>
             <div class="card-title-row">
               <div class="card-title-group">
-                <h3>Polish Village Cafe (波兰地窖餐厅)</h3>
-                <span class="badge-pill">密歇根近4000条好评传奇</span>
+                <h2>Polish Village Cafe</h2>
+                <span class="cuisine-tag">百年波兰家常菜</span>
               </div>
-              <div>
-                <span class="price-total">整桌 ~$93</span>
-                <span class="price-per-person">($23.25/人)</span>
-              </div>
+              <div class="card-price">整桌 ~$93 <small>($23.25/人)</small></div>
             </div>
-            <div class="card-submeta">
-              <span class="rating">⭐ 4.7 (3,800+ 条真实评价)</span>
+            <div class="card-sub">
+              <span class="rating">⭐ 4.7 (3,800+ 评价)</span>
               <span>•</span>
-              <span class="drive">🚗 20-22 分钟 (Hamtramck)</span>
+              <span>🚗 20-22 分钟 (Hamtramck)</span>
               <span>•</span>
               <span>2990 Yemans St</span>
             </div>
-
-            <div class="assessment-box">
-              <p><strong>真实水准透视：</strong>全州口碑顶尖。隐身在百年老宅地下室，昏黄木桌充满东欧小镇酒馆气息。手工波兰大水饺煎得金黄裹着黄油洋葱，白菜肉卷（Golabki）吸饱番茄酱汁，吃着极具抚慰感。</p>
-              <div class="caveat"><strong>避坑提醒：</strong>地下室阶梯较陡，晚高峰期常客多需少许等位，建议 17:00-18:00 间到店。</div>
+            <div class="card-desc">
+              <p>全密歇根近 4,000 条好评传奇。百年老宅地窖酒馆，手工波兰大水饺金黄酥软，白菜肉卷（Golabki）吸饱番茄浓汁，极具抚慰感。</p>
+              <p class="tip">建议：地下室楼梯较陡；周末常客多，建议 17:30 前或 19:30 后到店避开等位高峰。</p>
             </div>
-
-            <div class="plan-box">
-              <div class="plan-box-head">
-                <span>📋 4 人推荐实战点单方案</span>
-                <span class="plan-subtotal">菜品小计：$74.00</span>
+            <div class="dish-plan">
+              <div class="dish-plan-title">
+                <strong>4 人实战推荐</strong>
+                <span>菜品小计：$74.00</span>
               </div>
-              <div class="dish-grid">
-                <div class="dish-item"><span>波兰综合大拼盘 (Polish Plate x 2份)</span><span class="dish-price">$36.00</span></div>
-                <div class="dish-item"><span>匈牙利土豆煎饼佐牛肉炖汁</span><span class="dish-price">$16.50</span></div>
-                <div class="dish-item"><span>波兰炸水饺拼盘 (Pierogi)</span><span class="dish-price">$12.50</span></div>
-                <div class="dish-item"><span>酸黄瓜清汤 (Dill Pickle Soup x 2)</span><span class="dish-price">$9.00</span></div>
+              <div class="dish-list">
+                <div class="dish-item"><span>波兰综合拼盘 (Polish Plate x 2)</span><span>$36.00</span></div>
+                <div class="dish-item"><span>土豆煎饼配牛肉炖汁</span><span>$16.50</span></div>
+                <div class="dish-item"><span>炸波兰水饺 (Pierogi)</span><span>$12.50</span></div>
+                <div class="dish-item"><span>酸黄瓜浓汤 (Dill Pickle Soup x 2)</span><span>$9.00</span></div>
               </div>
             </div>
           </div>
-
           <div class="card-foot">
-            <span style="color: var(--text-faint);">周日营业至 21:00</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=Polish+Village+Cafe+2990+Yemans+St+Hamtramck+MI" target="_blank" class="r-btn">
-              <span>Google 地图一键导航</span>
-              <span>→</span>
-            </a>
+            <span class="hours">周日营业至 21:00</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Polish+Village+Cafe+2990+Yemans+St+Hamtramck+MI" target="_blank" class="nav-btn">Google 导航 →</a>
           </div>
         </div>
       </article>
 
       <!-- 5. Mike's on the Water -->
-      <article class="lead-card" data-category="core western">
-        <div class="card-photo-box">
-          <img src="./photos/mikes_water.jpg" alt="Mike's on the Water 现场实拍" loading="lazy">
-          <div class="photo-tag">
-            <span class="dot favorite"></span>
-            <span>实拍：游艇码头甲板与龙虾卷</span>
-          </div>
+      <article class="card" data-category="core western">
+        <div class="card-photo">
+          <img src="./photos/mikes_water.jpg" alt="Mike's on the Water" loading="lazy">
         </div>
-        <div class="card-content">
-          <div class="card-top">
+        <div class="card-body">
+          <div>
             <div class="card-title-row">
               <div class="card-title-group">
-                <h3>Mike's on the Water (湖畔海鲜餐吧)</h3>
-                <span class="badge-pill">圣克莱尔湖码头风情</span>
+                <h2>Mike's on the Water</h2>
+                <span class="cuisine-tag">湖畔海鲜餐吧</span>
               </div>
-              <div>
-                <span class="price-total">整桌 ~$87</span>
-                <span class="price-per-person">($21.75/人)</span>
-              </div>
+              <div class="card-price">整桌 ~$87 <small>($21.75/人)</small></div>
             </div>
-            <div class="card-submeta">
-              <span class="rating">⭐ 4.3 (2,500+ 条真实评价)</span>
+            <div class="card-sub">
+              <span class="rating">⭐ 4.3 (2,500+ 评价)</span>
               <span>•</span>
-              <span class="drive">🚗 12-14 分钟 (St. Clair Shores)</span>
+              <span>🚗 12-14 分钟 (St. Clair Shores)</span>
               <span>•</span>
               <span>24600 Jefferson Ave</span>
             </div>
-
-            <div class="assessment-box">
-              <p><strong>真实水准透视：</strong>建在圣克莱尔湖游艇港湾旁边，顶层露台吹着湖风吃龙虾卷和炸鲈鱼极其惬意。9月初秋傍晚天气晴好，傍晚晚霞景色极佳。</p>
-              <div class="caveat"><strong>避坑提醒：</strong>属于美式休闲码头餐吧（Bar & Grill），核心价值在于晚霞湖景与松弛的聚会氛围，切勿与高端法餐比较摆盘。</div>
+            <div class="card-desc">
+              <p>圣克莱尔湖游艇港湾旁，二楼露天甲板吹着湖风看晚霞吃龙虾卷和炸鲈鱼。初秋傍晚视野开阔，聚会气氛极其放松。</p>
+              <p class="tip">建议：美式休闲海鲜酒馆风格，核心价值在于湖景和松弛氛围，非精致正餐路线。</p>
             </div>
-
-            <div class="plan-box">
-              <div class="plan-box-head">
-                <span>📋 4 人推荐实战点单方案</span>
-                <span class="plan-subtotal">菜品小计：$69.00</span>
+            <div class="dish-plan">
+              <div class="dish-plan-title">
+                <strong>4 人实战推荐</strong>
+                <span>菜品小计：$69.00</span>
               </div>
-              <div class="dish-grid">
-                <div class="dish-item"><span>招牌热黄油龙虾卷配薯条</span><span class="dish-price">$22.50</span></div>
-                <div class="dish-item"><span>五大湖鲜炸黄鲈鱼柳 (Fresh Perch)</span><span class="dish-price">$20.00</span></div>
-                <div class="dish-item"><span>烟熏白鱼酱配苏打饼干 (Whitefish Dip)</span><span class="dish-price">$12.00</span></div>
-                <div class="dish-item"><span>多汁培根安格斯汉堡配薯条</span><span class="dish-price">$14.50</span></div>
+              <div class="dish-list">
+                <div class="dish-item"><span>热黄油龙虾卷配薯条</span><span>$22.50</span></div>
+                <div class="dish-item"><span>鲜炸五大湖黄鲈鱼柳 (Perch)</span><span>$20.00</span></div>
+                <div class="dish-item"><span>多汁培根安格斯汉堡配薯条</span><span>$14.50</span></div>
+                <div class="dish-item"><span>烟熏白鱼酱配饼干 (Whitefish Dip)</span><span>$12.00</span></div>
               </div>
             </div>
           </div>
-
           <div class="card-foot">
-            <span style="color: var(--text-faint);">周日营业至 21:00</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=Mike's+on+the+Water+24600+Jefferson+Ave+St+Clair+Shores+MI" target="_blank" class="r-btn">
-              <span>Google 地图一键导航</span>
-              <span>→</span>
-            </a>
+            <span class="hours">周日营业至 21:00</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Mike's+on+the+Water+24600+Jefferson+Ave+St+Clair+Shores+MI" target="_blank" class="nav-btn">Google 导航 →</a>
           </div>
         </div>
       </article>
 
-    </section>
+    </div>
 
-    <!-- Secondary Curated Spots (9 Places in 2-Column Grid) -->
-    <section>
-      <div class="subgrid-head">
-        <h2>
-          <span>更多特色实拍去处</span>
-          <span style="font-size: 0.8rem; font-weight: 400; color: var(--text-faint);">(9 家入围 · 同样符合预算与实拍标准)</span>
-        </h2>
-        <p>全量经过车程检验与菜品核实，按特定风味与聚会偏好自如挑选。</p>
-      </div>
+    <!-- Secondary 9 Spots -->
+    <h2 class="sec-head">更多特色餐厅 (9 家)</h2>
+    <div class="grid-2col">
 
-      <div class="grid-2col">
-
-        <!-- 6. Yemen Cafe -->
-        <article class="compact-card" data-category="mideast">
+      <!-- 6. Yemen Cafe -->
+      <article class="compact-card" data-category="mideast">
+        <div class="compact-photo">
+          <img src="./photos/yemen_cafe.jpg" alt="Yemen Cafe" loading="lazy">
+        </div>
+        <div class="compact-body">
           <div>
-            <div class="compact-photo">
-              <img src="./photos/yemen_cafe.jpg" alt="Yemen Cafe 慢炖羊肉实拍" loading="lazy">
-              <div class="photo-tag"><span class="dot freed"></span>实拍：脱骨羊肉大盘 & 烤大饼</div>
+            <div class="compact-title-row">
+              <h3>Yemen Cafe</h3>
+              <span class="card-price" style="font-size: 0.9rem;">~$72 ($18/人)</span>
             </div>
-            <div class="compact-body">
-              <div>
-                <div class="compact-title-row">
-                  <h3>Yemen Cafe (也门餐厅)</h3>
-                  <span class="price-total" style="font-size: 0.95rem;">~$72 ($18/人)</span>
-                </div>
-                <div class="card-submeta" style="margin-bottom: 0.5rem;">⭐ 4.4 (3,500+ 条评价) • 20-22 分钟 (Hamtramck)</div>
-                <p class="compact-desc">炖至骨肉分离的 Lamb Haneeth，上桌剧烈沸腾的牛肉石锅（Fahsa）。免费赠送浓醇羊肉清汤与比方向盘还大的现烤也门大饼。</p>
-                <div class="compact-plan">
-                  <strong>4人点单方案：</strong>脱骨炖羊肉($22) + 沸腾牛肉石锅($18) + 炒鸡肉粒($17) + 赠送无限大饼与清汤
-                </div>
-              </div>
+            <div class="card-sub" style="margin-bottom: 0.4rem;">⭐ 4.4 (3,500+ 评价) • 20-22 分 (Hamtramck)</div>
+            <p class="compact-desc">炖至脱骨的羊肉（Lamb Haneeth），上桌剧烈沸腾的牛肉石锅（Fahsa）。免费送浓醇羊肉清汤与方向盘大的现烤大饼。</p>
+            <div class="compact-plan">
+              <strong>4人点单：</strong>脱骨炖羊肉($22) + 沸腾牛肉石锅($18) + 炒鸡肉粒($17) + 赠送无限大饼与清汤
             </div>
           </div>
-          <div class="compact-foot" style="margin: 0 1.25rem 1.25rem;">
+          <div class="compact-foot">
             <span style="color: var(--text-faint);">8740 Joseph Campau Ave</span>
             <a href="https://www.google.com/maps/search/?api=1&query=Yemen+Cafe+8740+Joseph+Campau+Ave+Hamtramck+MI" target="_blank">Google 导航 →</a>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- 7. El Charro Fraser -->
-        <article class="compact-card" data-category="detroit western">
+      <!-- 7. El Charro Fraser -->
+      <article class="compact-card" data-category="detroit western">
+        <div class="compact-photo">
+          <img src="./photos/el_charro.jpg" alt="El Charro" loading="lazy">
+        </div>
+        <div class="compact-body">
           <div>
-            <div class="compact-photo">
-              <img src="./photos/el_charro.jpg" alt="El Charro 蓬蓬塔可实拍" loading="lazy">
-              <div class="photo-tag"><span class="dot favorite"></span>实拍：膨胀蓬蓬塔可拼盘</div>
+            <div class="compact-title-row">
+              <h3>El Charro (Fraser)</h3>
+              <span class="card-price" style="font-size: 0.9rem;">~$87 ($21.75/人)</span>
             </div>
-            <div class="compact-body">
-              <div>
-                <div class="compact-title-row">
-                  <h3>El Charro (Fraser 本地老店)</h3>
-                  <span class="price-total" style="font-size: 0.95rem;">~$87 ($21.75/人)</span>
-                </div>
-                <div class="card-submeta" style="margin-bottom: 0.5rem; color: var(--favorite);">⭐ 4.4 (2,700+ 条评价) • 3-5 分钟 (出门即到)</div>
-                <p class="compact-desc">Macomb 县本地吃了几十年的自创金黄膨胀面皮蓬蓬塔可（Puffy Taco），酥松喷香，搭配铁板牛肉双拼 Fajitas。</p>
-                <div class="compact-plan">
-                  <strong>4人点单方案：</strong>四合一组合盘x2($37) + 铁板牛鸡双拼Fajitas($23.5) + 浓郁热芝士肉酱蘸料($9)
-                </div>
-              </div>
+            <div class="card-sub" style="margin-bottom: 0.4rem; color: var(--amber);">⭐ 4.4 (2,700+ 评价) • 3-5 分 (极近)</div>
+            <p class="compact-desc">Macomb 县本地吃了几十年的自创膨胀面皮蓬蓬塔可（Puffy Taco），酥松喷香，搭配铁板牛鸡双拼 Fajitas。</p>
+            <div class="compact-plan">
+              <strong>4人点单：</strong>四合一组合盘x2($37) + 铁板双拼Fajitas($23.5) + 热芝士肉酱料($9)
             </div>
           </div>
-          <div class="compact-foot" style="margin: 0 1.25rem 1.25rem;">
-            <span style="color: var(--text-faint);">16720 E 14 Mile Rd, Fraser</span>
+          <div class="compact-foot">
+            <span style="color: var(--text-faint);">16720 E 14 Mile Rd</span>
             <a href="https://www.google.com/maps/search/?api=1&query=El+Charro+16720+E+14+Mile+Rd+Fraser+MI" target="_blank">Google 导航 →</a>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- 8. Kung Fu Noodle House -->
-        <article class="compact-card" data-category="asian">
+      <!-- 8. Kung Fu Noodle House -->
+      <article class="compact-card" data-category="asian">
+        <div class="compact-photo">
+          <img src="./photos/kung_fu_noodle.jpg" alt="功夫面馆" loading="lazy">
+        </div>
+        <div class="compact-body">
           <div>
-            <div class="compact-photo">
-              <img src="./photos/kung_fu_noodle.jpg" alt="功夫面馆现场实拍" loading="lazy">
-              <div class="photo-tag"><span class="dot viewed"></span>实拍：手工拉面与生煎包</div>
+            <div class="compact-title-row">
+              <h3>功夫面馆 (Kung Fu Noodle)</h3>
+              <span class="card-price" style="font-size: 0.9rem;">~$93 ($23.25/人)</span>
             </div>
-            <div class="compact-body">
-              <div>
-                <div class="compact-title-row">
-                  <h3>功夫面馆 (Kung Fu Noodle)</h3>
-                  <span class="price-total" style="font-size: 0.95rem;">~$93 ($23.25/人)</span>
-                </div>
-                <div class="card-submeta" style="margin-bottom: 0.5rem;">⭐ 4.6 (500+ 条评价) • 15-18 分钟 (Madison Heights)</div>
-                <p class="compact-desc">多伦多师傅坐镇，现场手工拉制筋道牛肉面，皮薄多汁灌汤小笼包与大火生煎包，干炒牛河镬气十足。</p>
-                <div class="compact-plan">
-                  <strong>4人点单方案：</strong>牛腩拉面x2($28) + 灌汤小笼包($7.5) + 生煎包($7.5) + 干炒牛河($16) + 椒盐鱿鱼($15.5)
-                </div>
-              </div>
+            <div class="card-sub" style="margin-bottom: 0.4rem;">⭐ 4.6 (500+ 评价) • 15-18 分 (Madison Heights)</div>
+            <p class="compact-desc">多伦多师傅坐镇，现场手工拉面，汤清肉烂。灌汤小笼包皮薄多汁，大火生煎包焦脆，干炒牛河镬气足。</p>
+            <div class="compact-plan">
+              <strong>4人点单：</strong>牛腩拉面x2($28) + 小笼包($7.5) + 生煎包($7.5) + 干炒牛河($16) + 椒盐鱿鱼($15.5)
             </div>
           </div>
-          <div class="compact-foot" style="margin: 0 1.25rem 1.25rem;">
+          <div class="compact-foot">
             <span style="color: var(--text-faint);">31151 Dequindre Rd</span>
             <a href="https://www.google.com/maps/search/?api=1&query=Kung+Fu+Noodle+House+31151+Dequindre+Rd+Madison+Heights+MI" target="_blank">Google 导航 →</a>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- 9. Que Huong -->
-        <article class="compact-card" data-category="asian">
+      <!-- 9. Que Huong -->
+      <article class="compact-card" data-category="asian">
+        <div class="compact-photo">
+          <img src="./photos/que_huong.jpg" alt="Que Huong" loading="lazy">
+        </div>
+        <div class="compact-body">
           <div>
-            <div class="compact-photo">
-              <img src="./photos/que_huong.jpg" alt="Que Huong 越南河粉实拍" loading="lazy">
-              <div class="photo-tag"><span class="dot freed"></span>实拍：招牌牛骨清汤粉</div>
+            <div class="compact-title-row">
+              <h3>Que Huong 桂香越南料理</h3>
+              <span class="card-price" style="font-size: 0.9rem;">~$88 ($22/人)</span>
             </div>
-            <div class="compact-body">
-              <div>
-                <div class="compact-title-row">
-                  <h3>Que Huong 桂香越南料理</h3>
-                  <span class="price-total" style="font-size: 0.95rem;">~$88 ($22.00/人)</span>
-                </div>
-                <div class="card-submeta" style="margin-bottom: 0.5rem;">⭐ 4.5 (700+ 条评价) • 17-19 分钟 (Madison Heights)</div>
-                <p class="compact-desc">底特律老饕一致公认的越南粉汤头天花板。慢火熬足 12 小时的牛骨清汤，生牛肉片柔嫩，炸春卷格外松脆。</p>
-                <div class="compact-plan">
-                  <strong>4人点单方案：</strong>特别牛肉粉大碗x2($31) + 顺化辣牛肉粉($15.5) + 脆皮春卷($8.5) + 香茅煎猪排碎米饭($15)
-                </div>
-              </div>
+            <div class="card-sub" style="margin-bottom: 0.4rem;">⭐ 4.5 (700+ 评价) • 17-19 分 (Madison Heights)</div>
+            <p class="compact-desc">底特律老饕公认的越南粉清汤天花板。慢火熬足 12 小时的牛骨清汤，生牛肉片柔嫩，炸春卷松脆喷香。</p>
+            <div class="compact-plan">
+              <strong>4人点单：</strong>特别牛肉粉大碗x2($31) + 辣牛肉粉($15.5) + 脆皮春卷($8.5) + 煎猪排碎米饭($15)
             </div>
           </div>
-          <div class="compact-foot" style="margin: 0 1.25rem 1.25rem;">
+          <div class="compact-foot">
             <span style="color: var(--text-faint);">30820 John R Rd</span>
             <a href="https://www.google.com/maps/search/?api=1&query=Que+Huong+Restaurant+30820+John+R+Rd+Madison+Heights+MI" target="_blank">Google 导航 →</a>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- 10. Chung Ki Wa -->
-        <article class="compact-card" data-category="asian">
+      <!-- 10. Chung Ki Wa -->
+      <article class="compact-card" data-category="asian">
+        <div class="compact-photo">
+          <img src="./photos/chung_ki_wa.jpg" alt="青瓦台韩餐" loading="lazy">
+        </div>
+        <div class="compact-body">
           <div>
-            <div class="compact-photo">
-              <img src="./photos/chung_ki_wa.jpg" alt="Chung Ki Wa 韩餐实拍" loading="lazy">
-              <div class="photo-tag"><span class="dot favorite"></span>实拍：Bulgogi 烤肉与满桌小菜</div>
+            <div class="compact-title-row">
+              <h3>青瓦台 (Chung Ki Wa)</h3>
+              <span class="card-price" style="font-size: 0.9rem;">~$118 ($29.5/人)</span>
             </div>
-            <div class="compact-body">
-              <div>
-                <div class="compact-title-row">
-                  <h3>青瓦台 (Chung Ki Wa 韩餐)</h3>
-                  <span class="price-total" style="font-size: 0.95rem;">~$118 ($29.50/人)</span>
-                </div>
-                <div class="card-submeta" style="margin-bottom: 0.5rem;">⭐ 4.4 (650+ 条评价) • 12-14 分钟 (Sterling Heights)</div>
-                <p class="compact-desc">调味适中的 Bulgogi 烤牛肉，附赠无限续加的 8-10 款韩式手工精美小菜（泡菜、腌萝卜），海鲜嫩豆腐汤开胃暖身。</p>
-                <div class="compact-plan">
-                  <strong>4人点单方案：</strong>Bulgogi烤牛肉双人份($58) + 海鲜嫩豆腐锅($17) + 海鲜葱煎饼($19) + 免费续小菜与生菜
-                </div>
-              </div>
+            <div class="card-sub" style="margin-bottom: 0.4rem;">⭐ 4.4 (650+ 评价) • 12-14 分 (Sterling Heights)</div>
+            <p class="compact-desc">调味适中的 Bulgogi 烤牛肉，附赠无限续加的 8-10 款韩式手工小菜与生菜，海鲜豆腐锅开胃暖身。</p>
+            <div class="compact-plan">
+              <strong>4人点单：</strong>Bulgogi烤牛肉双人份($58) + 海鲜嫩豆腐锅($17) + 海鲜葱煎饼($19) + 免费续小菜
             </div>
           </div>
-          <div class="compact-foot" style="margin: 0 1.25rem 1.25rem;">
+          <div class="compact-foot">
             <span style="color: var(--text-faint);">2101 15 Mile Rd</span>
             <a href="https://www.google.com/maps/search/?api=1&query=Chung+Ki+Wa+2101+15+Mile+Rd+Sterling+Heights+MI" target="_blank">Google 导航 →</a>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- 11. Noorjahan Indian Cuisine -->
-        <article class="compact-card" data-category="asian">
+      <!-- 11. Noorjahan Indian -->
+      <article class="compact-card" data-category="asian">
+        <div class="compact-photo">
+          <img src="./photos/noorjahan.jpg" alt="Noorjahan" loading="lazy">
+        </div>
+        <div class="compact-body">
           <div>
-            <div class="compact-photo">
-              <img src="./photos/noorjahan.jpg" alt="Noorjahan 印度菜实拍" loading="lazy">
-              <div class="photo-tag"><span class="dot freed"></span>实拍：现熬黄油鸡咖喱与大蒜烤饼</div>
+            <div class="compact-title-row">
+              <h3>Noorjahan Indian Cuisine</h3>
+              <span class="card-price" style="font-size: 0.9rem;">~$89 ($22.25/人)</span>
             </div>
-            <div class="compact-body">
-              <div>
-                <div class="compact-title-row">
-                  <h3>Noorjahan Indian Cuisine</h3>
-                  <span class="price-total" style="font-size: 0.95rem;">~$89 ($22.25/人)</span>
-                </div>
-                <div class="card-submeta" style="margin-bottom: 0.5rem; color: var(--freed);">⭐ 4.7 (500+ 条好评) • 13 分钟 (Grosse Pointe Woods)</div>
-                <p class="compact-desc">替换掉原本仅 3.9 分的 Troy 踩雷店。现磨香料与浓郁腰果黄油熬煮的 Butter Chicken，刚出炉滋滋泛油光的 Garlic Naan 极香。</p>
-                <div class="compact-plan">
-                  <strong>4人点单方案：</strong>黄油烤鸡咖喱($17.5) + 羊肉咖喱($19.5) + 鸡肉香饭($16) + 蒜香烤饼x3($10.5) + 三角炸饺($7.5)
-                </div>
-              </div>
+            <div class="card-sub" style="margin-bottom: 0.4rem;">⭐ 4.7 (500+ 评价) • 13 分 (Grosse Pointe Woods)</div>
+            <p class="compact-desc">现磨香料与浓郁腰果黄油熬煮的 Butter Chicken，刚出炉滋滋泛油光的蒜香烤饼（Garlic Naan）极香。</p>
+            <div class="compact-plan">
+              <strong>4人点单：</strong>黄油鸡咖喱($17.5) + 羊肉咖喱($19.5) + 鸡肉香饭($16) + 蒜香烤饼x3($10.5) + 炸角($7.5)
             </div>
           </div>
-          <div class="compact-foot" style="margin: 0 1.25rem 1.25rem;">
+          <div class="compact-foot">
             <span style="color: var(--text-faint);">20641 Mack Ave</span>
             <a href="https://www.google.com/maps/search/?api=1&query=Noorjahan+Indian+Cuisine+20641+Mack+Ave+Grosse+Pointe+Woods+MI" target="_blank">Google 导航 →</a>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- 12. Luciano's Italian Restaurant -->
-        <article class="compact-card" data-category="western">
+      <!-- 12. Luciano's -->
+      <article class="compact-card" data-category="western">
+        <div class="compact-photo">
+          <img src="./photos/lucianos.jpg" alt="Luciano's" loading="lazy">
+        </div>
+        <div class="compact-body">
           <div>
-            <div class="compact-photo">
-              <img src="./photos/lucianos.jpg" alt="Luciano's 意餐实拍" loading="lazy">
-              <div class="photo-tag"><span class="dot viewed"></span>实拍：古典壁画厅与焗烤千层面</div>
+            <div class="compact-title-row">
+              <h3>Luciano's Italian</h3>
+              <span class="card-price" style="font-size: 0.9rem;">~$92 ($23/人)</span>
             </div>
-            <div class="compact-body">
-              <div>
-                <div class="compact-title-row">
-                  <h3>Luciano's Italian Restaurant</h3>
-                  <span class="price-total" style="font-size: 0.95rem;">~$92 ($23.00/人)</span>
-                </div>
-                <div class="card-submeta" style="margin-bottom: 0.5rem;">⭐ 4.5 (1,600+ 条评价) • 10-12 分钟 (Clinton Township)</div>
-                <p class="compact-desc">老式意大利传统正餐氛围，水晶吊灯与壁画。赠送热腾腾松软蒜香面包，焗烤肉酱千层面奶酪拉丝极其厚重，帕玛森鸡排酥脆。</p>
-                <div class="compact-plan">
-                  <strong>4人点单方案：</strong>肉酱千层面($19.5) + 白酱鸡肉宽面($22) + 帕玛森鸡排($23.5) + 意式烤面包片($8.5) + 赠送热面包
-                </div>
-              </div>
+            <div class="card-sub" style="margin-bottom: 0.4rem;">⭐ 4.5 (1,600+ 评价) • 10-12 分 (Clinton Township)</div>
+            <p class="compact-desc">老式意大利传统正餐氛围，水晶吊灯与壁画。焗烤肉酱千层面奶酪拉丝厚重，赠送热腾腾松软蒜香面包。</p>
+            <div class="compact-plan">
+              <strong>4人点单：</strong>肉酱千层面($19.5) + 白酱鸡肉宽面($22) + 帕玛森鸡排($23.5) + 意式烤面包片($8.5)
             </div>
           </div>
-          <div class="compact-foot" style="margin: 0 1.25rem 1.25rem;">
+          <div class="compact-foot">
             <span style="color: var(--text-faint);">39091 Garfield Rd</span>
             <a href="https://www.google.com/maps/search/?api=1&query=Luciano's+Italian+Restaurant+39091+Garfield+Rd+Clinton+Twp+MI" target="_blank">Google 导航 →</a>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- 13. Woodpile BBQ Shack -->
-        <article class="compact-card" data-category="western">
+      <!-- 13. Woodpile BBQ Shack -->
+      <article class="compact-card" data-category="western">
+        <div class="compact-photo">
+          <img src="./photos/woodpile_bbq.jpg" alt="Woodpile BBQ" loading="lazy">
+        </div>
+        <div class="compact-body">
           <div>
-            <div class="compact-photo">
-              <img src="./photos/woodpile_bbq.jpg" alt="Woodpile BBQ 烟熏烤肉实拍" loading="lazy">
-              <div class="photo-tag"><span class="dot favorite"></span>实拍：硬木慢熏牛胸肉与肋排</div>
+            <div class="compact-title-row">
+              <h3>Woodpile BBQ Shack</h3>
+              <span class="card-price" style="font-size: 0.9rem;">~$92 ($23/人)</span>
             </div>
-            <div class="compact-body">
-              <div>
-                <div class="compact-title-row">
-                  <h3>Woodpile BBQ Shack</h3>
-                  <span class="price-total" style="font-size: 0.95rem;">~$92 ($23.00/人)</span>
-                </div>
-                <div class="card-submeta" style="margin-bottom: 0.5rem;">⭐ 4.5 (500+ 条评价) • 17-19 分钟 (Madison Heights)</div>
-                <p class="compact-desc">当天纯硬木慢火烟熏德州烤肉。牛胸肉（Brisket）带漂亮粉色烟熏环，手撕猪肉柔嫩多汁，圣路易斯肋排肉香浓郁。</p>
-                <div class="compact-plan">
-                  <strong>4人点单方案：</strong>牛胸肉半磅($17.5) + 肋排半架($18.5) + 手撕猪肉半磅($11.5) + 芝士肠x2($10) + 大通心粉与玉米面包($16)
-                </div>
-              </div>
+            <div class="card-sub" style="margin-bottom: 0.4rem;">⭐ 4.5 (500+ 评价) • 17-19 分 (Madison Heights)</div>
+            <p class="compact-desc">当天纯硬木慢火烟熏德州烤肉。牛胸肉（Brisket）带粉色烟熏环，手撕猪肉多汁，圣路易斯肋排肉香浓郁。</p>
+            <div class="compact-plan">
+              <strong>4人点单：</strong>牛胸肉半磅($17.5) + 肋排半架($18.5) + 手撕猪肉半磅($11.5) + 芝士肠x2($10) + 配菜($16)
             </div>
           </div>
-          <div class="compact-foot" style="margin: 0 1.25rem 1.25rem;">
+          <div class="compact-foot">
             <span style="color: var(--text-faint);">630 E 11 Mile Rd</span>
             <a href="https://www.google.com/maps/search/?api=1&query=Woodpile+BBQ+Shack+630+E+11+Mile+Rd+Madison+Heights+MI" target="_blank">Google 导航 →</a>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- 14. Edo Ramen Lounge -->
-        <article class="compact-card" data-category="asian">
+      <!-- 14. Edo Ramen Lounge -->
+      <article class="compact-card" data-category="asian">
+        <div class="compact-photo">
+          <img src="./photos/edo_ramen.jpg" alt="Edo Ramen" loading="lazy">
+        </div>
+        <div class="compact-body">
           <div>
-            <div class="compact-photo">
-              <img src="./photos/edo_ramen.jpg" alt="Edo Ramen 现场实拍" loading="lazy">
-              <div class="photo-tag"><span class="dot viewed"></span>实拍：浓厚豚骨拉面与日式小吃</div>
+            <div class="compact-title-row">
+              <h3>Edo Ramen Lounge</h3>
+              <span class="card-price" style="font-size: 0.9rem;">~$98 ($24.5/人)</span>
             </div>
-            <div class="compact-body">
-              <div>
-                <div class="compact-title-row">
-                  <h3>Edo Ramen Lounge</h3>
-                  <span class="price-total" style="font-size: 0.95rem;">~$98 ($24.50/人)</span>
-                </div>
-                <div class="card-submeta" style="margin-bottom: 0.5rem;">⭐ 4.4 (600+ 条评价) • 18-20 分钟 (Royal Oak)</div>
-                <p class="compact-desc">充满现代潮流感的日式拉面居酒屋。浓厚豚骨与辣味噌高汤熬煮扎实，章鱼烧与日式煎饺香脆，堂食氛围轻松。</p>
-                <div class="compact-plan">
-                  <strong>4人点单方案：</strong>招牌豚骨/辣味噌拉面x3碗($48) + 叉烧炒饭($14.5) + 日式煎饺($7.5) + 章鱼小丸子($8.5)
-                </div>
-              </div>
+            <div class="card-sub" style="margin-bottom: 0.4rem;">⭐ 4.4 (600+ 评价) • 18-20 分 (Royal Oak)</div>
+            <p class="compact-desc">现代日式拉面居酒屋。浓厚豚骨与辣味噌高汤熬煮扎实，章鱼烧与日式煎饺香脆，堂食氛围年轻轻松。</p>
+            <div class="compact-plan">
+              <strong>4人点单：</strong>招牌拉面x3碗($48) + 叉烧炒饭($14.5) + 日式煎饺($7.5) + 章鱼小丸子($8.5)
             </div>
           </div>
-          <div class="compact-foot" style="margin: 0 1.25rem 1.25rem;">
+          <div class="compact-foot">
             <span style="color: var(--text-faint);">4313 W 13 Mile Rd</span>
             <a href="https://www.google.com/maps/search/?api=1&query=Edo+Ramen+House+4313+W+13+Mile+Rd+Royal+Oak+MI" target="_blank">Google 导航 →</a>
           </div>
-        </article>
+        </div>
+      </article>
 
-      </div>
-    </section>
+    </div>
 
   </main>
 
-  <!-- Foot -->
   <footer>
     <div class="shell foot-inner">
-      <div>底特律近郊 4 人聚餐实地决策指南 · 永久归档</div>
-      <div>Designed with Riffle OLED Design Standards · Antigravity</div>
+      <span>底特律近郊 4 人聚餐指南</span>
+      <span>2026</span>
     </div>
   </footer>
 

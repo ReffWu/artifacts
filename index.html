@@ -1,428 +1,259 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reff's Artifacts · 成果展示中心</title>
-<meta name="description" content="由 Antigravity 深度构建的实地研究、决策指南与交互原型展示中心。">
-<style>
-:root {
-  --bg: #000000;
-  --panel: rgba(255, 255, 255, 0.035);
-  --panel-solid: #0c0c0d;
-  --card: #141415;
-  --card-stroke: rgba(255, 255, 255, 0.08);
-  --stroke: rgba(255, 255, 255, 0.10);
-  --hairline: rgba(255, 255, 255, 0.08);
-  --separator: rgba(255, 255, 255, 0.10);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reff · Artifacts</title>
+  <meta name="description" content="实地调研、决策指南与交互工具。">
+  <style>
+    :root {
+      --bg: #000000;
+      --card: #0c0c0d;
+      --card-hover: #121214;
+      --stroke: rgba(255, 255, 255, 0.08);
+      --stroke-hover: rgba(255, 255, 255, 0.16);
+      --hairline: rgba(255, 255, 255, 0.06);
 
-  --text: #f5f5f7;
-  --text-dim: rgba(245, 245, 247, 0.64);
-  --text-faint: rgba(245, 245, 247, 0.46);
+      --text: #f5f5f7;
+      --text-dim: rgba(245, 245, 247, 0.65);
+      --text-faint: rgba(245, 245, 247, 0.40);
 
-  --accent: #5cc8ec;
+      --accent: #5cc8ec;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
 
-  /* AppTheme 四个核心语义色 */
-  --viewed: #59c7e8;
-  --freed: #70e3b5;
-  --favorite: #ffc85c;
-  --delete: #ff6b6b;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  --maxw: 1080px;
-  --radius-s: 12px;
-  --radius-m: 16px;
-  --radius-l: 20px;
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
-    "PingFang SC", "Segoe UI", Roboto, sans-serif;
-}
+    ::selection {
+      background: var(--accent);
+      color: #000;
+    }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
+    .shell {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font);
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+    /* Header */
+    header.top-bar {
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--hairline);
+    }
 
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; height: auto; display: block; }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
 
-.shell {
-  width: 100%;
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 0 clamp(1.25rem, 5vw, 2.5rem);
-}
+    .brand h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
 
-/* 顶栏 */
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.1rem clamp(1.25rem, 5vw, 2.5rem);
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: saturate(1.6) blur(18px);
-  -webkit-backdrop-filter: saturate(1.6) blur(18px);
-  border-bottom: 1px solid var(--hairline);
-}
+    .brand span {
+      font-size: 0.85rem;
+      color: var(--text-faint);
+    }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
+    .tagline {
+      margin-top: 0.4rem;
+      font-size: 0.92rem;
+      color: var(--text-dim);
+    }
 
-.brand-badge {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent);
-}
+    /* Artifacts List */
+    main {
+      padding: 2.5rem 0 4rem;
+      flex: 1;
+    }
 
-.nav-tag {
-  font-size: 12px;
-  color: var(--text-faint);
-  padding: 4px 12px;
-  background: var(--panel);
-  border: 1px solid var(--stroke);
-  border-radius: 999px;
-  font-weight: 500;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
 
-/* Hero */
-.hero {
-  position: relative;
-  padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(2.5rem, 5vw, 4rem);
-  text-align: center;
-  overflow: hidden;
-}
+    @media (min-width: 640px) {
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      }
+    }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  top: -25%;
-  left: 50%;
-  width: min(850px, 110vw);
-  aspect-ratio: 1;
-  translate: -50% 0;
-  background: radial-gradient(circle, rgba(92, 200, 236, 0.13), transparent 65%);
-  pointer-events: none;
-}
+    .card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+    }
 
-.eyebrow {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1rem;
-  display: block;
-}
+    .card:hover {
+      background: var(--card-hover);
+      border-color: var(--stroke-hover);
+      transform: translateY(-2px);
+    }
 
-.hero h1 {
-  font-size: clamp(2.4rem, 6vw, 4.2rem);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.08;
-  margin-bottom: 1.2rem;
-  text-wrap: balance;
-}
+    .card-photo {
+      aspect-ratio: 16 / 10;
+      width: 100%;
+      background: #050505;
+      overflow: hidden;
+      border-bottom: 1px solid var(--hairline);
+    }
 
-.hero .lede {
-  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
-  color: var(--text-dim);
-  max-width: 44ch;
-  margin: 0 auto;
-  line-height: 1.55;
-}
+    .card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
 
-/* Tally 指标条 */
-.tally-bar {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 1.8rem 2.4rem;
-  margin-top: 2.8rem;
-  padding: 1rem 2rem;
-  background: var(--panel);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-l);
-}
+    .card:hover .card-photo img {
+      transform: scale(1.02);
+    }
 
-.figure {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-}
-.figure b {
-  font-size: 1.35rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-.figure.viewed b { color: var(--viewed); }
-.figure.freed b { color: var(--freed); }
-.figure.favorite b { color: var(--favorite); }
-.figure span {
-  font-size: 0.75rem;
-  color: var(--text-faint);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
+    .card-body {
+      padding: 1.25rem 1.4rem 1.4rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-/* Section Header */
-.section-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid var(--hairline);
-  padding-bottom: 0.85rem;
-}
-.section-head h2 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-}
-.section-head span {
-  font-size: 0.82rem;
-  color: var(--text-faint);
-}
+    .card-meta {
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      margin-bottom: 0.4rem;
+    }
 
-/* Artifacts Cards Grid */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.8rem;
-  margin-bottom: 5rem;
-}
+    .card h2 {
+      font-size: 1.18rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+    }
 
-.card {
-  background: var(--panel-solid);
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius-l);
-  overflow: hidden;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.2);
-}
+    .card p {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
 
-.card-img-wrap {
-  aspect-ratio: 16 / 10;
-  width: 100%;
-  background: #000;
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid var(--hairline);
-}
-.card-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-.card:hover .card-img-wrap img {
-  transform: scale(1.03);
-}
+    .card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--hairline);
+      font-size: 0.82rem;
+    }
 
-.card-tag {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--stroke);
-  padding: 0.25rem 0.65rem;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--viewed);
-}
+    .card-foot .tag {
+      color: var(--text-faint);
+    }
 
-.card-body {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: space-between;
-}
+    .card-foot .action {
+      color: var(--accent);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: gap 0.15s;
+    }
 
-.card-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--text-faint);
-  margin-bottom: 0.6rem;
-}
+    .card:hover .action {
+      gap: 0.45rem;
+    }
 
-.card h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  margin-bottom: 0.6rem;
-  color: var(--text);
-  line-height: 1.25;
-}
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--hairline);
+      padding: 2rem 0;
+      font-size: 0.8rem;
+      color: var(--text-faint);
+    }
 
-.card p {
-  font-size: 0.9rem;
-  color: var(--text-dim);
-  line-height: 1.55;
-  margin-bottom: 1.4rem;
-}
-
-.card-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 1rem;
-  border-top: 1px solid var(--hairline);
-}
-
-.card-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--viewed);
-  transition: gap 0.18s ease;
-}
-.card:hover .card-action {
-  gap: 0.6rem;
-}
-
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  display: inline-block;
-  flex-shrink: 0;
-}
-.dot.viewed { background: var(--viewed); }
-.dot.freed { background: var(--freed); }
-.dot.favorite { background: var(--favorite); }
-.dot.delete { background: var(--delete); }
-
-/* 页脚 */
-footer {
-  border-top: 1px solid var(--hairline);
-  padding: 2.5rem 0 3rem;
-  font-size: 0.82rem;
-  color: var(--text-faint);
-}
-.foot-inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-</style>
+    .foot-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Nav -->
-  <header class="nav">
-    <div class="brand">
-      <span class="brand-badge"></span>
-      <span>Reff · Artifacts</span>
+  <header class="top-bar">
+    <div class="shell">
+      <div class="brand">
+        <h1>Reff</h1>
+        <span>/ Artifacts</span>
+      </div>
+      <p class="tagline">实地调研、决策指南与交互工具。</p>
     </div>
-    <div class="nav-tag">永久公开中心</div>
   </header>
 
-  <!-- Main Showcase -->
   <main class="shell">
-    
-    <!-- Hero -->
-    <section class="hero">
-      <span class="eyebrow">Continuous Delivery</span>
-      <h1>Artifacts Showcase.</h1>
-      <p class="lede">由 Antigravity 自动化生成的决策指南、实地调研与交互成果。随做随存，每一次成果都在此永久沉淀。</p>
+    <div class="grid">
 
-      <div class="tally-bar">
-        <div class="figure viewed">
-          <b>1</b>
-          <span>已归档专题</span>
+      <!-- Item 1: Detroit Dining Field Guide -->
+      <a href="./detroit-dining/" class="card">
+        <div class="card-photo">
+          <img src="./detroit-dining/photos/louis_pizza.jpg" alt="底特律聚餐指南">
         </div>
-        <div class="figure freed">
-          <b>GitHub Edge</b>
-          <span>全球托管加速</span>
-        </div>
-        <div class="figure favorite">
-          <b>Riffle OLED</b>
-          <span>统一视觉系统</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Grid Section -->
-    <section>
-      <div class="section-head">
-        <h2>已发布成果清单</h2>
-        <span>按更新时间倒序</span>
-      </div>
-
-      <div class="grid">
-        <!-- Card 1 -->
-        <a href="./detroit-dining/" class="card">
-          <div class="card-img-wrap">
-            <img src="./detroit-dining/photos/louis_pizza.jpg" alt="底特律近郊聚餐指南">
-            <span class="card-tag">实地探店 · 深度决策</span>
+        <div class="card-body">
+          <div>
+            <div class="card-meta">2026.09 · 探店决策</div>
+            <h2>底特律近郊 4 人聚餐指南</h2>
+            <p>以 Fraser 为中心 30 分钟自驾圈，人均 $30 内。14 家全现场实拍、真实口碑核实、4 人推荐硬菜与预算清单。</p>
           </div>
-          <div class="card-body">
-            <div>
-              <div class="card-meta">
-                <span class="dot viewed"></span>
-                <span>2026-09-06 · 4人聚餐 · 人均 &lt; $30</span>
-              </div>
-              <h3>底特律近郊 4 人聚餐实地决策指南</h3>
-              <p>以 Fraser (48026) 为圆心半小时自驾圈。全实拍真实到店照片、穿透核查数千条真实评价、剔除虚高与踩雷店，带精准菜谱价格与一键导航。</p>
-            </div>
-            <div class="card-foot">
-              <span style="font-size: 0.8rem; color: var(--text-faint);">14 家全系核查</span>
-              <span class="card-action">查看完整指南 →</span>
-            </div>
+          <div class="card-foot">
+            <span class="tag">14 家餐厅核查</span>
+            <span class="action">查看指南 →</span>
           </div>
-        </a>
-      </div>
-    </section>
+        </div>
+      </a>
 
+    </div>
   </main>
 
-  <!-- Foot -->
   <footer>
     <div class="shell foot-inner">
-      <div>Reff's Artifacts Hub · Powered by Antigravity</div>
-      <div>Designed with Riffle OLED Design Standards</div>
+      <span>Reff · Artifacts</span>
+      <span>2026</span>
     </div>
   </footer>
 
