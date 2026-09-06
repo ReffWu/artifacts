@@ -5,11 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>底特律近郊 4 人聚餐深度指南 · 精选 6 店</title>
   <meta name="description" content="以 Fraser 为中心 30 分钟自驾圈，精选 6 家正统风味口碑老店：正宗川菜、陕西手工扯面夹馍、也门慢炖羊肉石锅、兰州手工拉面生煎、传统韩式烤肉、日式拉面居酒屋。全现场实拍、深度解析、精准 4 人点单预算。">
+  <script>
+    // Initialize theme immediately to prevent flash
+    (function() {
+      const saved = localStorage.getItem('reff_theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    })();
+  </script>
   <style>
+    /* Dark Theme (Default Baseline) */
     :root {
       --bg: #000000;
       --card-bg: #0a0a0b;
-      --surface: rgba(255, 255, 255, 0.03);
+      --surface: rgba(255, 255, 255, 0.035);
       --stroke: rgba(255, 255, 255, 0.08);
       --hairline: rgba(255, 255, 255, 0.07);
 
@@ -17,11 +27,112 @@
       --text-dim: rgba(245, 245, 247, 0.68);
       --text-faint: rgba(245, 245, 247, 0.42);
 
+      --btn-bg: #f5f5f7;
+      --btn-text: #000000;
+
+      --anchor-pill-bg: rgba(255, 255, 255, 0.05);
+      --anchor-pill-active-bg: #f5f5f7;
+      --anchor-pill-active-text: #000000;
+
       --accent: #5cc8ec;
       --green: #70e3b5;
       --amber: #ffc85c;
+      --tip-bg: rgba(255, 200, 92, 0.04);
+      --tip-border: var(--amber);
+
+      --nav-bg: rgba(0, 0, 0, 0.85);
+      --anchor-bar-bg: rgba(0, 0, 0, 0.92);
 
       --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    /* Light Theme (Auto system preference if not manually overridden) */
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) {
+        --bg: #ffffff;
+        --card-bg: #f8f9fa;
+        --surface: #f1f3f5;
+        --stroke: rgba(0, 0, 0, 0.08);
+        --hairline: rgba(0, 0, 0, 0.07);
+
+        --text: #1d1d1f;
+        --text-dim: #515154;
+        --text-faint: #86868b;
+
+        --btn-bg: #1d1d1f;
+        --btn-text: #ffffff;
+
+        --anchor-pill-bg: rgba(0, 0, 0, 0.05);
+        --anchor-pill-active-bg: #1d1d1f;
+        --anchor-pill-active-text: #ffffff;
+
+        --accent: #0077b6;
+        --green: #0e8a5b;
+        --amber: #b06000;
+        --tip-bg: rgba(176, 96, 0, 0.05);
+        --tip-border: #b06000;
+
+        --nav-bg: rgba(255, 255, 255, 0.85);
+        --anchor-bar-bg: rgba(255, 255, 255, 0.92);
+      }
+    }
+
+    /* Explicit Light Theme via Toggle */
+    html[data-theme="light"] {
+      --bg: #ffffff;
+      --card-bg: #f8f9fa;
+      --surface: #f1f3f5;
+      --stroke: rgba(0, 0, 0, 0.08);
+      --hairline: rgba(0, 0, 0, 0.07);
+
+      --text: #1d1d1f;
+      --text-dim: #515154;
+      --text-faint: #86868b;
+
+      --btn-bg: #1d1d1f;
+      --btn-text: #ffffff;
+
+      --anchor-pill-bg: rgba(0, 0, 0, 0.05);
+      --anchor-pill-active-bg: #1d1d1f;
+      --anchor-pill-active-text: #ffffff;
+
+      --accent: #0077b6;
+      --green: #0e8a5b;
+      --amber: #b06000;
+      --tip-bg: rgba(176, 96, 0, 0.05);
+      --tip-border: #b06000;
+
+      --nav-bg: rgba(255, 255, 255, 0.85);
+      --anchor-bar-bg: rgba(255, 255, 255, 0.92);
+    }
+
+    /* Explicit Dark Theme via Toggle */
+    html[data-theme="dark"] {
+      --bg: #000000;
+      --card-bg: #0a0a0b;
+      --surface: rgba(255, 255, 255, 0.035);
+      --stroke: rgba(255, 255, 255, 0.08);
+      --hairline: rgba(255, 255, 255, 0.07);
+
+      --text: #f5f5f7;
+      --text-dim: rgba(245, 245, 247, 0.68);
+      --text-faint: rgba(245, 245, 247, 0.42);
+
+      --btn-bg: #f5f5f7;
+      --btn-text: #000000;
+
+      --anchor-pill-bg: rgba(255, 255, 255, 0.05);
+      --anchor-pill-active-bg: #f5f5f7;
+      --anchor-pill-active-text: #000000;
+
+      --accent: #5cc8ec;
+      --green: #70e3b5;
+      --amber: #ffc85c;
+      --tip-bg: rgba(255, 200, 92, 0.04);
+      --tip-border: var(--amber);
+
+      --nav-bg: rgba(0, 0, 0, 0.85);
+      --anchor-bar-bg: rgba(0, 0, 0, 0.92);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,6 +146,7 @@
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       padding-bottom: 5rem;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
     ::selection { background: var(--accent); color: #000; }
@@ -51,13 +163,14 @@
       position: sticky;
       top: 0;
       z-index: 60;
-      background: rgba(0, 0, 0, 0.85);
+      background: var(--nav-bg);
       backdrop-filter: saturate(180%) blur(20px);
       -webkit-backdrop-filter: saturate(180%) blur(20px);
       border-bottom: 1px solid var(--hairline);
       height: 50px;
       display: flex;
       align-items: center;
+      transition: background-color 0.25s ease;
     }
 
     .nav-inner {
@@ -77,14 +190,45 @@
     }
     .back-link:hover { color: var(--text); }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
     .nav-badge {
       font-size: 0.76rem;
       color: var(--accent);
       background: rgba(92, 200, 236, 0.08);
-      border: 1px solid rgba(92, 200, 236, 0.2);
+      border: 1px solid rgba(92, 200, 236, 0.22);
       border-radius: 999px;
       padding: 0.2rem 0.65rem;
       font-weight: 500;
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-dim);
+      transition: all 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .theme-toggle:hover {
+      color: var(--text);
+      border-color: var(--stroke);
+    }
+    .theme-toggle svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
     }
 
     /* Sticky Anchor Switcher */
@@ -92,11 +236,12 @@
       position: sticky;
       top: 50px;
       z-index: 50;
-      background: rgba(0, 0, 0, 0.92);
+      background: var(--anchor-bar-bg);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--hairline);
       padding: 0.35rem 0;
+      transition: background-color 0.25s ease;
     }
 
     .anchor-scroll {
@@ -121,7 +266,7 @@
       font-weight: 500;
       line-height: 1;
       color: var(--text-dim);
-      background: rgba(255, 255, 255, 0.05);
+      background: var(--anchor-pill-bg);
       border: 1px solid var(--hairline);
       border-radius: 999px;
       transition: all 0.15s ease;
@@ -130,10 +275,10 @@
       -webkit-tap-highlight-color: transparent;
     }
     .anchor-btn:hover, .anchor-btn.active {
-      background: #f5f5f7;
-      color: #000;
+      background: var(--anchor-pill-active-bg);
+      color: var(--anchor-pill-active-text);
       font-weight: 600;
-      border-color: #f5f5f7;
+      border-color: var(--anchor-pill-active-bg);
     }
 
     /* Hero */
@@ -204,7 +349,7 @@
       letter-spacing: 0.04em;
       color: var(--text-faint);
       border-bottom: 1px solid var(--hairline);
-      background: rgba(255, 255, 255, 0.015);
+      background: rgba(128, 128, 128, 0.03);
       white-space: nowrap;
     }
 
@@ -215,7 +360,7 @@
       white-space: nowrap;
     }
     tr:last-child td { border-bottom: none; }
-    tr:hover td { background: rgba(255, 255, 255, 0.025); }
+    tr:hover td { background: rgba(128, 128, 128, 0.04); }
 
     .td-name { font-weight: 600; color: var(--text); }
     .td-rating { color: var(--amber); font-weight: 500; }
@@ -228,8 +373,10 @@
       scroll-margin-top: 105px;
     }
 
-    /* Photo Frame */
+    /* Clickable Photo Frame */
     .photo-frame {
+      display: block;
+      position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
       background: #050505;
@@ -237,12 +384,42 @@
       overflow: hidden;
       margin-bottom: 1.25rem;
       border: 1px solid var(--hairline);
+      cursor: pointer;
     }
     .photo-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.35s ease;
+    }
+    .photo-frame:hover img {
+      transform: scale(1.025);
+    }
+
+    .photo-nav-badge {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      color: #ffffff;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      opacity: 0.88;
+      transition: opacity 0.2s, background-color 0.2s;
+      pointer-events: none;
+    }
+    .photo-frame:hover .photo-nav-badge {
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.90);
     }
 
     /* Glance Header Row */
@@ -348,7 +525,7 @@
       justify-content: space-between;
       font-size: 0.82rem;
       color: var(--text-dim);
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+      border-bottom: 1px dashed var(--hairline);
       padding-bottom: 0.2rem;
     }
     .dish-row span:last-child {
@@ -386,8 +563,8 @@
 
     /* Caveat / Pro-tip */
     .pro-tip {
-      border-left: 2px solid var(--amber);
-      background: rgba(255, 200, 92, 0.04);
+      border-left: 2px solid var(--tip-border);
+      background: var(--tip-bg);
       padding: 0.65rem 0.9rem;
       border-radius: 0 8px 8px 0;
       font-size: 0.84rem;
@@ -415,8 +592,8 @@
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      background: #f5f5f7;
-      color: #000;
+      background: var(--btn-bg);
+      color: var(--btn-text);
       font-size: 0.82rem;
       font-weight: 600;
       padding: 0.45rem 1.05rem;
@@ -452,7 +629,13 @@
         <span>←</span>
         <span>Reff / Artifacts</span>
       </a>
-      <span class="nav-badge">6 店深度版</span>
+      <div class="nav-actions">
+        <span class="nav-badge">6 店深度版</span>
+        <button id="themeToggle" class="theme-toggle" aria-label="切换深浅主题" title="点击切换深色 / 浅色模式">
+          <svg id="themeIconSun" style="display:none;" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+          <svg id="themeIconMoon" viewBox="0 0 24 24"><path d="M12.3 2a10 10 0 0 0-.19 20 10.04 10.04 0 0 0 9.79-7.77 1 1 0 0 0-1.21-1.22A8 8 0 1 1 11.29 3.2 1 1 0 0 0 12.3 2z"/></svg>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -558,9 +741,10 @@
 
     <!-- 1. Trizest -->
     <section id="trizest" class="restaurant-section">
-      <div class="photo-frame">
+      <a href="https://www.google.com/maps/search/?api=1&query=Trizest+Restaurant+33170+Dequindre+Rd+Sterling+Heights+MI" target="_blank" class="photo-frame" title="点击打开 Google 地图一键导航">
         <img src="./photos/trizest.jpg" alt="老四川聚香园现场菜品" loading="lazy">
-      </div>
+        <span class="photo-nav-badge">点击打开地图 ↗</span>
+      </a>
 
       <div class="glance-head">
         <div class="title-row">
@@ -613,9 +797,10 @@
 
     <!-- 2. Miss Chang An -->
     <section id="changan" class="restaurant-section">
-      <div class="photo-frame">
+      <a href="https://www.google.com/maps/search/?api=1&query=Miss+Chang+An+5071+Rochester+Rd+Troy+MI" target="_blank" class="photo-frame" title="点击打开 Google 地图一键导航">
         <img src="./photos/miss_changan.jpg" alt="长安姑娘面馆手工夹馍与扯面" loading="lazy">
-      </div>
+        <span class="photo-nav-badge">点击打开地图 ↗</span>
+      </a>
 
       <div class="glance-head">
         <div class="title-row">
@@ -666,9 +851,10 @@
 
     <!-- 3. Yemen Cafe -->
     <section id="yemen" class="restaurant-section">
-      <div class="photo-frame">
+      <a href="https://www.google.com/maps/search/?api=1&query=Yemen+Cafe+8740+Joseph+Campau+Ave+Hamtramck+MI" target="_blank" class="photo-frame" title="点击打开 Google 地图一键导航">
         <img src="./photos/yemen_cafe.jpg" alt="也门咖啡餐馆脱骨炖羊肉" loading="lazy">
-      </div>
+        <span class="photo-nav-badge">点击打开地图 ↗</span>
+      </a>
 
       <div class="glance-head">
         <div class="title-row">
@@ -719,9 +905,10 @@
 
     <!-- 4. Kung Fu Noodle House -->
     <section id="kungfu" class="restaurant-section">
-      <div class="photo-frame">
+      <a href="https://www.google.com/maps/search/?api=1&query=Kung+Fu+Noodle+House+31151+Dequindre+Rd+Madison+Heights+MI" target="_blank" class="photo-frame" title="点击打开 Google 地图一键导航">
         <img src="./photos/kung_fu_noodle.jpg" alt="功夫面馆手工拉面与生煎小笼" loading="lazy">
-      </div>
+        <span class="photo-nav-badge">点击打开地图 ↗</span>
+      </a>
 
       <div class="glance-head">
         <div class="title-row">
@@ -772,9 +959,10 @@
 
     <!-- 5. Chung Ki Wa -->
     <section id="chungkiwa" class="restaurant-section">
-      <div class="photo-frame">
+      <a href="https://www.google.com/maps/search/?api=1&query=Chung+Ki+Wa+2101+15+Mile+Rd+Sterling+Heights+MI" target="_blank" class="photo-frame" title="点击打开 Google 地图一键导航">
         <img src="./photos/chung_ki_wa.jpg" alt="青瓦台韩餐烤肉与小菜" loading="lazy">
-      </div>
+        <span class="photo-nav-badge">点击打开地图 ↗</span>
+      </a>
 
       <div class="glance-head">
         <div class="title-row">
@@ -825,9 +1013,10 @@
 
     <!-- 6. Edo Ramen Lounge -->
     <section id="edoramen" class="restaurant-section">
-      <div class="photo-frame">
+      <a href="https://www.google.com/maps/search/?api=1&query=Edo+Ramen+House+4313+W+13+Mile+Rd+Royal+Oak+MI" target="_blank" class="photo-frame" title="点击打开 Google 地图一键导航">
         <img src="./photos/edo_ramen.jpg" alt="Edo Ramen 现场拉面与居酒屋小吃" loading="lazy">
-      </div>
+        <span class="photo-nav-badge">点击打开地图 ↗</span>
+      </a>
 
       <div class="glance-head">
         <div class="title-row">
@@ -887,14 +1076,56 @@
   </footer>
 
   <script>
-    // Highlight anchor button on scroll
+    // Theme Toggle Logic
+    const themeBtn = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('themeIconSun');
+    const moonIcon = document.getElementById('themeIconMoon');
+
+    function updateThemeIcons(isLight) {
+      if (isLight) {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      }
+    }
+
+    function getCurrentThemeIsLight() {
+      const explicit = document.documentElement.getAttribute('data-theme');
+      if (explicit === 'light') return true;
+      if (explicit === 'dark') return false;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    }
+
+    // Initialize icon
+    updateThemeIcons(getCurrentThemeIsLight());
+
+    themeBtn.addEventListener('click', () => {
+      const isCurrentlyLight = getCurrentThemeIsLight();
+      const newTheme = isCurrentlyLight ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('reff_theme', newTheme);
+      updateThemeIcons(newTheme === 'light');
+    });
+
+    // Listen to system preference changes if user hasn't explicitly set localStorage
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('reff_theme')) {
+          updateThemeIcons(e.matches);
+        }
+      });
+    }
+
+    // Anchor button scroll highlighting
     const sections = document.querySelectorAll('.restaurant-section');
     const navLinks = document.querySelectorAll('.anchor-btn');
 
     window.addEventListener('scroll', () => {
       let current = '';
       sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
+        const sectionTop = section.offsetTop - 125;
         if (pageYOffset >= sectionTop) {
           current = section.getAttribute('id');
         }
@@ -904,7 +1135,6 @@
         link.classList.remove('active');
         if (link.getAttribute('href') === '#' + current) {
           link.classList.add('active');
-          // Auto scroll anchor bar horizontally if off-screen
           link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
       });
