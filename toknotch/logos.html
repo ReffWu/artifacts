@@ -59,7 +59,7 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
       margin-bottom: 64px;
     }
@@ -67,7 +67,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 20px;
-      padding: 24px;
+      padding: 28px 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -97,10 +97,10 @@
       letter-spacing: 0.05em;
     }
     .icon-preview {
-      width: 140px;
-      height: 140px;
-      margin: 20px 0 24px;
-      filter: drop-shadow(0 12px 20px rgba(0,0,0,0.3));
+      width: 150px;
+      height: 150px;
+      margin: 16px 0 24px;
+      filter: drop-shadow(0 14px 24px rgba(0,0,0,0.4));
     }
     .icon-preview img {
       width: 100%;
@@ -129,7 +129,7 @@
       font-variant-numeric: tabular-nums;
     }
     .card-title {
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 600;
       margin-bottom: 8px;
       text-align: center;
@@ -140,7 +140,7 @@
       line-height: 1.6;
       text-align: left;
       width: 100%;
-      margin-top: 12px;
+      margin-top: 14px;
       border-top: 1px solid var(--border-color);
       padding-top: 14px;
     }
@@ -159,7 +159,7 @@
     .colors {
       display: flex;
       gap: 8px;
-      margin-top: 8px;
+      margin-top: 6px;
       justify-content: center;
     }
     .color-dot {
@@ -207,11 +207,23 @@
     .showcase-name {
       font-size: 16px;
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .showcase-name .tag {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(34, 197, 94, 0.15);
+      color: #22c55e;
+      font-weight: 600;
     }
     .showcase-detail {
       font-size: 13px;
       color: var(--text-secondary);
+      line-height: 1.6;
     }
     .nav-bar {
       display: flex;
@@ -242,164 +254,146 @@
     </nav>
 
     <header class="header">
-      <div class="badge">100% 拒绝 AI 生图 · 纯原生几何与真实界面渲染</div>
-      <h1 class="title">TokNotch 视觉设计方案品鉴</h1>
+      <div class="badge">100% 真实源码渲染 · 零 AI 假图 · 完美对齐</div>
+      <h1 class="title">TokNotch 真实视觉重塑评审</h1>
       <p class="subtitle">
-        为 TokNotch 专属定制的 4 套矢量图标方案与真实 SwiftUI 代码级渲染宣传图。请查看实机缩放质感并选定最终版本。
+        按要求去除所有冗余复杂装饰，专注“右侧黑 Notch”核心符号，并重新提取真实 SwiftUI 视图直出 100% 对应对齐的宣传图。
       </p>
     </header>
 
     <main>
       <div class="grid">
-        <!-- 方案 A -->
+        <!-- 方案 1：纯黑右侧刘海 -->
         <div class="card">
           <div class="icon-preview">
-            <img src="assets/logo_option_a.png" alt="方案 A">
+            <img src="assets/notch_icon_pure.png" alt="纯黑右侧刘海">
           </div>
           <div class="scales">
             <div class="scale-item">
-              <img src="assets/logo_option_a.webp" width="48" height="48" style="border-radius:10px;">
+              <img src="assets/notch_icon_pure.webp" width="48" height="48" style="border-radius:10px;">
               <span>48px</span>
             </div>
             <div class="scale-item">
-              <img src="assets/logo_option_a.webp" width="32" height="32" style="border-radius:7px;">
+              <img src="assets/notch_icon_pure.webp" width="32" height="32" style="border-radius:7px;">
               <span>32px</span>
             </div>
             <div class="scale-item">
-              <img src="assets/logo_option_a.webp" width="20" height="20" style="border-radius:4px;">
+              <img src="assets/notch_icon_pure.webp" width="20" height="20" style="border-radius:4px;">
               <span>20px</span>
             </div>
           </div>
-          <h2 class="card-title">方案 A：纯粹原生派</h2>
+          <h2 class="card-title">方案 1：纯黑侧边刘海</h2>
           <div class="colors">
-            <div class="color-dot" style="background:#1c1d22;" title="深空钛灰"></div>
-            <div class="color-dot" style="background:#ea580c;" title="Claude 橙"></div>
-            <div class="color-dot" style="background:#10b981;" title="指标绿"></div>
+            <div class="color-dot" style="background:#000000;" title="纯黑 Notch"></div>
+            <div class="color-dot" style="background:#282a34;" title="深空钛灰"></div>
           </div>
           <ul class="card-meta">
-            <li>顶部精准还原 MacBook Pro 硬件刘海与绿光摄像头</li>
-            <li>下方悬浮三段式流光圆弧与核心白核指示</li>
-            <li>纯正 Apple 系统内建小组件极简克制美学</li>
+            <li><b>绝对纯粹</b>：就从右边出来的一个黑 Notch，零杂质</li>
+            <li>完整保留 SideNotchShape 经典的上下反向平滑弧线</li>
+            <li>极简硬件美学，象征小组件在屏幕右侧的真实停靠形态</li>
           </ul>
         </div>
 
-        <!-- 方案 B -->
+        <!-- 方案 2：右侧黑刘海 + 单环微光指示 (推荐) -->
         <div class="card recommended">
           <span class="rec-tag">强烈推荐</span>
           <div class="icon-preview">
-            <img src="assets/logo_option_b.png" alt="方案 B">
+            <img src="assets/notch_icon_single.png" alt="右侧黑刘海 + 单环微光指示">
           </div>
           <div class="scales">
             <div class="scale-item">
-              <img src="assets/logo_option_b.webp" width="48" height="48" style="border-radius:10px;">
+              <img src="assets/notch_icon_single.webp" width="48" height="48" style="border-radius:10px;">
               <span>48px</span>
             </div>
             <div class="scale-item">
-              <img src="assets/logo_option_b.webp" width="32" height="32" style="border-radius:7px;">
+              <img src="assets/notch_icon_single.webp" width="32" height="32" style="border-radius:7px;">
               <span>32px</span>
             </div>
             <div class="scale-item">
-              <img src="assets/logo_option_b.webp" width="20" height="20" style="border-radius:4px;">
+              <img src="assets/notch_icon_single.webp" width="20" height="20" style="border-radius:4px;">
               <span>20px</span>
             </div>
           </div>
-          <h2 class="card-title">方案 B：算力仪表派</h2>
+          <h2 class="card-title">方案 2：黑刘海 + 单环刻度</h2>
           <div class="colors">
-            <div class="color-dot" style="background:#ea580c;" title="Claude 暖橙"></div>
-            <div class="color-dot" style="background:#10b981;" title="Cursor 翡翠绿"></div>
-            <div class="color-dot" style="background:#38bdf8;" title="Gemini 蓝紫"></div>
+            <div class="color-dot" style="background:#000000;" title="纯黑 Notch"></div>
+            <div class="color-dot" style="background:#ea580c;" title="Claude 暖橙 75%"></div>
+            <div class="color-dot" style="background:#ffffff;" title="核心脉冲"></div>
           </div>
           <ul class="card-meta">
-            <li><b>直击业务灵魂</b>：Apple Watch 经典三环同心圆刻度</li>
-            <li>外环 Claude · 中环 Cursor · 内环 Gemini 三大模型</li>
-            <li>Dock 栏微缩辨识度绝佳，一眼识别为 AI 用量仪表</li>
+            <li><b>右侧黑刘海核心突出</b>：纯黑 Notch 从右侧边沿自然延伸</li>
+            <li>内嵌单个精致的 Token 消耗指示环（75% 橙色进度弧 + 白核）</li>
+            <li>极简却不单调，Dock 栏微缩辨识度极佳，一眼识别为 AI 仪表</li>
           </ul>
         </div>
 
-        <!-- 方案 C -->
+        <!-- 方案 3：右侧黑刘海 + 纵向双模型指示环 -->
         <div class="card">
           <div class="icon-preview">
-            <img src="assets/logo_option_c.png" alt="方案 C">
+            <img src="assets/notch_icon_dual.png" alt="右侧黑刘海 + 纵向双模型指示环">
           </div>
           <div class="scales">
             <div class="scale-item">
-              <img src="assets/logo_option_c.webp" width="48" height="48" style="border-radius:10px;">
+              <img src="assets/notch_icon_dual.webp" width="48" height="48" style="border-radius:10px;">
               <span>48px</span>
             </div>
             <div class="scale-item">
-              <img src="assets/logo_option_c.webp" width="32" height="32" style="border-radius:7px;">
+              <img src="assets/notch_icon_dual.webp" width="32" height="32" style="border-radius:7px;">
               <span>32px</span>
             </div>
             <div class="scale-item">
-              <img src="assets/logo_option_c.webp" width="20" height="20" style="border-radius:4px;">
+              <img src="assets/notch_icon_dual.webp" width="20" height="20" style="border-radius:4px;">
               <span>20px</span>
             </div>
           </div>
-          <h2 class="card-title">方案 C：极客终端派</h2>
+          <h2 class="card-title">方案 3：黑刘海 + 双环指示</h2>
           <div class="colors">
-            <div class="color-dot" style="background:#000000;" title="黑晶基底"></div>
-            <div class="color-dot" style="background:#38bdf8;" title="霓虹青蓝"></div>
-            <div class="color-dot" style="background:#ea580c;" title="提示符橙"></div>
+            <div class="color-dot" style="background:#000000;" title="纯黑 Notch"></div>
+            <div class="color-dot" style="background:#ea580c;" title="Claude 橙"></div>
+            <div class="color-dot" style="background:#10b981;" title="Cursor 绿"></div>
           </div>
           <ul class="card-meta">
-            <li>外环精密刻度虚线轨，内嵌微型刘海终端卡片</li>
-            <li>包含代表代码与命令行的发光提示符 <code>&gt;_</code></li>
-            <li>极客感与开发者专业属性极其鲜明</li>
-          </ul>
-        </div>
-
-        <!-- 方案 D -->
-        <div class="card">
-          <div class="icon-preview">
-            <img src="assets/logo_option_d.png" alt="方案 D">
-          </div>
-          <div class="scales">
-            <div class="scale-item">
-              <img src="assets/logo_option_d.webp" width="48" height="48" style="border-radius:10px;">
-              <span>48px</span>
-            </div>
-            <div class="scale-item">
-              <img src="assets/logo_option_d.webp" width="32" height="32" style="border-radius:7px;">
-              <span>32px</span>
-            </div>
-            <div class="scale-item">
-              <img src="assets/logo_option_d.webp" width="20" height="20" style="border-radius:4px;">
-              <span>20px</span>
-            </div>
-          </div>
-          <h2 class="card-title">方案 D：黑曜晶石透镜</h2>
-          <div class="colors">
-            <div class="color-dot" style="background:#242630;" title="钛曜石"></div>
-            <div class="color-dot" style="background:#f59e0b;" title="琥珀金"></div>
-            <div class="color-dot" style="background:#ffffff;" title="晶钻白"></div>
-          </div>
-          <ul class="card-meta">
-            <li>微光黑曜石深邃背景，发丝级细腻光晕切边</li>
-            <li>琥珀流光进度弧线包裹六边形 Token 精工晶石</li>
-            <li>高级现代腕表级微拟物质感，克制且奢华</li>
+            <li>右侧黑刘海内嵌 2 个垂直排列的微型状态指示环</li>
+            <li>真实还原应用在屏幕右侧纵向排列模型环的工作逻辑</li>
+            <li>同时呈现 Claude 与 Cursor 状态，层次丰富</li>
           </ul>
         </div>
       </div>
 
       <section>
-        <h2 class="section-title">宣传图直出效果（SwiftUI 真实视图代码渲染）</h2>
+        <h2 class="section-title">真实界面宣传图直出（100% 源码渲染 · 指针气嘴精准对齐）</h2>
         <p class="section-desc">
-          完全抛弃虚构的 Figma 草图与 AI 假图，通过单元测试环境直接调用 AppKit <code>ImageRenderer</code> 引擎超清渲染实际代码视图。
+          完全抛弃虚构的拼贴视图，直接调用工程底层 <code>NotchRootView</code> 真实视图渲染：指示卡片内容与所指模型环 <b>100% 对应</b>，气嘴指针 <b>像素级精准对齐</b>。
         </p>
 
         <div class="showcase-grid">
+          <!-- 真实右侧停靠态 -->
           <div class="showcase-card">
-            <img src="assets/preview-tooltip.webp" class="showcase-img" alt="顶部刘海融合展开全景">
+            <img src="assets/preview-tooltip.webp" class="showcase-img" alt="屏幕右侧经典停靠与悬停展开">
             <div class="showcase-info">
-              <h3 class="showcase-name">素材 1：顶部物理刘海融合态</h3>
-              <p class="showcase-detail">MacBook Pro 顶部物理凹槽两侧天然融入指示环，鼠标轻抚即刻展开毛玻璃卡片（包含 88.4 亿 Token 统计、模型用量与重置倒计时）。</p>
+              <h3 class="showcase-name">
+                宣传图 1：屏幕右侧经典形态与悬停展开
+                <span class="tag">100% 真实对齐</span>
+              </h3>
+              <p class="showcase-detail">
+                • <b>形态</b>：右侧边沿自然延伸的纯黑 Side Notch，5 个模型环纵向整齐排列；<br>
+                • <b>悬停与气嘴对齐</b>：鼠标悬停首个“累计 88.4亿”环，毛玻璃卡片向左展开，<b>气嘴水平向右直指该环中心</b>，卡片内数据（88.4亿、里程碑 88%）与模型环完全对应一致。
+              </p>
             </div>
           </div>
+
+          <!-- 真实顶部停靠态 -->
           <div class="showcase-card">
-            <img src="assets/preview-detail.webp" class="showcase-img" alt="全景配额明细与侧边停靠">
+            <img src="assets/preview-detail.webp" class="showcase-img" alt="屏幕顶部刘海形态与悬停展开">
             <div class="showcase-info">
-              <h3 class="showcase-name">素材 2：全景明细与侧边缘停靠</h3>
-              <p class="showcase-detail">展示无刘海环境（外接显示器、Mac mini 等）下的侧边胶囊垂直停靠态，以及点开后的多模型用量趋势与计费明细面板。</p>
+              <h3 class="showcase-name">
+                宣传图 2：屏幕顶部形态与悬停展开
+                <span class="tag">100% 真实对齐</span>
+              </h3>
+              <p class="showcase-detail">
+                • <b>形态</b>：组件停靠在屏幕顶部，与菜单栏无缝融为一体，模型环水平横向排列；<br>
+                • <b>悬停与气嘴对齐</b>：鼠标悬停第 4 个“Anthropic”环，卡片在正下方浮现，<b>气嘴垂直向上直指 Anthropic 环</b>，卡片内精准呈现 Claude 1.3x 回本与 session 用量，绝不指空。
+              </p>
             </div>
           </div>
         </div>

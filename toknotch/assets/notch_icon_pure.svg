@@ -1,0 +1,56 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg_pure_titanium" x1="512" y1="96" x2="512" y2="928" gradientUnits="userSpaceOnUse">
+      
+      <stop offset="0%" stop-color="#343744"/>
+      <stop offset="50%" stop-color="#22242e"/>
+      <stop offset="100%" stop-color="#14151b"/>
+
+    </linearGradient>
+    <linearGradient id="rim" x1="512" y1="96" x2="512" y2="928" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
+      <stop offset="40%" stop-color="rgba(255,255,255,0.1)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.03)"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="30" width="1024" height="964">
+      <feDropShadow dx="0" dy="28" stdDeviation="36" flood-color="#000000" flood-opacity="0.65"/>
+    </filter>
+    <filter id="notchShadow_pure_titanium" x="550" y="200" width="420" height="650">
+      <feDropShadow dx="-14" dy="0" stdDeviation="22" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+    <clipPath id="squircleClip_pure_titanium">
+      <rect x="96" y="96" width="832" height="832" rx="192"/>
+    </clipPath>
+  </defs>
+
+  <!-- Squircle Base -->
+  <g filter="url(#shadow)">
+    <rect x="96" y="96" width="832" height="832" rx="192" fill="url(#bg_pure_titanium)"/>
+    <rect x="97" y="97" width="830" height="830" rx="191" stroke="url(#rim)" stroke-width="2.5" fill="none"/>
+  </g>
+
+  <!-- Right-Edge Side Notch (Clipped to Squircle) -->
+  <g clip-path="url(#squircleClip_pure_titanium)">
+    <!-- Black Side Notch Body with Shadow -->
+    <path d="M 928 260
+A 64 64 0 0 1 864 324
+L 704 324
+A 56 56 0 0 0 648 380
+L 648 644
+A 56 56 0 0 0 704 700
+L 864 700
+A 64 64 0 0 1 928 764
+Z" fill="#000000" filter="url(#notchShadow_pure_titanium)"/>
+
+    <!-- Subtle Bezel Lighting Edge -->
+    <path d="M 928 260
+A 64 64 0 0 1 864 324
+L 704 324
+A 56 56 0 0 0 648 380
+L 648 644
+A 56 56 0 0 0 704 700
+L 864 700
+A 64 64 0 0 1 928 764" stroke="rgba(255,255,255,0.22)" stroke-width="2.5" fill="none"/>
+    
+  </g>
+</svg>
