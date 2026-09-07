@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TokNotch · 屏幕边缘 AI 编码用量指示器</title>
+  <meta name="description" content="TokNotch 是一款为 macOS 打造的轻量原生小组件，可常驻屏幕边缘或硬件刘海，实时掌握 Claude Code、Cursor、Codex、Antigravity、GLM 等 AI 助手的用量限额与工作状态。">
+  <link rel="icon" type="image/webp" href="./assets/icon.webp">
+  <link rel="stylesheet" href="../shared/theme.css">
+  <script src="../shared/theme.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #000;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* 顶部导航 */
+    nav.top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: var(--nav-bg);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--hairline);
+      height: 54px;
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.86rem;
+      color: var(--text-dim);
+      transition: color 0.15s;
+    }
+
+    .back-link:hover {
+      color: var(--text);
+    }
+
+    .back-link svg {
+      width: 15px;
+      height: 15px;
+      stroke-width: 2.2;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      color: var(--text-dim);
+    }
+
+    .theme-toggle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--stroke);
+      background: var(--surface);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .theme-toggle:hover {
+      background: var(--card-hover);
+      border-color: var(--stroke-hover);
+    }
+
+    .theme-toggle svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      text-align: center;
+    }
+
+    .app-icon-wrap {
+      display: inline-flex;
+      padding: 3px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02));
+      border-radius: 26px;
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.45);
+      margin-bottom: 1.5rem;
+    }
+
+    :root:not([data-theme="dark"]) .app-icon-wrap {
+      background: linear-gradient(145deg, rgba(0,0,0,0.08), rgba(0,0,0,0.02));
+      box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.12);
+    }
+
+    .app-icon {
+      width: 108px;
+      height: 108px;
+      border-radius: 23px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+    }
+
+    .hero-version {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      background: rgba(92, 200, 236, 0.15);
+      color: var(--accent);
+      border-radius: 999px;
+      border: 1px solid rgba(92, 200, 236, 0.3);
+      vertical-align: middle;
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 2.5vw, 1.18rem);
+      color: var(--text-dim);
+      max-width: 640px;
+      margin: 0 auto 2.2rem;
+      line-height: 1.55;
+    }
+
+    /* CTA 按钮组 */
+    .cta-cluster {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .btn-download {
+      flex: 1;
+      min-width: 240px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      font-size: 0.98rem;
+      font-weight: 600;
+      padding: 0.88rem 1.75rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+      transition: transform 0.12s ease, opacity 0.15s ease, filter 0.15s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-download:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .btn-download:active {
+      transform: translateY(1px);
+    }
+
+    .btn-download svg {
+      width: 19px;
+      height: 19px;
+      fill: currentColor;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.88rem 1.2rem;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-secondary:hover {
+      background: var(--card-hover);
+      border-color: var(--stroke-hover);
+    }
+
+    .btn-secondary svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .spec-line {
+      font-size: 0.82rem;
+      color: var(--text-faint);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .spec-line span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .spec-line span::after {
+      content: "•";
+      margin-left: 0.75rem;
+      opacity: 0.4;
+    }
+
+    .spec-line span:last-child::after {
+      content: "";
+      margin: 0;
+    }
+
+    /* 首次安装提示 (Gatekeeper) */
+    .gatekeeper-card {
+      max-width: 680px;
+      margin: 1.5rem auto 0;
+      background: var(--tip-bg);
+      border: 1px solid var(--tip-border);
+      border-radius: 10px;
+      padding: 0.9rem 1.15rem;
+      text-align: left;
+      font-size: 0.84rem;
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+      color: var(--text-dim);
+    }
+
+    .gatekeeper-card strong {
+      color: var(--text);
+    }
+
+    .gatekeeper-icon {
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+      color: var(--amber);
+    }
+
+    .gatekeeper-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .code-pill {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.78rem;
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      color: var(--text);
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 0.3rem;
+    }
+
+    .code-pill:hover {
+      border-color: var(--accent);
+    }
+
+    /* Showcase 展示大图 */
+    .showcase {
+      margin: 3.5rem 0 2rem;
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .showcase-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .showcase-card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    }
+
+    .showcase-media {
+      width: 100%;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .showcase-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .showcase-card:hover .showcase-media img {
+      transform: scale(1.02);
+    }
+
+    .showcase-info {
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .showcase-info h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--text);
+    }
+
+    .showcase-info p {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    /* 特性网格 */
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+      text-align: center;
+    }
+
+    .features-section {
+      padding: 3rem 0;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    @media (min-width: 640px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 900px) {
+      .features-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .feat-card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: border-color 0.2s;
+    }
+
+    .feat-card:hover {
+      border-color: var(--stroke-hover);
+    }
+
+    .feat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+
+    .feat-icon svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .feat-card h4 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .feat-card p {
+      font-size: 0.86rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    /* 兼容平台列表 */
+    .providers-section {
+      padding: 2.5rem 0 4rem;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .providers-table-wrap {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 1.25rem;
+    }
+
+    .providers-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .providers-table th {
+      background: var(--surface);
+      color: var(--text-dim);
+      font-weight: 500;
+      padding: 0.85rem 1.2rem;
+      border-bottom: 1px solid var(--stroke);
+      font-size: 0.82rem;
+    }
+
+    .providers-table td {
+      padding: 0.95rem 1.2rem;
+      border-bottom: 1px solid var(--hairline);
+      color: var(--text-dim);
+    }
+
+    .providers-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .providers-table td strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .source-tag {
+      display: inline-block;
+      font-size: 0.74rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      background: rgba(112, 227, 181, 0.12);
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    /* 底部通知与 Footer */
+    footer {
+      border-top: 1px solid var(--hairline);
+      padding: 2.5rem 0 3.5rem;
+      font-size: 0.84rem;
+      color: var(--text-faint);
+      text-align: center;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: var(--text-dim);
+      transition: color 0.15s;
+    }
+
+    footer a:hover {
+      color: var(--text);
+    }
+
+    /* Toast 通知 */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #111;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border-radius: 999px;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.86rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+      z-index: 100;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .toast svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--green);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <nav class="top-nav">
+    <div class="shell nav-inner">
+      <a href="../index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+        </svg>
+        <span>返回 Artifacts 中心</span>
+      </a>
+      <div class="nav-right">
+        <span class="nav-tag">macOS App</span>
+        <button class="theme-toggle" aria-label="切换深浅主题"></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主容器 -->
+  <main class="shell">
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+      <div class="app-icon-wrap">
+        <img src="./assets/icon.webp" alt="TokNotch App Icon" class="app-icon" width="108" height="108">
+      </div>
+
+      <div class="title-row">
+        <h1>TokNotch</h1>
+        <span class="hero-version">v1.0.0</span>
+      </div>
+
+      <p class="hero-desc">
+        将各家 AI 编码助手的用量限额与实时忙碌状态，优雅贴合于屏幕边缘或 MacBook 原生刘海。
+      </p>
+
+      <!-- 下载主 CTA -->
+      <div class="cta-cluster">
+        <div class="cta-actions">
+          <a href="./TokNotch.dmg" download="TokNotch.dmg" class="btn-download" id="downloadBtn">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 15.575q-.2 0-.375-.062-.175-.063-.325-.213l-4.6-4.6q-.275-.275-.275-.7 0-.425.275-.7.275-.275.7-.275.425 0 .7.275l2.9 2.9V4q0-.425.288-.713Q11.575 3 12 3t.713.287Q13 3.575 13 4v11.175l2.9-2.9q.275-.275.7-.275.425 0 .7.275.275.275.275.7 0 .425-.275.7l-4.6 4.6q-.15.15-.325.213-.175.062-.375.062ZM5 21q-.825 0-1.413-.587Q3 19.825 3 19v-2q0-.425.288-.712Q3.575 16 4 16t.713.288Q5 16.575 5 17v2h14v-2q0-.425.288-.712Q19.575 16 20 16t.712.288Q21 16.575 21 17v2q0 .825-.587 1.413Q19.825 21 19 21Z"/>
+            </svg>
+            <span>下载 macOS 版 (.dmg)</span>
+          </a>
+
+          <button class="btn-secondary" id="copyLinkBtn" title="复制直接下载链接">
+            <svg viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
+            </svg>
+            <span>复制下载链接</span>
+          </button>
+        </div>
+
+        <div class="spec-line">
+          <span>文件大小 21.0 MB</span>
+          <span>适用 macOS 14.0+</span>
+          <span>Apple Silicon 原生加速</span>
+          <span>零配置免登录</span>
+        </div>
+      </div>
+
+      <!-- 首次打开提示 -->
+      <div class="gatekeeper-card">
+        <div class="gatekeeper-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+          </svg>
+        </div>
+        <div>
+          <strong>首次打开提示</strong>：因本软件采用独立分发签名，若首次启动出现“无法打开，因为无法验证开发者”，请按住 <kbd style="background:var(--surface);padding:1px 4px;border-radius:3px;">Control</kbd> 键右键点击应用图标并选择「打开」；或在终端执行以下命令解除隔离：
+          <br>
+          <span class="code-pill" id="copyCmdBtn" title="点击复制终端命令">xattr -cr /Applications/TokNotch.app</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 真实实机交互展示 -->
+    <section class="showcase">
+      <div class="showcase-grid">
+        <div class="showcase-card">
+          <div class="showcase-media">
+            <img src="./assets/preview-tooltip.webp" alt="TokNotch 悬浮环形用量与重置倒计时" loading="lazy">
+          </div>
+          <div class="showcase-info">
+            <h3>悬停速览 · 进度与重置窗口</h3>
+            <p>光标移至指示环，即刻展开精确限额窗口与重置时间倒计时。Claude 环与官方 <code>/usage</code> 严格保持一致。</p>
+          </div>
+        </div>
+
+        <div class="showcase-card">
+          <div class="showcase-media">
+            <img src="./assets/preview-detail.webp" alt="TokNotch 全景用量卡片与实时会话" loading="lazy">
+          </div>
+          <div class="showcase-info">
+            <h3>展开全貌 · 实时会话与模型配额</h3>
+            <p>点击展开全景面板，清晰罗列正在后台运行的任务、等待人类反馈的会话，以及各模型额度的实时百分比。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 核心亮点 -->
+    <section class="features-section">
+      <h2 class="section-title">原生质感，为专注编码设计</h2>
+      <div class="features-grid">
+        <div class="feat-card">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          </div>
+          <h4>零配置 · 凭证无感直读</h4>
+          <p>无需手动输入任何 API Key。自动借用本机已登录工具的 Keychain 与本地会话，既保安全，又省心力。</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+          </div>
+          <h4>忙碌感知 · 旋转与脉冲</h4>
+          <p>薄弧旋转提示后台仍在极速生成；脉冲琥珀光环提示会话正阻塞等待你的输入。随时掌握全局节奏。</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
+          </div>
+          <h4>边缘自适应 · 刘海无缝融合</h4>
+          <p>吸附顶部时完美融入 MacBook 硬件刘海；吸附左/右呈现小巧纵列；吸附底部时跟随 Dock 自动贴紧。</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+          </div>
+          <h4>轻量原生 · 静默安全更新</h4>
+          <p>Swift 原生开发，毫秒级响应与超低内存消耗。内置 Sparkle 签名更新体系，稳定且随时保持最新。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 支持的平台数据源 -->
+    <section class="providers-section">
+      <h2 class="section-title">全方位覆盖主流 AI 编程助手</h2>
+      <div class="providers-table-wrap">
+        <table class="providers-table">
+          <thead>
+            <tr>
+              <th>开发工具 / 平台</th>
+              <th>读取方式</th>
+              <th>原理与安全性</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Claude Code</strong></td>
+              <td><span class="source-tag">官方直读</span></td>
+              <td>直读登录钥匙串中的 OAuth 凭据，与官方 <code>/usage</code> 终端输出完全一致；支持多账号隔离。</td>
+            </tr>
+            <tr>
+              <td><strong>Cursor</strong></td>
+              <td><span class="source-tag">本地会话</span></td>
+              <td>直读本地编辑器已登录的 SQLite 会话状态，无需额外登录。</td>
+            </tr>
+            <tr>
+              <td><strong>Codex</strong></td>
+              <td><span class="source-tag">原生服务</span></td>
+              <td>实时查询本地 Codex App Server 的速率限额，未运行时回退至运行日志。</td>
+            </tr>
+            <tr>
+              <td><strong>Antigravity / Gemini</strong></td>
+              <td><span class="source-tag">本地接口</span></td>
+              <td>优先读取本地语言服务器与 Google Quota 接口，清晰展示模型配额。</td>
+            </tr>
+            <tr>
+              <td><strong>GLM (智谱)</strong></td>
+              <td><span class="source-tag">凭证借用</span></td>
+              <td>自动借用 Claude Code、ZCode 或 OpenCode 中已配置的密钥，查询 Coding Plan 额度。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 底部页脚 -->
+  <footer>
+    <div class="shell">
+      <p>TokNotch (Codenotch) · 独立构建与持续迭代</p>
+      <p style="margin-top: 0.35rem;">
+        发布中心：<a href="../index.html">Reff · Artifacts Hub</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- 复制成功的轻提示 Toast -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+    <span id="toastMsg">下载链接已复制到剪贴板</span>
+  </div>
+
+  <script>
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2400);
+    }
+
+    // 复制下载直链
+    document.getElementById('copyLinkBtn').addEventListener('click', () => {
+      const dmgUrl = new URL('TokNotch.dmg', window.location.href).href;
+      navigator.clipboard.writeText(dmgUrl).then(() => {
+        showToast('直接下载链接已复制到剪贴板！');
+      }).catch(() => {
+        showToast('复制失败，请手动右键下载按钮复制链接');
+      });
+    });
+
+    // 复制解除隔离终端命令
+    document.getElementById('copyCmdBtn').addEventListener('click', () => {
+      const cmd = 'xattr -cr /Applications/TokNotch.app';
+      navigator.clipboard.writeText(cmd).then(() => {
+        showToast('已复制隔离修复命令到剪贴板！');
+      }).catch(() => {});
+    });
+  </script>
+</body>
+</html>
