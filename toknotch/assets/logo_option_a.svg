@@ -1,0 +1,60 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Space Gray Titanium -->
+    <linearGradient id="bgA" x1="512" y1="96" x2="512" y2="928" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1c1d22"/>
+      <stop offset="40%" stop-color="#101114"/>
+      <stop offset="100%" stop-color="#070709"/>
+    </linearGradient>
+    <linearGradient id="rimA" x1="512" y1="96" x2="512" y2="928" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.3)"/>
+      <stop offset="25%" stop-color="rgba(255,255,255,0.08)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.02)"/>
+    </linearGradient>
+    <filter id="shadowA" x="0" y="30" width="1024" height="964">
+      <feDropShadow dx="0" dy="28" stdDeviation="36" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Squircle Base -->
+  <g filter="url(#shadowA)">
+    <rect x="96" y="96" width="832" height="832" rx="192" fill="url(#bgA)"/>
+    <rect x="97" y="97" width="830" height="830" rx="191" stroke="url(#rimA)" stroke-width="2.5" fill="none"/>
+  </g>
+
+  <!-- Top Real MacBook Bezel & Notch -->
+  <path d="M 310 96 
+           C 346 96, 360 126, 368 152 
+           L 376 190 
+           C 386 232, 412 256, 456 256 
+           L 568 256 
+           C 612 256, 638 232, 648 190 
+           L 656 152 
+           C 664 126, 678 96, 714 96 
+           Z" 
+        fill="#000000"/>
+  <path d="M 310 96 
+           C 346 96, 360 126, 368 152 
+           L 376 190 
+           C 386 232, 412 256, 456 256 
+           L 568 256 
+           C 612 256, 638 232, 648 190 
+           L 656 152 
+           C 664 126, 678 96, 714 96" 
+        stroke="rgba(255,255,255,0.18)" stroke-width="2" fill="none"/>
+
+  <!-- Camera Lens & Green Indicator -->
+  <circle cx="512" cy="176" r="11" fill="#06080E" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+  <circle cx="512" cy="176" r="5" fill="#141B2B"/>
+  <circle cx="550" cy="176" r="3.5" fill="#22C55E"/>
+
+  <!-- Precision Minimal Activity Arc: A single glowing circular ring suspended beneath -->
+  <circle cx="512" cy="580" r="180" stroke="rgba(255,255,255,0.06)" stroke-width="24" fill="none"/>
+  <!-- Elegant Dual Arc: Orange & Cyan/White -->
+  <path d="M 512 400 A 180 180 0 0 1 680 520" stroke="#EA580C" stroke-width="24" stroke-linecap="round" fill="none"/>
+  <path d="M 680 520 A 180 180 0 0 1 512 760" stroke="#F59E0B" stroke-width="24" stroke-linecap="round" fill="none"/>
+  <path d="M 512 760 A 180 180 0 0 1 350 640" stroke="#10B981" stroke-width="24" stroke-linecap="round" fill="none"/>
+
+  <!-- Central Token Dot -->
+  <circle cx="512" cy="580" r="14" fill="#FFFFFF"/>
+</svg>
