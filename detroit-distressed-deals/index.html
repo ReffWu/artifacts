@@ -91,6 +91,22 @@
       margin-bottom: 0.85rem;
     }
 
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+    .pill-emerald { background: rgba(112, 227, 181, 0.12); color: var(--green); border: 1px solid rgba(112, 227, 181, 0.25); }
+    .pill-amber { background: rgba(255, 200, 92, 0.12); color: var(--amber); border: 1px solid rgba(255, 200, 92, 0.25); }
+    .pill-blue { background: rgba(92, 200, 236, 0.12); color: var(--accent); border: 1px solid rgba(92, 200, 236, 0.25); }
+    .pill-purple { background: rgba(186, 104, 200, 0.12); color: #ba68c8; border: 1px solid rgba(186, 104, 200, 0.25); }
+    .pill-red { background: rgba(255, 99, 132, 0.12); color: #ff6384; border: 1px solid rgba(255, 99, 132, 0.25); }
+
     h1.hero-title {
       font-size: 1.85rem;
       font-weight: 700;
@@ -130,25 +146,22 @@
 
     .filter-btn {
       white-space: nowrap;
-      padding: 0.42rem 0.9rem;
+      padding: 0.4rem 0.85rem;
       font-size: 0.82rem;
       font-weight: 500;
       border-radius: 999px;
-      background: var(--filter-btn-bg);
-      color: var(--filter-btn-text);
-      border: 1px solid var(--filter-btn-border);
+      background: var(--anchor-pill-bg);
+      color: var(--text-dim);
+      border: 1px solid var(--stroke);
       cursor: pointer;
       transition: all 0.15s ease;
     }
-    .filter-btn:hover {
-      background: var(--filter-btn-hover-bg);
-      color: var(--filter-btn-hover-text);
-    }
+    .filter-btn:hover { color: var(--text); border-color: var(--stroke-hover); }
     .filter-btn.active {
-      background: var(--filter-btn-active-bg);
-      color: var(--filter-btn-active-text);
-      border-color: var(--filter-btn-active-bg);
-      font-weight: 700;
+      background: var(--anchor-pill-active-bg);
+      color: var(--anchor-pill-active-text);
+      border-color: var(--anchor-pill-active-bg);
+      font-weight: 600;
     }
 
     /* Deal Cards */
@@ -165,16 +178,17 @@
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
     }
 
+    
+    /* Card Media with Rich Contrast Scrim & Frosted Badges */
     .card-media {
       position: relative;
       width: 100%;
-      height: 300px;
-      background: var(--surface);
+      height: 330px;
+      background: #0a0a0c;
       overflow: hidden;
-      border-bottom: 1px solid var(--hairline);
     }
     @media (max-width: 600px) {
-      .card-media { height: 210px; }
+      .card-media { height: 270px; }
     }
 
     .card-media img {
@@ -188,93 +202,177 @@
       transform: scale(1.02);
     }
 
-    .card-content {
-      padding: 1.25rem 1.4rem 1.5rem;
+    /* Cinematic Double Gradient Scrim Mask */
+    .media-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.82) 0%,
+        rgba(0, 0, 0, 0.42) 22%,
+        rgba(0, 0, 0, 0.12) 48%,
+        rgba(0, 0, 0, 0.52) 72%,
+        rgba(0, 0, 0, 0.94) 100%
+      );
+      pointer-events: none;
+      z-index: 1;
     }
 
-    .card-badges {
+    /* Top Floating Badges (Frosted Glass Bubble Style) */
+    .media-badges {
+      position: absolute;
+      top: 0.95rem;
+      left: 1rem;
+      right: 1rem;
       display: flex;
       gap: 0.45rem;
       flex-wrap: wrap;
-      margin-bottom: 0.85rem;
+      z-index: 2;
+    }
+
+    .media-badges .pill {
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 0.32rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+    }
+
+    .media-badges .pill-emerald {
+      background: rgba(6, 44, 28, 0.85) !important;
+      color: #4ade80 !important;
+      border-color: rgba(74, 222, 128, 0.55) !important;
+    }
+    .media-badges .pill-blue {
+      background: rgba(12, 38, 70, 0.85) !important;
+      color: #60a5fa !important;
+      border-color: rgba(96, 165, 250, 0.55) !important;
+    }
+    .media-badges .pill-purple {
+      background: rgba(46, 16, 72, 0.85) !important;
+      color: #c084fc !important;
+      border-color: rgba(192, 132, 252, 0.55) !important;
+    }
+    .media-badges .pill-amber {
+      background: rgba(48, 30, 8, 0.85) !important;
+      color: #fbbf24 !important;
+      border-color: rgba(251, 191, 36, 0.55) !important;
+    }
+    .media-badges .pill-red {
+      background: rgba(52, 12, 20, 0.85) !important;
+      color: #f87171 !important;
+      border-color: rgba(248, 113, 113, 0.55) !important;
+    }
+    .media-badges .pill-neutral {
+      background: rgba(24, 24, 27, 0.85) !important;
+      color: #f4f4f5 !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+    }
+
+    /* Bottom Price & ROI Anchors on Photo */
+    .media-price {
+      position: absolute;
+      bottom: 0.95rem;
+      left: 1rem;
+      right: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 2;
+      gap: 0.85rem;
+    }
+    @media (max-width: 600px) {
+      .media-price {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.45rem;
+      }
+    }
+
+    .price-num {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      color: #ffffff !important;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.9);
+    }
+    @media (max-width: 600px) {
+      .price-num { font-size: 1.6rem; }
+    }
+
+    .price-sub {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95) !important;
+      margin-top: 0.25rem;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95), 0 1px 2px rgba(0, 0, 0, 0.9);
+    }
+
+    .media-roi-box {
+      text-align: right;
+    }
+    @media (max-width: 600px) {
+      .media-roi-box { text-align: left; }
+    }
+
+    .media-roi-box .roi-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.88);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+      margin-bottom: 0.2rem;
+    }
+
+    .media-roi-box .roi-val {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      color: #4ade80 !important;
+      background: rgba(6, 44, 28, 0.88);
+      border: 1px solid rgba(74, 222, 128, 0.55);
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+    }
+    @media (max-width: 600px) {
+      .media-roi-box .roi-val { font-size: 0.82rem; padding: 0.28rem 0.65rem; }
+    }
+
+    .card-content {
+      padding: 1.25rem 1.25rem 1.5rem;
     }
 
     .card-header-row {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 0.85rem;
-      gap: 1.25rem;
-    }
-    @media (max-width: 600px) {
-      .card-header-row {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-    }
-
-    .header-left {
-      flex: 1;
+      margin-bottom: 0.75rem;
+      gap: 1rem;
     }
 
     .card-addr {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      letter-spacing: -0.015em;
-      line-height: 1.25;
-      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
     }
 
     .card-city {
-      font-size: 0.88rem;
-      color: var(--text-dim);
-      margin-top: 0.15rem;
-    }
-
-    .card-specs {
       font-size: 0.85rem;
-      color: var(--metric-label);
-      font-weight: 500;
-      margin-top: 0.35rem;
-    }
-
-    .header-right {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.35rem;
-    }
-    @media (max-width: 600px) {
-      .header-right {
-        text-align: left;
-        align-items: flex-start;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.75rem;
-      }
-    }
-
-    .deal-price {
-      font-size: 1.65rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      color: var(--text);
-    }
-
-    .deal-roi-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 0.25rem 0.6rem;
-      border-radius: 6px;
-      background: var(--pill-emerald-bg);
-      color: var(--pill-emerald-text);
-      border: 1px solid var(--pill-emerald-border);
-      white-space: nowrap;
+      color: var(--text-dim);
     }
 
     /* Metrics Table Grid */
@@ -297,15 +395,14 @@
       flex-direction: column;
     }
     .metric-label {
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: var(--metric-label);
+      font-size: 0.75rem;
+      color: var(--text-faint);
       margin-bottom: 0.2rem;
     }
     .metric-val {
       font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--metric-val);
+      font-weight: 600;
+      color: var(--text);
     }
     .metric-val.green { color: var(--green); }
     .metric-val.amber { color: var(--amber); }
@@ -351,8 +448,8 @@
 
     /* Risk Box */
     .risk-box {
-      background: var(--risk-bg);
-      border: 1px solid var(--risk-border);
+      background: rgba(255, 99, 132, 0.05);
+      border: 1px solid rgba(255, 99, 132, 0.2);
       border-radius: 9px;
       padding: 0.85rem 1rem;
       margin-top: 1rem;
@@ -361,7 +458,7 @@
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      color: var(--risk-title);
+      color: #ff6384;
       font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -378,7 +475,7 @@
       position: relative;
       padding-left: 1.1rem;
       font-size: 0.85rem;
-      color: var(--risk-text);
+      color: var(--text-dim);
       line-height: 1.45;
     }
     .risk-list li::before {
@@ -448,8 +545,8 @@
 
     /* Blacklist Card Special */
     .blacklist-card {
-      background: var(--risk-bg);
-      border: 1px solid var(--risk-border);
+      background: rgba(255, 99, 132, 0.03);
+      border: 1px solid rgba(255, 99, 132, 0.25);
       border-radius: 12px;
       padding: 1rem 1.15rem;
       margin-bottom: 1.25rem;
@@ -479,12 +576,12 @@
     .bl-title {
       font-size: 1.05rem;
       font-weight: 700;
-      color: var(--risk-title);
+      color: #ff6384;
       margin-bottom: 0.35rem;
     }
     .bl-flaw {
       font-size: 0.85rem;
-      color: var(--risk-text);
+      color: var(--text-dim);
       line-height: 1.5;
     }
   </style>
@@ -518,6 +615,7 @@
       <p class="hero-desc">覆盖 Wayne、Macomb、Oakland 三县全价位（$4.9万至$77万）破产拍卖、银行自持（REO）、警长法拍与极低折扣资产。真实照片全量匹配，点击即可一键直达官方房源及导航实勘。</p>
     </header>
 
+    
     <!-- Quick Category Filter -->
     <div class="filter-bar">
       <div class="filter-scroll">
@@ -530,30 +628,33 @@
       </div>
     </div>
 
-    <!-- Deals Container -->
     <div id="deals-container">
-
-      <!-- Property: 11509 Balfour Rd, Detroit (EEV) -->
+    <!-- Property: 11509 Balfour Rd, Detroit (EEV) -->
       <article class="deal-card" data-category="tier-under-120">
         <div class="card-media">
           <img src="photos/11509_balfour.jpg" alt="11509 Balfour Rd, Detroit (EEV)" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-purple">明星复兴街区 40% ROI 暴利翻转</span>
             <span class="pill pill-blue">历史砖房精装翻转 (Fix & Flip)</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$49,900</div>
+              <div class="price-sub">3 房 / 1 卫 · 1,225 sf · 1939年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ ROI 41.5% (全场最高现金回报)</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">11509 Balfour Rd</h2>
               <div class="card-city">Detroit, MI 48224 · 占地 0.12 英亩</div>
-              <div class="card-specs">3 房 / 1 卫 · 1,225 sf · 1939年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$49,900</div>
-              <div class="deal-roi-badge">ROI 41.5% (全场最高现金回报)</div>
             </div>
           </div>
 
@@ -608,30 +709,34 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
 
-      <!-- Property: 16504 E 10 Mile Rd, Eastpointe -->
+    <!-- Property: 16504 E 10 Mile Rd, Eastpointe -->
       <article class="deal-card" data-category="tier-under-120">
         <div class="card-media">
           <img src="photos/16504_e_10_mile.jpg" alt="16504 E 10 Mile Rd, Eastpointe" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-blue">线上拍卖半成品轻翻转</span>
             <span class="pill pill-blue">半成品收尾极速翻转</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$80,000 (起拍价)</div>
+              <div class="price-sub">4 房 / 2 卫 · 1,839 sf · 1940年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ Flip ROI 28%</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">16504 E 10 Mile Rd</h2>
               <div class="card-city">Eastpointe, MI 48021 · 占地 0.14 英亩</div>
-              <div class="card-specs">4 房 / 2 卫 · 1,839 sf · 1940年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$80,000 (起拍价)</div>
-              <div class="deal-roi-badge">Flip ROI 28%</div>
             </div>
           </div>
 
@@ -686,30 +791,34 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
 
-      <!-- Property: 22211 Grandy St, Clinton Township -->
+    <!-- Property: 22211 Grandy St, Clinton Township -->
       <article class="deal-card" data-category="tier-under-120">
         <div class="card-media">
           <img src="photos/22211_grandy.jpg" alt="22211 Grandy St, Clinton Township" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-amber">土地一拆二套利 (Lot Split)</span>
             <span class="pill pill-blue">土地拆分套现 + 房屋翻转/出租</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$100,000</div>
+              <div class="price-sub">3 房 / 1 卫 · 1,415 sf · 1940年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ 净利润 $45,000+ 或出租 Cap 16%</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">22211 Grandy St</h2>
               <div class="card-city">Clinton Township, MI 48035 · 占地 0.57 英亩 (24,829 sf)</div>
-              <div class="card-specs">3 房 / 1 卫 · 1,415 sf · 1940年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$100,000</div>
-              <div class="deal-roi-badge">净利润 $45,000+ 或出租 Cap 16%</div>
             </div>
           </div>
 
@@ -764,30 +873,34 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
 
-      <!-- Property: 19188 Kenosha St, Harper Woods -->
+    <!-- Property: 19188 Kenosha St, Harper Woods -->
       <article class="deal-card" data-category="tier-under-120">
         <div class="card-media">
           <img src="photos/19188_kenosha.jpg" alt="19188 Kenosha St, Harper Woods" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-emerald">9年老租客 Section 8 提租金矿</span>
             <span class="pill pill-blue">被动高息分红持有</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$100,000</div>
+              <div class="price-sub">2 房 / 1 卫 · 1,072 sf · 1940年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ 10.28% (净回报)</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">19188 Kenosha St</h2>
               <div class="card-city">Harper Woods, MI 48225 · 占地 0.11 英亩</div>
-              <div class="card-specs">2 房 / 1 卫 · 1,072 sf · 1940年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$100,000</div>
-              <div class="deal-roi-badge">10.28% (净回报)</div>
             </div>
           </div>
 
@@ -842,30 +955,34 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
 
-      <!-- Property: 22629 Downing St, Saint Clair Shores -->
+    <!-- Property: 22629 Downing St, Saint Clair Shores -->
       <article class="deal-card" data-category="tier-120-200">
         <div class="card-media">
           <img src="photos/22629_downing.jpg" alt="22629 Downing St, Saint Clair Shores" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-blue">湖滨法拍逼仓翻转 (Flip)</span>
             <span class="pill pill-blue">高周转旧房翻转 (Fix & Flip)</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$139,000</div>
+              <div class="price-sub">3 房 / 1 卫 · 981 sf · 1927年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ ROI 22% (年化超 60%)</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">22629 Downing St</h2>
               <div class="card-city">Saint Clair Shores, MI 48080 · 占地 0.28 英亩</div>
-              <div class="card-specs">3 房 / 1 卫 · 981 sf · 1927年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$139,000</div>
-              <div class="deal-roi-badge">ROI 22% (年化超 60%)</div>
             </div>
           </div>
 
@@ -920,30 +1037,34 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
 
-      <!-- Property: 17 Stapleton St, Mount Clemens -->
+    <!-- Property: 17 Stapleton St, Mount Clemens -->
       <article class="deal-card" data-category="tier-120-200">
         <div class="card-media">
           <img src="photos/17_stapleton.jpg" alt="17 Stapleton St, Mount Clemens" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-emerald">官方检房已过三单元 (Triplex)</span>
             <span class="pill pill-blue">高杠杆超高租金回报 (Triplex)</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$150,000</div>
+              <div class="price-sub">4 房 / 3 卫 (3 独立单元) · 2,072 sf · 1900年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ 11.63% – 15.4% (回报之王)</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">17 Stapleton St</h2>
               <div class="card-city">Mount Clemens, MI 48043 · 占地 0.15 英亩</div>
-              <div class="card-specs">4 房 / 3 卫 (3 独立单元) · 2,072 sf · 1900年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$150,000</div>
-              <div class="deal-roi-badge">11.63% – 15.4% (回报之王)</div>
             </div>
           </div>
 
@@ -998,30 +1119,34 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
 
-      <!-- Property: 27815 Shock St, Saint Clair Shores -->
+    <!-- Property: 27815 Shock St, Saint Clair Shores -->
       <article class="deal-card" data-category="tier-120-200">
         <div class="card-media">
           <img src="photos/27815_shock.jpg" alt="27815 Shock St, Saint Clair Shores" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-blue">Lakeview 学区 0.37 英亩重构</span>
             <span class="pill pill-blue">户型重构扩容翻转 (2改3b2ba)</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$150,000 (当前 Pending)</div>
+              <div class="price-sub">2 房 / 1 卫 (可改 3b/2ba) · 1,295 sf · 1951年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ Cap 6.4% / Flip ROI 15%</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">27815 Shock St</h2>
               <div class="card-city">Saint Clair Shores, MI 48081 · 占地 0.37 英亩 (16,117 sf)</div>
-              <div class="card-specs">2 房 / 1 卫 (可改 3b/2ba) · 1,295 sf · 1951年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$150,000 (当前 Pending)</div>
-              <div class="deal-roi-badge">Cap 6.4% / Flip ROI 15%</div>
             </div>
           </div>
 
@@ -1076,30 +1201,34 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
 
-      <!-- Property: 25154 Huron St, Roseville -->
+    <!-- Property: 25154 Huron St, Roseville -->
       <article class="deal-card" data-category="tier-120-200">
         <div class="card-media">
           <img src="photos/25154_huron.jpg" alt="25154 Huron St, Roseville" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-blue">Xome 线上拍卖流拍抄底</span>
             <span class="pill pill-blue">拍卖流拍线下现金谈判</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$184,900 (标价 / 底价约$156k)</div>
+              <div class="price-sub">3 房 / 1 卫 · 980 sf · 1960年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ Flip ROI 16%</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">25154 Huron St</h2>
               <div class="card-city">Roseville, MI 48066 · 占地 0.12 英亩</div>
-              <div class="card-specs">3 房 / 1 卫 · 980 sf · 1960年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$184,900 (标价 / 底价约$156k)</div>
-              <div class="deal-roi-badge">Flip ROI 16%</div>
             </div>
           </div>
 
@@ -1154,30 +1283,34 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
 
-      <!-- Property: 19955 Schaefer Hwy, Detroit -->
+    <!-- Property: 19955 Schaefer Hwy, Detroit -->
       <article class="deal-card" data-category="tier-200-320">
         <div class="card-media">
           <img src="photos/19955_schaefer.jpg" alt="19955 Schaefer Hwy, Detroit" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-emerald">满租现金流双拼 (Duplex)</span>
             <span class="pill pill-blue">长线持有 / 现金流印钞机</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$265,000</div>
+              <div class="price-sub">6 房 / 2 卫 (各 3b/1ba) · 2,444 sf · 1958年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ 9.46% (净回报)</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">19955 Schaefer Hwy</h2>
               <div class="card-city">Detroit, MI 48235 · 占地 0.13 英亩</div>
-              <div class="card-specs">6 房 / 2 卫 (各 3b/1ba) · 2,444 sf · 1958年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$265,000</div>
-              <div class="deal-roi-badge">9.46% (净回报)</div>
             </div>
           </div>
 
@@ -1232,30 +1365,34 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
 
-      <!-- Property: 27099 Demrick St, Roseville -->
+    <!-- Property: 27099 Demrick St, Roseville -->
       <article class="deal-card" data-category="tier-200-320">
         <div class="card-media">
           <img src="photos/27099_demrick.jpg" alt="27099 Demrick St, Roseville" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-emerald">优质平房双拼 (Ranch Duplex)</span>
             <span class="pill pill-blue">双单元平层自住/分租</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$280,000</div>
+              <div class="price-sub">4 房 / 2 卫 (各 2b/1ba) · 1,716 sf · 1957年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ 7.67% (净回报)</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">27099 Demrick St</h2>
               <div class="card-city">Roseville, MI 48066 · 占地 0.17 英亩</div>
-              <div class="card-specs">4 房 / 2 卫 (各 2b/1ba) · 1,716 sf · 1957年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$280,000</div>
-              <div class="deal-roi-badge">7.67% (净回报)</div>
             </div>
           </div>
 
@@ -1310,30 +1447,34 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
 
-      <!-- Property: 33443 Paoletti Dr, Fraser -->
+    <!-- Property: 33443 Paoletti Dr, Fraser -->
       <article class="deal-card" data-category="tier-200-320">
         <div class="card-media">
           <img src="photos/33443_paoletti.jpg" alt="33443 Paoletti Dr, Fraser" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-purple">房利美 REO 4车位车库法拍</span>
             <span class="pill pill-blue">高净值现代独栋翻转</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$304,000 (官方评估$310k)</div>
+              <div class="price-sub">4 房 / 2.5 卫 · 1,788 sf · 1993年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ 出租 Cap 6.8% / Flip ROI 14%</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">33443 Paoletti Dr</h2>
               <div class="card-city">Fraser, MI 48026 · 占地 0.38 英亩</div>
-              <div class="card-specs">4 房 / 2.5 卫 · 1,788 sf · 1993年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$304,000 (官方评估$310k)</div>
-              <div class="deal-roi-badge">出租 Cap 6.8% / Flip ROI 14%</div>
             </div>
           </div>
 
@@ -1388,30 +1529,34 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
 
-      <!-- Property: 20695 Gaberty Dr, Clinton Township -->
+    <!-- Property: 20695 Gaberty Dr, Clinton Township -->
       <article class="deal-card" data-category="tier-320-plus">
         <div class="card-media">
           <img src="photos/20695_gaberty.jpg" alt="20695 Gaberty Dr, Clinton Township" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-emerald">银行收回已做10万硬核翻新</span>
             <span class="pill pill-blue">准新房捡漏自住 / 稳健防守资产</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$459,900</div>
+              <div class="price-sub">3 房 / 2 卫 · 2,053 sf (总使用 3,253 sf) · 1997年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ 保值抗通胀极品</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">20695 Gaberty Dr</h2>
               <div class="card-city">Clinton Township, MI 48038 · 占地 0.33 英亩</div>
-              <div class="card-specs">3 房 / 2 卫 · 2,053 sf (总使用 3,253 sf) · 1997年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$459,900</div>
-              <div class="deal-roi-badge">保值抗通胀极品</div>
             </div>
           </div>
 
@@ -1466,30 +1611,34 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
 
-      <!-- Property: 43564 Scenic Ln, Novi -->
+    <!-- Property: 43564 Scenic Ln, Novi -->
       <article class="deal-card" data-category="tier-320-plus">
         <div class="card-media">
           <img src="photos/43564_scenic.jpg" alt="43564 Scenic Ln, Novi" loading="lazy">
-        </div>
-
-        <div class="card-content">
-          <div class="card-badges">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
             <span class="pill pill-purple">顶尖学区豪宅法拍套利</span>
             <span class="pill pill-blue">高净值中产豪宅翻转 (Luxury Flip)</span>
           </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$774,950</div>
+              <div class="price-sub">4 房 / 4 卫 · 2,975 sf (总使用 5,340 sf) · 1988年</div>
+            </div>
+            <div class="media-roi-box">
+              <div class="roi-label">预期 Cap / ROI</div>
+              <div class="roi-val">⚡ Flip ROI 12.5% (单笔高额美金利润)</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="card-content">
           <div class="card-header-row">
-            <div class="header-left">
+            <div>
               <h2 class="card-addr">43564 Scenic Ln</h2>
               <div class="card-city">Novi, MI 48167 · 占地 0.35 英亩</div>
-              <div class="card-specs">4 房 / 4 卫 · 2,975 sf (总使用 5,340 sf) · 1988年</div>
-            </div>
-            <div class="header-right">
-              <div class="deal-price">$774,950</div>
-              <div class="deal-roi-badge">Flip ROI 12.5% (单笔高额美金利润)</div>
             </div>
           </div>
 
@@ -1544,10 +1693,9 @@
             </a>
           </div>
         </div>
-        </div>
       </article>
     </div>
-    
+
     <!-- Blacklist section -->
       <div id="blacklist-wrapper" data-category="blacklist" style="display: none; margin-top: 1rem;">
         <div style="margin-bottom: 1.25rem;">
