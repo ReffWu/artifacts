@@ -32,78 +32,6 @@
       padding: 0 1.25rem;
     }
 
-    /* Top Bar */
-    nav.top-nav {
-      position: sticky;
-      top: 0;
-      z-index: 60;
-      background: var(--nav-bg);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      border-bottom: 1px solid var(--hairline);
-      height: 50px;
-      display: flex;
-      align-items: center;
-      transition: background-color 0.25s ease;
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.88rem;
-      color: var(--text-dim);
-      transition: color 0.15s;
-    }
-    .back-link:hover { color: var(--text); }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .nav-badge {
-      font-size: 0.76rem;
-      color: var(--accent);
-      background: rgba(92, 200, 236, 0.08);
-      border: 1px solid rgba(92, 200, 236, 0.22);
-      border-radius: 999px;
-      padding: 0.2rem 0.65rem;
-      font-weight: 500;
-    }
-
-    /* Theme Toggle Button */
-    .theme-toggle {
-      background: var(--surface);
-      border: 1px solid var(--hairline);
-      border-radius: 999px;
-      width: 32px;
-      height: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: var(--text-dim);
-      transition: all 0.15s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .theme-toggle:hover {
-      color: var(--text);
-      border-color: var(--stroke);
-    }
-    .theme-toggle svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
 
     /* Sticky Anchor Switcher */
     .anchor-bar {
@@ -496,15 +424,17 @@
 </head>
 <body>
 
-  <!-- Top Bar -->
+  <!-- Top Nav (Unified TokNotch Standard) -->
   <nav class="top-nav">
     <div class="shell nav-inner">
-      <a href="../" class="back-link">
-        <span>←</span>
-        <span>Reff / Artifacts</span>
+      <a href="../index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+        </svg>
+        <span>返回 Artifacts 中心</span>
       </a>
-      <div class="nav-actions">
-        <span class="nav-badge">6 店深度版</span>
+      <div class="nav-right">
+        <span class="nav-tag">大底特律精选美食 · 6 店深度版</span>
         <button class="theme-toggle" aria-label="切换深浅主题"></button>
       </div>
     </div>

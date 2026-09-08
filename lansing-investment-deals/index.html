@@ -32,51 +32,6 @@
     }
 
     /* Top Bar */
-    nav.top-nav {
-      position: sticky;
-      top: 0;
-      z-index: 60;
-      background: var(--nav-bg);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      border-bottom: 1px solid var(--hairline);
-      height: 52px;
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .back-btn {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      padding: 0.35rem 0.65rem;
-      border-radius: 6px;
-      background: var(--surface);
-      border: 1px solid var(--stroke);
-      transition: color 0.15s, background 0.15s;
-    }
-    .back-btn:hover { color: var(--text); background: var(--hairline); }
-
-    .nav-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-    }
 
     /* Header */
     header.hero {
@@ -598,14 +553,19 @@
 </head>
 <body>
 
-  <!-- Top Nav -->
+  <!-- Top Nav (Unified TokNotch Standard) -->
   <nav class="top-nav">
     <div class="shell nav-inner">
-      <div class="nav-left">
-        <a href="../index.html" class="back-btn">← 返回投资导航中心</a>
-        <span class="nav-title">大兰辛房产投资决策实勘指南 (30套精选标的)</span>
+      <a href="../index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+        </svg>
+        <span>返回 Artifacts 中心</span>
+      </a>
+      <div class="nav-right">
+        <span class="nav-tag">大兰辛房产实勘 · 30 套精选</span>
+        <button class="theme-toggle" aria-label="切换深浅主题"></button>
       </div>
-      <button class="theme-toggle" onclick="toggleTheme()" title="切换亮/暗色外观">🌓</button>
     </div>
   </nav>
 
