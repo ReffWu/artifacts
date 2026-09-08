@@ -506,3 +506,63 @@ nav.top-nav {
   fill: currentColor;
   display: block;
 }
+
+/* ====================================================
+   7. Card Media Adaptive Layout Protocol
+   - Dark Mode: OLED cinematic double gradient scrim, dark frosted glass pills, drop shadows
+   - Light Mode: Zero black mask (100% bright photo), Apple frosted glass dock, crisp dark text
+   ==================================================== */
+
+.card-media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.deal-card:hover .card-media img {
+  transform: scale(1.02);
+}
+
+.media-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.25s ease;
+}
+
+/* Dark Mode Scrim */
+:root .media-overlay,
+html[data-theme="dark"] .media-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.38) 22%,
+    rgba(0, 0, 0, 0.10) 48%,
+    rgba(0, 0, 0, 0.50) 72%,
+    rgba(0, 0, 0, 0.94) 100%
+  );
+  opacity: 1;
+}
+
+/* Light Mode: Zero Black Mask */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .media-overlay {
+    opacity: 0 !important;
+    display: none !important;
+  }
+}
+html[data-theme="light"] .media-overlay {
+  opacity: 0 !important;
+  display: none !important;
+}
+
