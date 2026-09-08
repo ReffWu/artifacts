@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>大底特律法拍、拍卖与高息捡漏房产投资实勘指南 · 2026</title>
+  <meta name="description" content="覆盖 Macomb / Wayne / Oakland 三县全价位法拍、拍卖、银行自持（REO）及折价捡漏核心资产。全真实实勘图片、直达在线房源链接、工程预算清单与核心风险穿透。">
+  <link rel="stylesheet" href="../shared/theme.css">
+  <script src="../shared/theme.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 5rem;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    ::selection { background: var(--accent); color: #000; }
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Top Bar */
+    nav.top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: var(--nav-bg);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--hairline);
+      height: 52px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .back-btn {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      transition: color 0.15s, background 0.15s;
+    }
+    .back-btn:hover { color: var(--text); background: var(--hairline); }
+
+    .nav-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Header */
+    header.hero {
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.85rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+    .pill-emerald { background: rgba(112, 227, 181, 0.12); color: var(--green); border: 1px solid rgba(112, 227, 181, 0.25); }
+    .pill-amber { background: rgba(255, 200, 92, 0.12); color: var(--amber); border: 1px solid rgba(255, 200, 92, 0.25); }
+    .pill-blue { background: rgba(92, 200, 236, 0.12); color: var(--accent); border: 1px solid rgba(92, 200, 236, 0.25); }
+    .pill-purple { background: rgba(186, 104, 200, 0.12); color: #ba68c8; border: 1px solid rgba(186, 104, 200, 0.25); }
+    .pill-red { background: rgba(255, 99, 132, 0.12); color: #ff6384; border: 1px solid rgba(255, 99, 132, 0.25); }
+
+    h1.hero-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+
+    p.hero-desc {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      position: sticky;
+      top: 52px;
+      z-index: 50;
+      background: var(--anchor-bar-bg);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--hairline);
+      margin-bottom: 1.75rem;
+    }
+
+    .filter-scroll {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 2px 0;
+    }
+    .filter-scroll::-webkit-scrollbar { display: none; }
+
+    .filter-btn {
+      white-space: nowrap;
+      padding: 0.4rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border-radius: 999px;
+      background: var(--anchor-pill-bg);
+      color: var(--text-dim);
+      border: 1px solid var(--stroke);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .filter-btn:hover { color: var(--text); border-color: var(--stroke-hover); }
+    .filter-btn.active {
+      background: var(--anchor-pill-active-bg);
+      color: var(--anchor-pill-active-text);
+      border-color: var(--anchor-pill-active-bg);
+      font-weight: 600;
+    }
+
+    /* Deal Cards */
+    .deal-card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .deal-card:hover {
+      border-color: var(--stroke-hover);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-media {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      background: #111;
+      overflow: hidden;
+    }
+    @media (max-width: 600px) {
+      .card-media { height: 230px; }
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+    .deal-card:hover .card-media img {
+      transform: scale(1.02);
+    }
+
+    .media-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .media-badges {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .media-price {
+      position: absolute;
+      bottom: 1rem;
+      left: 1.25rem;
+      right: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      color: #fff;
+    }
+
+    .price-num {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    .price-sub {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .card-content {
+      padding: 1.25rem 1.25rem 1.5rem;
+    }
+
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      gap: 1rem;
+    }
+
+    .card-addr {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .card-city {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    /* Metrics Table Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.65rem;
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      border-radius: 10px;
+      padding: 0.85rem;
+      margin: 1rem 0;
+    }
+    @media (max-width: 600px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    }
+
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .metric-label {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      margin-bottom: 0.2rem;
+    }
+    .metric-val {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .metric-val.green { color: var(--green); }
+    .metric-val.amber { color: var(--amber); }
+
+    /* Highlights Section */
+    .section-block {
+      margin-top: 1.15rem;
+    }
+    .section-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+    .bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0.25rem;
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1;
+      top: 0.15rem;
+    }
+
+    /* Risk Box */
+    .risk-box {
+      background: rgba(255, 99, 132, 0.05);
+      border: 1px solid rgba(255, 99, 132, 0.2);
+      border-radius: 9px;
+      padding: 0.85rem 1rem;
+      margin-top: 1rem;
+    }
+    .risk-header {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #ff6384;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.45rem;
+    }
+    .risk-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .risk-list li {
+      position: relative;
+      padding-left: 1.1rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.45;
+    }
+    .risk-list li::before {
+      content: "⚠️";
+      position: absolute;
+      left: 0;
+      font-size: 0.72rem;
+      top: 0.25rem;
+    }
+
+    /* Action Callout */
+    .action-callout {
+      background: var(--tip-bg);
+      border-left: 3px solid var(--tip-border);
+      border-radius: 0 8px 8px 0;
+      padding: 0.75rem 0.95rem;
+      margin-top: 1rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .action-callout strong {
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    /* CTAs Row */
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+      margin-top: 1.25rem;
+    }
+    @media (max-width: 500px) {
+      .btn-row { grid-template-columns: 1fr; }
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .primary-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.88rem;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .secondary-btn:hover { background: var(--hairline); border-color: var(--stroke-hover); }
+
+    /* Blacklist Card Special */
+    .blacklist-card {
+      background: rgba(255, 99, 132, 0.03);
+      border: 1px solid rgba(255, 99, 132, 0.25);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      gap: 1.15rem;
+      align-items: center;
+    }
+    @media (max-width: 600px) {
+      .blacklist-card { flex-direction: column; align-items: flex-start; }
+    }
+    .bl-photo {
+      width: 140px;
+      height: 100px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #222;
+    }
+    .bl-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .bl-body {
+      flex: 1;
+    }
+    .bl-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ff6384;
+      margin-bottom: 0.35rem;
+    }
+    .bl-flaw {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Nav -->
+  <nav class="top-nav">
+    <div class="shell nav-inner">
+      <div class="nav-left">
+        <a href="../" class="back-btn">← 返回 Hub</a>
+        <span class="nav-title">法拍与捡漏实勘指南</span>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="切换主题" title="切换模式">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <!-- Hero Header -->
+    <header class="hero">
+      <div class="badge-bar">
+        <span class="pill pill-emerald">三县全域穿透</span>
+        <span class="pill pill-blue">MLS + 法拍公报直连</span>
+        <span class="pill pill-purple">12 套高胜率核心标的</span>
+        <span class="pill pill-red">3 套黑名单避坑</span>
+      </div>
+      <h1 class="hero-title">大底特律都市圈法拍、拍卖与捡漏房产投资实勘决策报告</h1>
+      <p class="hero-desc">覆盖 Wayne、Macomb、Oakland 三县全价位（$4.9万至$77万）破产拍卖、银行自持（REO）、警长法拍与极低折扣资产。真实照片全量匹配，点击即可一键直达官方房源及导航实勘。</p>
+    </header>
+
+    <!-- Quick Category Filter -->
+    <div class="filter-bar">
+      <div class="filter-scroll">
+        <button class="filter-btn active" onclick="filterDeals('all', this)">全部核心标的 (13)</button>
+        <button class="filter-btn" onclick="filterDeals('cashflow', this)">💰 现金流双拼/三拼</button>
+        <button class="filter-btn" onclick="filterDeals('flip', this)">🔨 暴利翻转 (Fix & Flip)</button>
+        <button class="filter-btn" onclick="filterDeals('arbitrage', this)">📐 土地分割与特殊套利</button>
+        <button class="filter-btn" onclick="filterDeals('luxury', this)">🏰 顶尖豪宅法拍</button>
+        <button class="filter-btn" onclick="filterDeals('blacklist', this)">⚠️ 避坑黑名单 (3)</button>
+      </div>
+    </div>
+
+    <!-- Deals Container -->
+    <div id="deals-container">
+
+      <!-- Property: 19955 Schaefer Hwy, Detroit -->
+      <article class="deal-card" data-category="cashflow">
+        <div class="card-media">
+          <img src="photos/19955_schaefer.jpg" alt="19955 Schaefer Hwy, Detroit" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-emerald">满租现金流双拼 (Duplex)</span>
+            <span class="pill pill-blue">长线持有 / 现金流印钞机</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$265,000</div>
+              <div class="price-sub">6 房 / 2 卫 (各 3b/1ba) · 2,444 sf · 1958年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">9.46% (净回报)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">19955 Schaefer Hwy</h2>
+              <div class="card-city">Detroit, MI 48235 · 占地 0.13 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$5,000 (免重大改造，局部清洁整备)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$285,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">月租金 $2,975 ($35,700/年)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">$25,059 / 年</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>100% 满租政府 Section 8 房客，每月政府直接汇入 $2,975 租金，无拖欠断租风险</li><li>独立双电表、双燃气表、分体双暖气系统，租客自付采暖用电，房东运营费用极低</li><li>近年已换新屋顶，地下室配备分单元独立洗衣机烘干机区</li><li>地处西底特律 Schaefer 商业干道生活圈，租赁需求常年满载</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【租客交割与 HUD 转移风险】交割必须在买卖协议中严格列明：卖方需配合办理底特律住房管理局（Detroit Housing Commission / DHC）直接收款人更名手续，并转交全部押金（Security Deposits）。</li><li>【底特律市政房屋年检合规】底特律对租赁房屋要求办理 BSEED 租赁合规年检（Lead Clearance & Rental Registration），需提前留存 $1,500 应急预备金应对日常抽检。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 立即以 $250,000 全现金或 25% 首付投资贷发起意向书，要求卖方提供近 12 个月银行流水及 HUD HAP 合同复印件。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/19955-Schaefer-Hwy_Detroit_MI_48235_M32066-76617" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=19955+Schaefer+Hwy,+Detroit,+MI+48235" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 27099 Demrick St, Roseville -->
+      <article class="deal-card" data-category="cashflow">
+        <div class="card-media">
+          <img src="photos/27099_demrick.jpg" alt="27099 Demrick St, Roseville" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-emerald">优质平房双拼 (Ranch Duplex)</span>
+            <span class="pill pill-blue">双单元平层自住/分租</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$280,000</div>
+              <div class="price-sub">4 房 / 2 卫 (各 2b/1ba) · 1,716 sf · 1957年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">7.67% (净回报)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">27099 Demrick St</h2>
+              <div class="card-city">Roseville, MI 48066 · 占地 0.17 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$8,000 (轻度整洁与换锁)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$310,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">现租 $2,550/月，可提至 $2,650-$2,720/月</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">$21,466 / 年</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>极其罕见的 Ranch 平房双拼结构，左右/前后分布，彻底避免楼上楼下噪音摩擦</li><li>自带独立汽车库与独立双车道（Two Separate Driveways），两户租客各停各车</li><li>独立分户双电表、双水气系统</li><li>Roseville 市政法规红利：无销售点强制检房（No POS Inspection），交割零阻碍</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【现有租约重签风险】当前租金为 $2,550/月，略低于 Roseville 最新市场均价（$1,350/单元），需在租约到期后和平推进合法幅度提租。</li><li>【地税解绑微调】交割次年密歇根 Proposal A 计税价值（TV）将解绑至约 $140,000，非自住地税年账单约上升至 $4,800，已纳入净收益精算。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 出价 $268,000 – $275,000，合同加入 10 天尽调期查验租客过往交租凭证。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/27099-Demrick-St_Roseville_MI_48066_M35510-90170" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=27099+Demrick+St,+Roseville,+MI+48066" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 17 Stapleton St, Mount Clemens -->
+      <article class="deal-card" data-category="cashflow">
+        <div class="card-media">
+          <img src="photos/17_stapleton.jpg" alt="17 Stapleton St, Mount Clemens" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-emerald">官方检房已过三单元 (Triplex)</span>
+            <span class="pill pill-blue">高杠杆超高租金回报 (Triplex)</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$150,000</div>
+              <div class="price-sub">4 房 / 3 卫 (3 独立单元) · 2,072 sf · 1900年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">11.63% – 15.4% (回报之王)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">17 Stapleton St</h2>
+              <div class="card-city">Mount Clemens, MI 48043 · 占地 0.15 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$15,000 (室内装饰与设备小保)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$220,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">全楼租金 $2,800/月 ($33,600/年)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">$17,447 – $23,110 / 年</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>【核心护城河】已完整通过芒特克莱门斯市官方 2 年期租赁复检（Rental Certification 有效期直通 2027 年）！</li><li>仅 15 万售价即可买下 3 个独立套间，年毛租金高收 $33,600，4-5 年依靠纯租金回本全部总价</li><li>历史保护区法律豁免：密歇根法案明确室内翻修 100% 免于历史保护委员会（HDC）繁琐审批</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【历史地税成本较高】由于曾作为多家庭投资，2025 年地税账单为 $5,190，必须严格留足运营储备金。</li><li>【1900年百年老宅机电维护】主水暖管道已更新，但日常需防范老宅老旧阀门及暖气阀片维护，建议投保 Home Warranty 商业保修。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 以 $142,000 – $150,000 现金发起锁定，要求卖方移交市官方 2025-2027 租赁许可证原件及所有租客押金。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/17-Stapleton-St_Mount-Clemens_MI_48043_M33130-46702" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=17+Stapleton+St,+Mount+Clemens,+MI+48043" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 22211 Grandy St, Clinton Township -->
+      <article class="deal-card" data-category="arbitrage">
+        <div class="card-media">
+          <img src="photos/22211_grandy.jpg" alt="22211 Grandy St, Clinton Township" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-amber">土地一拆二套利 (Lot Split)</span>
+            <span class="pill pill-blue">土地拆分套现 + 房屋翻转/出租</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$100,000</div>
+              <div class="price-sub">3 房 / 1 卫 · 1,415 sf · 1940年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">净利润 $45,000+ 或出租 Cap 16%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">22211 Grandy St</h2>
+              <div class="card-city">Clinton Township, MI 48035 · 占地 0.57 英亩 (24,829 sf)</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$35,000 (主房翻新)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$220,000 (主房翻新后)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">卖地净套现 $14,000 现金 + 主房月租 $1,750</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">$14,500 / 年 (主房)</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>横跨 4 个独立规划地块（Lots 61-64），街道总面宽 147 英尺，总占地 0.57 英亩</li><li>Clinton Twp R-1-C 分区要求仅需 60 英尺面宽与 7,200 sf 面积，完全满足行政免听证一分为二（各得 73.5 英尺面宽）</li><li>卖掉空置宅基地直接回款 $14,000+ 现金，主房实际拿地成本砸穿至 $85,000 左右</li><li>主房尺度达 1,415 sf，比普通 900 sf 平房更具大户型溢价</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【土地测绘与分割周期】过户后需聘请持牌土地测绘师（Surveyor）出具分地红线图（约 $1,200-$1,800），市政规划局审批约需 30-45 天。</li><li>【主房老旧内装需翻新】房屋现状较原始，需投入 $35k 重新铺设 SPC 地板、翻新厨房台面和新做浴室防水。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 出价 $92,000 – $98,000 现金拿下，过户第一天即启动 Clinton Twp 土地分割审批。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/22211-Grandy-St_Clinton-Twp_MI_48035_M36408-75198" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=22211+Grandy+St,+Clinton+Township,+MI+48035" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 19188 Kenosha St, Harper Woods -->
+      <article class="deal-card" data-category="cashflow">
+        <div class="card-media">
+          <img src="photos/19188_kenosha.jpg" alt="19188 Kenosha St, Harper Woods" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-emerald">9年老租客 Section 8 提租金矿</span>
+            <span class="pill pill-blue">被动高息分红持有</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$100,000</div>
+              <div class="price-sub">2 房 / 1 卫 · 1,072 sf · 1940年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">10.28% (净回报)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">19188 Kenosha St</h2>
+              <div class="card-city">Harper Woods, MI 48225 · 占地 0.11 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$2,000 (免重大装修)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$135,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">现租 $1,150/月，可法定提租至 $1,300-$1,350/月</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">$11,300 / 年</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>超稳租约：现任 Section 8 租客自 2017 年居住至今已整整 9 年，极度省心无换客折损</li><li>法定调租空间巨大：Wayne 县 2026 HUD FMR 2 房基准高达 $1,411/月，当前 $1,150 严重偏低，可直接向县房管局申请每年法定增幅</li><li>全屋带全尺寸地下室与独立车库，年地税账单仅 $1,496，运营摩擦成本极低</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【Harper Woods 房屋租赁注册】交割后需到市政厅办理 Rental Certificate of Compliance，费用约 $200，并完成例行烟感探测器核验。</li><li>【现有租客保护】由于租客居住长达 9 年，提租应分步走（首期提至 $1,280，次年提至 $1,380），保障房管局秒批。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 出价 $95,000 – $100,000，全款交割即开始享受月度纯现金流分红。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/19188-Kenosha-St_Harper-Woods_MI_48225_M33395-85861" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=19188+Kenosha+St,+Harper+Woods,+MI+48225" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 22629 Downing St, Saint Clair Shores -->
+      <article class="deal-card" data-category="flip">
+        <div class="card-media">
+          <img src="photos/22629_downing.jpg" alt="22629 Downing St, Saint Clair Shores" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-blue">湖滨法拍逼仓翻转 (Flip)</span>
+            <span class="pill pill-blue">高周转旧房翻转 (Fix & Flip)</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$139,000</div>
+              <div class="price-sub">3 房 / 1 卫 · 981 sf · 1927年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">ROI 22% (年化超 60%)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">22629 Downing St</h2>
+              <div class="card-city">Saint Clair Shores, MI 48080 · 占地 0.28 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$65,000 (屋顶+机电+厨卫+防倒灌)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$250,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">翻新转售净利润 $38,000 – $45,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">N/A (建议转售)</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>紧邻 Jefferson Ave 走廊与著名 Nautical Mile 游艇码头休闲圈，去化速度全区最快</li><li>原业主面临 2026 年 11 月 29 日警长拍卖赎回截止倒计时，不卖即净身出户，现金极易深度砍价</li><li>同街同户型 2026 年已翻新真实成交 $255,000（21525 Downing），买盘极其扎实</li><li>FEMA 官方为 Zone X（非强制洪水险，无高额保险成本）</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【警长拍卖赎回期产权合规风险】交割必须由正规产权公司（Title Agency）进行 Sheriff's Deed 清偿过户，确保开具无追索权的无瑕疵产权保单（Clear Title Policy）。</li><li>【地下室城市管网反水风险】湖滨地势暴雨天易受公共排水管顶托，必须在翻新预算中列支 $3,500 安装防倒灌止回阀（Backwater Valve）及备用电池潜水泵！</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 利用 11 月 29 日赎回期倒计时，直接甩出 $118,000 – $122,000 全现金不附带检房条款意向书，极限施压锁定货源。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/22629-Downing-St_Saint-Clair-Shores_MI_48080_M45559-74533" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=22629+Downing+St,+Saint+Clair+Shores,+MI+48080" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 27815 Shock St, Saint Clair Shores -->
+      <article class="deal-card" data-category="flip">
+        <div class="card-media">
+          <img src="photos/27815_shock.jpg" alt="27815 Shock St, Saint Clair Shores" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-blue">Lakeview 学区 0.37 英亩重构</span>
+            <span class="pill pill-blue">户型重构扩容翻转 (2改3b2ba)</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$150,000 (当前 Pending)</div>
+              <div class="price-sub">2 房 / 1 卫 (可改 3b/2ba) · 1,295 sf · 1951年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">Cap 6.4% / Flip ROI 15%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">27815 Shock St</h2>
+              <div class="card-city">Saint Clair Shores, MI 48081 · 占地 0.37 英亩 (16,117 sf)</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$80,000 (空间重构+双卫+爬行空间封装)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$275,000 – $280,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">净翻转利润 $25,000 – $35,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">若出租 $2,100/月</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>划归 Saint Clair Shores 综合声誉最高的 Lakeview 顶尖公立学区，自住买盘抢夺激烈</li><li>拥有 0.37 英亩超级进深地块（约常规地块的 2.7 倍），后院可停泊大型游艇或建造专属露天聚会区</li><li>1,295 sf 大尺度仅做 2b1ba 造成严重价值压制，打拆重构为 3 房 2 卫后市值呈级数飞跃</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【爬行空间防潮与保温工程】该房无地下室，基础为 Crawl Space，施工必须做好 20mil 防潮膜整体封闭封装及结构加固，避免地气反湿。</li><li>【合同处于 Pending 状态】当前买家极可能因老宅检房问题面临滑脱风险，需以 Backup Offer 方式随时备战。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 让经纪人立即提交 $148,000 全现金 Backup Offer。一旦原买家贷款或检房受挫违约，我们无缝接盘。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/27815-Shock-St_Saint-Clair-Shores_MI_48081_M42852-00195" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=27815+Shock+St,+Saint+Clair+Shores,+MI+48081" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 11509 Balfour Rd, Detroit (EEV) -->
+      <article class="deal-card" data-category="flip">
+        <div class="card-media">
+          <img src="photos/11509_balfour.jpg" alt="11509 Balfour Rd, Detroit (EEV)" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-purple">明星复兴街区 40% ROI 暴利翻转</span>
+            <span class="pill pill-blue">历史砖房精装翻转 (Fix & Flip)</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$49,900</div>
+              <div class="price-sub">3 房 / 1 卫 · 1,225 sf · 1939年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">ROI 41.5% (全场最高现金回报)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">11509 Balfour Rd</h2>
+              <div class="card-city">Detroit, MI 48224 · 占地 0.12 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$55,000 (全屋历史风精装升级)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$175,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">净翻转利润超 $45,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">N/A (建议转售获利)</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>位于底特律公认的黄金走廊 East English Village (EEV)，与富人区 Grosse Pointe 仅一路之隔</li><li>整条街全砖历史建筑群，绿树成荫，社区自律协会与巡逻完备，是年轻专业买家回流主战场</li><li>拿地成本不足 5 万美元，总投入 $11.7 万左右，同街精装成交已达 $165k-$185k，利差高达 $4.5 万以上</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【历史建筑材料与电路换新】1939 年砖房需彻底排查旧旋钮布线（Knob-and-Tube）与铅管，施工预算必须预留 $10,000 完整更新电箱与管路。</li><li>【空置期间安防管理】底特律施工期间必须安装 Cellular 4G 无线摄像头及警报器，避免铜管及工具失窃。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 出价 $46,000 – $49,000 全款秒杀，安排熟悉 EEV 街区历史风貌翻新的优质华人或本地施工队进场。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/11509-Balfour-Rd_Detroit_MI_48224_M36250-12012" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=11509+Balfour+Rd,+Detroit,+MI+48224" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 16504 E 10 Mile Rd, Eastpointe -->
+      <article class="deal-card" data-category="flip">
+        <div class="card-media">
+          <img src="photos/16504_e_10_mile.jpg" alt="16504 E 10 Mile Rd, Eastpointe" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-blue">线上拍卖半成品轻翻转</span>
+            <span class="pill pill-blue">半成品收尾极速翻转</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$80,000 (起拍价)</div>
+              <div class="price-sub">4 房 / 2 卫 · 1,839 sf · 1940年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">Flip ROI 28%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">16504 E 10 Mile Rd</h2>
+              <div class="card-city">Eastpointe, MI 48021 · 占地 0.14 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$30,000 (厨卫台面收尾与全屋油漆地板)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$170,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">净翻转利润约 $35,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">若出租 $1,650/月</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>大件已全部换新：前任翻修方已铺设全新高能效暖气炉（Furnace）与全新热水器，最昂贵机电部分已搞定</li><li>1,839 sf 超大建筑面积，4 房 2 卫在 Eastpointe 属于稀缺大户型</li><li>线上拍卖截止日为 2026 年 9 月 30 日，有充裕时间完成实地尽调</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【Eastpointe 销售点检房与市政保证金】Eastpointe 要求签署 Escrow Agreement 扣留 $2,000-$4,000 维修保证金，需在过户后 90 天内完成市政维修项以全额赎回。</li><li>【临主干道车流影响】位于 10 Mile 主路，转售定价需比内街便宜 5% 确保秒售，ARV 已按保守 $170k 测算。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 在 9 月 30 日拍卖中设置最高出价限额 $92,000，落槌即安排 3 周快速收尾出场。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/16504-E-10-Mile-Rd_Eastpointe_MI_48021_M48953-06833" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=16504+E+10+Mile+Rd,+Eastpointe,+MI+48021" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 25154 Huron St, Roseville -->
+      <article class="deal-card" data-category="flip">
+        <div class="card-media">
+          <img src="photos/25154_huron.jpg" alt="25154 Huron St, Roseville" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-blue">Xome 线上拍卖流拍抄底</span>
+            <span class="pill pill-blue">拍卖流拍线下现金谈判</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$184,900 (标价 / 底价约$156k)</div>
+              <div class="price-sub">3 房 / 1 卫 · 980 sf · 1960年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">Flip ROI 16%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">25154 Huron St</h2>
+              <div class="card-city">Roseville, MI 48066 · 占地 0.12 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$25,000 (轻度美化与厨卫小调)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$210,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">净翻转利润约 $28,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">若出租 $1,550/月</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>经典全砖 Ranch 平房，带全地下室，骨架坚如磐石，极受首套刚需买家青睐</li><li>Roseville 免除 POS 销售点检房，交易极快无市政官僚阻碍</li><li>起拍价仅 $95,000，保留底价约 $156,410</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【拍卖行 5% 买家佣金陷阱】在 Xome 竞拍成功需额外支付 5% Buyer's Premium（约 $8,000），极度侵蚀利润。</li><li>【对策】不在竞拍中跟风叫价，等待其未达底价流拍后，当天由经纪人单边向卖家银行递交 $138,000-$142,000 现金净价 Offer！</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 监控拍卖周期，流拍当日以 $140,000 纯现金直投资方资产处置部门。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/25154-Huron-St_Roseville_MI_48066_M44489-84012" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=25154+Huron+St,+Roseville,+MI+48066" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 33443 Paoletti Dr, Fraser -->
+      <article class="deal-card" data-category="flip">
+        <div class="card-media">
+          <img src="photos/33443_paoletti.jpg" alt="33443 Paoletti Dr, Fraser" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-purple">房利美 REO 4车位车库法拍</span>
+            <span class="pill pill-blue">高净值现代独栋翻转</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$304,000 (官方评估$310k)</div>
+              <div class="price-sub">4 房 / 2.5 卫 · 1,788 sf · 1993年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">出租 Cap 6.8% / Flip ROI 14%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">33443 Paoletti Dr</h2>
+              <div class="card-city">Fraser, MI 48026 · 占地 0.38 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$62,000 (换屋顶+冷暖+精装厨卫)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$380,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">净翻转利润约 $25,000 (按 $268k 买入)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">若出租 $2,600/月</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>1993 年建造的现代殖民风，现浇全地下室，完全没有百年老房的地基开裂或电路安全风险</li><li>【全场罕见】自带 4 车位车库（2 车位附着 + 2 车位独立加热车间），密歇根当地转售有 $25,000 纯溢价</li><li>房利美 HomePath 30 天 First Look 自住保护期已正式截止，已全面对商业投资人开放出价</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【标价倒挂风险（重大警示）】按挂牌价 $304,000 买入翻修将面临倒挂！必须压价出价！</li><li>【Fraser 市政 C of O 补检】法拍空置房在 Fraser 需补办市政居住许可检房（Certificate of Occupancy），需留存 $4,000 维修承诺。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 以全现金无延误条款直接报价 $260,000 – $268,000。谈判目标不超过 $275,000，否则坚决等待其 9 月底算法自动降价。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/33443-Paoletti_Fraser_MI_48026_M44821-09306" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=33443+Paoletti,+Fraser,+MI+48026" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 43564 Scenic Ln, Novi -->
+      <article class="deal-card" data-category="luxury">
+        <div class="card-media">
+          <img src="photos/43564_scenic.jpg" alt="43564 Scenic Ln, Novi" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-purple">顶尖学区豪宅法拍套利</span>
+            <span class="pill pill-blue">高净值中产豪宅翻转 (Luxury Flip)</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$774,950</div>
+              <div class="price-sub">4 房 / 4 卫 · 2,975 sf (总使用 5,340 sf) · 1988年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">Flip ROI 12.5% (单笔高额美金利润)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">43564 Scenic Ln</h2>
+              <div class="card-city">Novi, MI 48167 · 占地 0.35 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$80,000 (现代化精装+室内恒温泳池机房)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$950,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">净翻转利润 $80,000 – $110,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">N/A (建议转售)</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>地处大底特律公认首屈一指的 Northville 顶尖公立学区，中产家庭换房刚需极其庞大</li><li>带全完成日光地下室，总室内面积突破 5,340 平方英尺，配备私人室内恒温泳池与桑拿房</li><li>周边 0.5 英里翻新同体量豪宅成交均价已达 $920k-$1.05M，银行法拍折价率超 15 万美元</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【室内泳池机房与除湿系统检修】室内泳池必须聘请专业 Commercial Pool 技师检测加热器、循环泵及全封闭除湿机（Dehumidifier），预防湿气渗透墙体。</li><li>【地税重新解绑】成交后奥克兰县地税按 $750k 计税，年地税账单将达 $14,000 左右，必须在 3-4 个月内快进快出完成转售。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 以 $715,000 – $730,000 全款发起进攻性现金报价，锁定顶尖学区百万豪宅利差。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/43564-Scenic-Ln_Northville_MI_48167_M39974-53100" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=43564+Scenic+Ln,+Northville,+MI+48167" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 20695 Gaberty Dr, Clinton Township -->
+      <article class="deal-card" data-category="luxury">
+        <div class="card-media">
+          <img src="photos/20695_gaberty.jpg" alt="20695 Gaberty Dr, Clinton Township" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-emerald">银行收回已做10万硬核翻新</span>
+            <span class="pill pill-blue">准新房捡漏自住 / 稳健防守资产</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$459,900</div>
+              <div class="price-sub">3 房 / 2 卫 · 2,053 sf (总使用 3,253 sf) · 1997年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">保值抗通胀极品</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">20695 Gaberty Dr</h2>
+              <div class="card-city">Clinton Township, MI 48038 · 占地 0.33 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$5,000 (极轻微修补，95% 完工)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$485,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">现成省下 $100,000+ 施工成本</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">若出租 $2,800/月</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>【前人栽树】前任翻修方已真金白银投入超 10 万美元硬核翻新：$2.6 万全新屋顶、$1.2 万全新冷暖 HVAC、$2.8 万 Lafata 纯枫木定制厨房、$2.5 万带全卫的日光地下室</li><li>买家相当于用极其微小的溢价，直接打包继承了 10 万现金的全新硬装，完全省去翻修施工的工期与监理痛苦</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【转售利润空间适中】由于已基本完工，该房产非暴利翻转盘，更偏向于高确定性自住改善或高品质家庭长线出租。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 出价 $440,000 – $448,000，适合追求省心、拎包入住的实物资产配置。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/20695-Gaberty-Dr_Clinton-Twp_MI_48038_M32908-61757" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=20695+Gaberty+Dr,+Clinton+Township,+MI+48038" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Blacklist section -->
+      <div id="blacklist-wrapper" data-category="blacklist" style="display: none; margin-top: 1rem;">
+        <div style="margin-bottom: 1.25rem;">
+          <h2 style="font-size: 1.35rem; font-weight: 700; color: #ff6384; margin-bottom: 0.35rem;">⚠️ 严禁碰触的“高危陷阱房”黑名单</h2>
+          <p style="font-size: 0.9rem; color: var(--text-dim);">看似挂牌价极其诱人，但在基础地基、市政法规或工程成本上存在致命硬伤，盲目买入必然陷入资金深套或倒挂亏损：</p>
+        </div>
+
+        <div class="blacklist-card">
+          <div class="bl-photo">
+            <img src="photos/11322_superior.jpg" alt="11322 Superior Ave NW, Warren">
+          </div>
+          <div class="bl-body">
+            <div class="bl-title">11322 Superior Ave NW, Warren · 标价 $80,000</div>
+            <div class="bl-flaw">【无地下室致命死穴】地基为极薄的纯水泥板（Slab Foundation）。密歇根冬季寒冷潮湿，无地下室房屋在转售市场受到极端歧视，ARV 牢牢封死在 $130,000 无法突破，扣除翻新必亏。</div>
+            <div style="margin-top: 0.5rem;">
+              <a href="https://www.realtor.com/realestateandhomes-detail/11322-Superior-Ave_Warren_MI_48089_M47301-58697" target="_blank" rel="noopener" style="font-size: 0.8rem; color: var(--accent); text-decoration: underline;">查看挂牌记录存证 →</a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="blacklist-card">
+          <div class="bl-photo">
+            <img src="photos/14027_hobart.jpg" alt="14027 Hobart Ave, Warren">
+          </div>
+          <div class="bl-body">
+            <div class="bl-title">14027 Hobart Ave, Warren · 标价 $150,000</div>
+            <div class="bl-flaw">【严重成本倒挂】地基为 Crawl Space，残破程度极高需 $50k+ 重度翻修，而开价高达 15 万。周边同类天花板仅 $170k-$180k，倒挂亏损 $20,000 以上。</div>
+            <div style="margin-top: 0.5rem;">
+              <a href="https://www.realtor.com/realestateandhomes-detail/14027-Hobart-Ave_Warren_MI_48089_M30466-95638" target="_blank" rel="noopener" style="font-size: 0.8rem; color: var(--accent); text-decoration: underline;">查看挂牌记录存证 →</a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="blacklist-card">
+          <div class="bl-photo">
+            <img src="photos/20458_abrahm.jpg" alt="20458 Abrahm St, Clinton Township">
+          </div>
+          <div class="bl-body">
+            <div class="bl-title">20458 Abrahm St, Clinton Township · 标价 $29,900 (虚假钓鱼标价)</div>
+            <div class="bl-flaw">【拍卖平台虚假引流】Auction.com 真实保留底价（Reserve）在 $85k 以上。房屋存在未结清市政传票与严重地基剪切断裂，属高危问题资产。</div>
+            <div style="margin-top: 0.5rem;">
+              <a href="https://www.realtor.com/realestateandhomes-detail/20458-Abrahm-St_Clinton-Twp_MI_48035_M31345-76954" target="_blank" rel="noopener" style="font-size: 0.8rem; color: var(--accent); text-decoration: underline;">查看挂牌记录存证 →</a>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function filterDeals(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.deal-card');
+      const blWrapper = document.getElementById('blacklist-wrapper');
+
+      if (cat === 'all') {
+        cards.forEach(c => c.style.display = 'block');
+        blWrapper.style.display = 'none';
+      } else if (cat === 'blacklist') {
+        cards.forEach(c => c.style.display = 'none');
+        blWrapper.style.display = 'block';
+      } else {
+        cards.forEach(c => {
+          if (c.getAttribute('data-category') === cat) {
+            c.style.display = 'block';
+          } else {
+            c.style.display = 'none';
+          }
+        });
+        blWrapper.style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>
