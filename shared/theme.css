@@ -12,8 +12,8 @@
   --hairline: rgba(255, 255, 255, 0.06);
 
   --text: #f5f5f7;
-  --text-dim: rgba(245, 245, 247, 0.68);
-  --text-faint: rgba(245, 245, 247, 0.42);
+  --text-dim: rgba(245, 245, 247, 0.72);
+  --text-faint: rgba(245, 245, 247, 0.48);
 
   --btn-bg: #f5f5f7;
   --btn-text: #000000;
@@ -25,11 +25,53 @@
   --accent: #5cc8ec;
   --green: #70e3b5;
   --amber: #ffc85c;
-  --tip-bg: rgba(255, 200, 92, 0.04);
+  --tip-bg: rgba(255, 200, 92, 0.05);
   --tip-border: var(--amber);
 
   --nav-bg: rgba(0, 0, 0, 0.85);
   --anchor-bar-bg: rgba(0, 0, 0, 0.92);
+
+  /* High-Contrast Badge / Pill Tokens (Dark Baseline) */
+  --pill-emerald-bg: rgba(5, 150, 105, 0.22);
+  --pill-emerald-text: #6ee7b7;
+  --pill-emerald-border: rgba(52, 211, 153, 0.45);
+
+  --pill-blue-bg: rgba(2, 132, 199, 0.22);
+  --pill-blue-text: #7dd3fc;
+  --pill-blue-border: rgba(56, 189, 248, 0.45);
+
+  --pill-purple-bg: rgba(147, 51, 234, 0.22);
+  --pill-purple-text: #d8b4fe;
+  --pill-purple-border: rgba(192, 132, 252, 0.45);
+
+  --pill-amber-bg: rgba(217, 119, 6, 0.22);
+  --pill-amber-text: #fde047;
+  --pill-amber-border: rgba(251, 191, 36, 0.45);
+
+  --pill-red-bg: rgba(225, 29, 72, 0.22);
+  --pill-red-text: #fda4af;
+  --pill-red-border: rgba(251, 113, 133, 0.45);
+
+  --pill-neutral-bg: rgba(255, 255, 255, 0.08);
+  --pill-neutral-text: #f4f4f5;
+  --pill-neutral-border: rgba(255, 255, 255, 0.18);
+
+  /* High-Contrast Metrics & Risk Tokens (Dark Baseline) */
+  --metric-label: #a1a1aa;
+  --metric-val: #f4f4f5;
+  --risk-bg: rgba(225, 29, 72, 0.08);
+  --risk-border: rgba(225, 29, 72, 0.35);
+  --risk-title: #fb7185;
+  --risk-text: #f4f4f5;
+
+  /* Filter Button Tokens (Dark Baseline) */
+  --filter-btn-bg: #18181b;
+  --filter-btn-text: #e4e4e7;
+  --filter-btn-border: #3f3f46;
+  --filter-btn-hover-bg: #27272a;
+  --filter-btn-hover-text: #ffffff;
+  --filter-btn-active-bg: #ffffff;
+  --filter-btn-active-text: #09090b;
 
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
@@ -47,8 +89,8 @@
     --hairline: rgba(0, 0, 0, 0.07);
 
     --text: #1d1d1f;
-    --text-dim: #515154;
-    --text-faint: #86868b;
+    --text-dim: #4b5563;
+    --text-faint: #6b7280;
 
     --btn-bg: #1d1d1f;
     --btn-text: #ffffff;
@@ -57,14 +99,56 @@
     --anchor-pill-active-bg: #1d1d1f;
     --anchor-pill-active-text: #ffffff;
 
-    --accent: #0077b6;
-    --green: #0e8a5b;
-    --amber: #b06000;
-    --tip-bg: rgba(176, 96, 0, 0.05);
-    --tip-border: #b06000;
+    --accent: #0284c7;
+    --green: #059669;
+    --amber: #d97706;
+    --tip-bg: rgba(217, 119, 6, 0.06);
+    --tip-border: #d97706;
 
-    --nav-bg: rgba(255, 255, 255, 0.85);
-    --anchor-bar-bg: rgba(255, 255, 255, 0.92);
+    --nav-bg: rgba(255, 255, 255, 0.88);
+    --anchor-bar-bg: rgba(255, 255, 255, 0.94);
+
+    /* High-Contrast Badge / Pill Tokens (Light Mode - WCAG AAA > 7:1) */
+    --pill-emerald-bg: #ecfdf5;
+    --pill-emerald-text: #065f46;
+    --pill-emerald-border: #a7f3d0;
+
+    --pill-blue-bg: #f0f9ff;
+    --pill-blue-text: #0369a1;
+    --pill-blue-border: #bae6fd;
+
+    --pill-purple-bg: #faf5ff;
+    --pill-purple-text: #6b21a8;
+    --pill-purple-border: #e9d5ff;
+
+    --pill-amber-bg: #fffbeb;
+    --pill-amber-text: #92400e;
+    --pill-amber-border: #fde68a;
+
+    --pill-red-bg: #fff1f2;
+    --pill-red-text: #9f1239;
+    --pill-red-border: #fecdd3;
+
+    --pill-neutral-bg: #f4f4f5;
+    --pill-neutral-text: #27272a;
+    --pill-neutral-border: #d4d4d8;
+
+    /* High-Contrast Metrics & Risk Tokens (Light Mode) */
+    --metric-label: #4b5563;
+    --metric-val: #09090b;
+    --risk-bg: #fff1f2;
+    --risk-border: #fecdd3;
+    --risk-title: #9f1239;
+    --risk-text: #374151;
+
+    /* Filter Button Tokens (Light Mode) */
+    --filter-btn-bg: #f4f4f5;
+    --filter-btn-text: #27272a;
+    --filter-btn-border: #d4d4d8;
+    --filter-btn-hover-bg: #e4e4e7;
+    --filter-btn-hover-text: #09090b;
+    --filter-btn-active-bg: #09090b;
+    --filter-btn-active-text: #ffffff;
   }
 }
 
@@ -81,8 +165,8 @@
     --hairline: rgba(255, 255, 255, 0.06);
 
     --text: #f5f5f7;
-    --text-dim: rgba(245, 245, 247, 0.68);
-    --text-faint: rgba(245, 245, 247, 0.42);
+    --text-dim: rgba(245, 245, 247, 0.72);
+    --text-faint: rgba(245, 245, 247, 0.48);
 
     --btn-bg: #f5f5f7;
     --btn-text: #000000;
@@ -94,11 +178,50 @@
     --accent: #5cc8ec;
     --green: #70e3b5;
     --amber: #ffc85c;
-    --tip-bg: rgba(255, 200, 92, 0.04);
+    --tip-bg: rgba(255, 200, 92, 0.05);
     --tip-border: var(--amber);
 
     --nav-bg: rgba(0, 0, 0, 0.85);
     --anchor-bar-bg: rgba(0, 0, 0, 0.92);
+
+    --pill-emerald-bg: rgba(5, 150, 105, 0.22);
+    --pill-emerald-text: #6ee7b7;
+    --pill-emerald-border: rgba(52, 211, 153, 0.45);
+
+    --pill-blue-bg: rgba(2, 132, 199, 0.22);
+    --pill-blue-text: #7dd3fc;
+    --pill-blue-border: rgba(56, 189, 248, 0.45);
+
+    --pill-purple-bg: rgba(147, 51, 234, 0.22);
+    --pill-purple-text: #d8b4fe;
+    --pill-purple-border: rgba(192, 132, 252, 0.45);
+
+    --pill-amber-bg: rgba(217, 119, 6, 0.22);
+    --pill-amber-text: #fde047;
+    --pill-amber-border: rgba(251, 191, 36, 0.45);
+
+    --pill-red-bg: rgba(225, 29, 72, 0.22);
+    --pill-red-text: #fda4af;
+    --pill-red-border: rgba(251, 113, 133, 0.45);
+
+    --pill-neutral-bg: rgba(255, 255, 255, 0.08);
+    --pill-neutral-text: #f4f4f5;
+    --pill-neutral-border: rgba(255, 255, 255, 0.18);
+
+    --metric-label: #a1a1aa;
+    --metric-val: #f4f4f5;
+    --risk-bg: rgba(225, 29, 72, 0.08);
+    --risk-border: rgba(225, 29, 72, 0.35);
+    --risk-title: #fb7185;
+    --risk-text: #f4f4f5;
+
+    --filter-btn-bg: #18181b;
+    --filter-btn-text: #e4e4e7;
+    --filter-btn-border: #3f3f46;
+    --filter-btn-hover-bg: #27272a;
+    --filter-btn-hover-text: #ffffff;
+    --filter-btn-active-bg: #ffffff;
+    --filter-btn-active-text: #09090b;
   }
 }
 
@@ -114,8 +237,8 @@ html[data-theme="light"] {
   --hairline: rgba(0, 0, 0, 0.07);
 
   --text: #1d1d1f;
-  --text-dim: #515154;
-  --text-faint: #86868b;
+  --text-dim: #4b5563;
+  --text-faint: #6b7280;
 
   --btn-bg: #1d1d1f;
   --btn-text: #ffffff;
@@ -124,14 +247,53 @@ html[data-theme="light"] {
   --anchor-pill-active-bg: #1d1d1f;
   --anchor-pill-active-text: #ffffff;
 
-  --accent: #0077b6;
-  --green: #0e8a5b;
-  --amber: #b06000;
-  --tip-bg: rgba(176, 96, 0, 0.05);
-  --tip-border: #b06000;
+  --accent: #0284c7;
+  --green: #059669;
+  --amber: #d97706;
+  --tip-bg: rgba(217, 119, 6, 0.06);
+  --tip-border: #d97706;
 
-  --nav-bg: rgba(255, 255, 255, 0.85);
-  --anchor-bar-bg: rgba(255, 255, 255, 0.92);
+  --nav-bg: rgba(255, 255, 255, 0.88);
+  --anchor-bar-bg: rgba(255, 255, 255, 0.94);
+
+  --pill-emerald-bg: #ecfdf5;
+  --pill-emerald-text: #065f46;
+  --pill-emerald-border: #a7f3d0;
+
+  --pill-blue-bg: #f0f9ff;
+  --pill-blue-text: #0369a1;
+  --pill-blue-border: #bae6fd;
+
+  --pill-purple-bg: #faf5ff;
+  --pill-purple-text: #6b21a8;
+  --pill-purple-border: #e9d5ff;
+
+  --pill-amber-bg: #fffbeb;
+  --pill-amber-text: #92400e;
+  --pill-amber-border: #fde68a;
+
+  --pill-red-bg: #fff1f2;
+  --pill-red-text: #9f1239;
+  --pill-red-border: #fecdd3;
+
+  --pill-neutral-bg: #f4f4f5;
+  --pill-neutral-text: #27272a;
+  --pill-neutral-border: #d4d4d8;
+
+  --metric-label: #4b5563;
+  --metric-val: #09090b;
+  --risk-bg: #fff1f2;
+  --risk-border: #fecdd3;
+  --risk-title: #9f1239;
+  --risk-text: #374151;
+
+  --filter-btn-bg: #f4f4f5;
+  --filter-btn-text: #27272a;
+  --filter-btn-border: #d4d4d8;
+  --filter-btn-hover-bg: #e4e4e7;
+  --filter-btn-hover-text: #09090b;
+  --filter-btn-active-bg: #09090b;
+  --filter-btn-active-text: #ffffff;
 }
 
 /* 5. Manual Forced Dark Mode */
@@ -146,8 +308,8 @@ html[data-theme="dark"] {
   --hairline: rgba(255, 255, 255, 0.06);
 
   --text: #f5f5f7;
-  --text-dim: rgba(245, 245, 247, 0.68);
-  --text-faint: rgba(245, 245, 247, 0.42);
+  --text-dim: rgba(245, 245, 247, 0.72);
+  --text-faint: rgba(245, 245, 247, 0.48);
 
   --btn-bg: #f5f5f7;
   --btn-text: #000000;
@@ -159,14 +321,105 @@ html[data-theme="dark"] {
   --accent: #5cc8ec;
   --green: #70e3b5;
   --amber: #ffc85c;
-  --tip-bg: rgba(255, 200, 92, 0.04);
+  --tip-bg: rgba(255, 200, 92, 0.05);
   --tip-border: var(--amber);
 
   --nav-bg: rgba(0, 0, 0, 0.85);
   --anchor-bar-bg: rgba(0, 0, 0, 0.92);
+
+  --pill-emerald-bg: rgba(5, 150, 105, 0.22);
+  --pill-emerald-text: #6ee7b7;
+  --pill-emerald-border: rgba(52, 211, 153, 0.45);
+
+  --pill-blue-bg: rgba(2, 132, 199, 0.22);
+  --pill-blue-text: #7dd3fc;
+  --pill-blue-border: rgba(56, 189, 248, 0.45);
+
+  --pill-purple-bg: rgba(147, 51, 234, 0.22);
+  --pill-purple-text: #d8b4fe;
+  --pill-purple-border: rgba(192, 132, 252, 0.45);
+
+  --pill-amber-bg: rgba(217, 119, 6, 0.22);
+  --pill-amber-text: #fde047;
+  --pill-amber-border: rgba(251, 191, 36, 0.45);
+
+  --pill-red-bg: rgba(225, 29, 72, 0.22);
+  --pill-red-text: #fda4af;
+  --pill-red-border: rgba(251, 113, 133, 0.45);
+
+  --pill-neutral-bg: rgba(255, 255, 255, 0.08);
+  --pill-neutral-text: #f4f4f5;
+  --pill-neutral-border: rgba(255, 255, 255, 0.18);
+
+  --metric-label: #a1a1aa;
+  --metric-val: #f4f4f5;
+  --risk-bg: rgba(225, 29, 72, 0.08);
+  --risk-border: rgba(225, 29, 72, 0.35);
+  --risk-title: #fb7185;
+  --risk-text: #f4f4f5;
+
+  --filter-btn-bg: #18181b;
+  --filter-btn-text: #e4e4e7;
+  --filter-btn-border: #3f3f46;
+  --filter-btn-hover-bg: #27272a;
+  --filter-btn-hover-text: #ffffff;
+  --filter-btn-active-bg: #ffffff;
+  --filter-btn-active-text: #09090b;
 }
 
-/* Shared Toggle Button Styling */
+/* 6. Universal High-Contrast Badge / Pill Components ("气泡") */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  letter-spacing: 0.015em;
+  border-width: 1px;
+  border-style: solid;
+  transition: all 0.2s ease;
+}
+
+.pill-emerald {
+  background: var(--pill-emerald-bg);
+  color: var(--pill-emerald-text);
+  border-color: var(--pill-emerald-border);
+}
+
+.pill-blue {
+  background: var(--pill-blue-bg);
+  color: var(--pill-blue-text);
+  border-color: var(--pill-blue-border);
+}
+
+.pill-purple {
+  background: var(--pill-purple-bg);
+  color: var(--pill-purple-text);
+  border-color: var(--pill-purple-border);
+}
+
+.pill-amber {
+  background: var(--pill-amber-bg);
+  color: var(--pill-amber-text);
+  border-color: var(--pill-amber-border);
+}
+
+.pill-red {
+  background: var(--pill-red-bg);
+  color: var(--pill-red-text);
+  border-color: var(--pill-red-border);
+}
+
+.pill-neutral {
+  background: var(--pill-neutral-bg);
+  color: var(--pill-neutral-text);
+  border-color: var(--pill-neutral-border);
+}
+
+/* 7. Shared Toggle Button Styling */
 .theme-toggle {
   background: var(--surface);
   border: 1px solid var(--stroke);

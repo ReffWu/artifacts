@@ -91,22 +91,6 @@
       margin-bottom: 0.85rem;
     }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      letter-spacing: 0.02em;
-    }
-    .pill-emerald { background: rgba(112, 227, 181, 0.12); color: var(--green); border: 1px solid rgba(112, 227, 181, 0.25); }
-    .pill-amber { background: rgba(255, 200, 92, 0.12); color: var(--amber); border: 1px solid rgba(255, 200, 92, 0.25); }
-    .pill-blue { background: rgba(92, 200, 236, 0.12); color: var(--accent); border: 1px solid rgba(92, 200, 236, 0.25); }
-    .pill-purple { background: rgba(186, 104, 200, 0.12); color: #ba68c8; border: 1px solid rgba(186, 104, 200, 0.25); }
-    .pill-red { background: rgba(255, 99, 132, 0.12); color: #ff6384; border: 1px solid rgba(255, 99, 132, 0.25); }
-
     h1.hero-title {
       font-size: 1.85rem;
       font-weight: 700;
@@ -146,22 +130,25 @@
 
     .filter-btn {
       white-space: nowrap;
-      padding: 0.4rem 0.85rem;
+      padding: 0.42rem 0.9rem;
       font-size: 0.82rem;
       font-weight: 500;
       border-radius: 999px;
-      background: var(--anchor-pill-bg);
-      color: var(--text-dim);
-      border: 1px solid var(--stroke);
+      background: var(--filter-btn-bg);
+      color: var(--filter-btn-text);
+      border: 1px solid var(--filter-btn-border);
       cursor: pointer;
       transition: all 0.15s ease;
     }
-    .filter-btn:hover { color: var(--text); border-color: var(--stroke-hover); }
+    .filter-btn:hover {
+      background: var(--filter-btn-hover-bg);
+      color: var(--filter-btn-hover-text);
+    }
     .filter-btn.active {
-      background: var(--anchor-pill-active-bg);
-      color: var(--anchor-pill-active-text);
-      border-color: var(--anchor-pill-active-bg);
-      font-weight: 600;
+      background: var(--filter-btn-active-bg);
+      color: var(--filter-btn-active-text);
+      border-color: var(--filter-btn-active-bg);
+      font-weight: 700;
     }
 
     /* Deal Cards */
@@ -181,12 +168,13 @@
     .card-media {
       position: relative;
       width: 100%;
-      height: 320px;
-      background: #111;
+      height: 300px;
+      background: var(--surface);
       overflow: hidden;
+      border-bottom: 1px solid var(--hairline);
     }
     @media (max-width: 600px) {
-      .card-media { height: 230px; }
+      .card-media { height: 210px; }
     }
 
     .card-media img {
@@ -200,70 +188,93 @@
       transform: scale(1.02);
     }
 
-    .media-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .media-badges {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-    }
-
-    .media-price {
-      position: absolute;
-      bottom: 1rem;
-      left: 1.25rem;
-      right: 1.25rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      color: #fff;
-    }
-
-    .price-num {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-    }
-
-    .price-sub {
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.85);
-      font-weight: 500;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-    }
-
     .card-content {
-      padding: 1.25rem 1.25rem 1.5rem;
+      padding: 1.25rem 1.4rem 1.5rem;
+    }
+
+    .card-badges {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.85rem;
     }
 
     .card-header-row {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 0.75rem;
-      gap: 1rem;
+      margin-bottom: 0.85rem;
+      gap: 1.25rem;
+    }
+    @media (max-width: 600px) {
+      .card-header-row {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+
+    .header-left {
+      flex: 1;
     }
 
     .card-addr {
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 700;
-      letter-spacing: -0.01em;
-      line-height: 1.3;
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+      color: var(--text);
     }
 
     .card-city {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--text-dim);
+      margin-top: 0.15rem;
+    }
+
+    .card-specs {
+      font-size: 0.85rem;
+      color: var(--metric-label);
+      font-weight: 500;
+      margin-top: 0.35rem;
+    }
+
+    .header-right {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.35rem;
+    }
+    @media (max-width: 600px) {
+      .header-right {
+        text-align: left;
+        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.75rem;
+      }
+    }
+
+    .deal-price {
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .deal-roi-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      background: var(--pill-emerald-bg);
+      color: var(--pill-emerald-text);
+      border: 1px solid var(--pill-emerald-border);
+      white-space: nowrap;
     }
 
     /* Metrics Table Grid */
@@ -286,14 +297,15 @@
       flex-direction: column;
     }
     .metric-label {
-      font-size: 0.75rem;
-      color: var(--text-faint);
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--metric-label);
       margin-bottom: 0.2rem;
     }
     .metric-val {
       font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--text);
+      font-weight: 700;
+      color: var(--metric-val);
     }
     .metric-val.green { color: var(--green); }
     .metric-val.amber { color: var(--amber); }
@@ -339,8 +351,8 @@
 
     /* Risk Box */
     .risk-box {
-      background: rgba(255, 99, 132, 0.05);
-      border: 1px solid rgba(255, 99, 132, 0.2);
+      background: var(--risk-bg);
+      border: 1px solid var(--risk-border);
       border-radius: 9px;
       padding: 0.85rem 1rem;
       margin-top: 1rem;
@@ -349,7 +361,7 @@
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      color: #ff6384;
+      color: var(--risk-title);
       font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -366,7 +378,7 @@
       position: relative;
       padding-left: 1.1rem;
       font-size: 0.85rem;
-      color: var(--text-dim);
+      color: var(--risk-text);
       line-height: 1.45;
     }
     .risk-list li::before {
@@ -436,8 +448,8 @@
 
     /* Blacklist Card Special */
     .blacklist-card {
-      background: rgba(255, 99, 132, 0.03);
-      border: 1px solid rgba(255, 99, 132, 0.25);
+      background: var(--risk-bg);
+      border: 1px solid var(--risk-border);
       border-radius: 12px;
       padding: 1rem 1.15rem;
       margin-bottom: 1.25rem;
@@ -467,12 +479,12 @@
     .bl-title {
       font-size: 1.05rem;
       font-weight: 700;
-      color: #ff6384;
+      color: var(--risk-title);
       margin-bottom: 0.35rem;
     }
     .bl-flaw {
       font-size: 0.85rem;
-      color: var(--text-dim);
+      color: var(--risk-text);
       line-height: 1.5;
     }
   </style>
@@ -524,28 +536,23 @@
       <article class="deal-card" data-category="student">
         <div class="card-media">
           <img src="photos/1038_marigold.jpg" alt="1038 Marigold Ave, East Lansing" loading="lazy">
-          <div class="media-overlay"></div>
-          <div class="media-badges">
-            <span class="pill pill-emerald">Breslin 核心 Class IV 五人执照学生公寓</span>
-            <span class="pill pill-blue">顶级现金牛 / 抗周期学生蓝筹</span>
-          </div>
-          <div class="media-price">
-            <div>
-              <div class="price-num">$345,000</div>
-              <div class="price-sub">5 房 / 2 卫 (5 间全地上) · 1,221 sf (总计 2,038 sf) · 1948年</div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">7.30% (东兰辛净回报之王)</div>
-            </div>
-          </div>
         </div>
 
         <div class="card-content">
+          <div class="card-badges">
+            <span class="pill pill-emerald">Breslin 核心 Class IV 五人执照学生公寓</span>
+            <span class="pill pill-blue">顶级现金牛 / 抗周期学生蓝筹</span>
+          </div>
+
           <div class="card-header-row">
-            <div>
+            <div class="header-left">
               <h2 class="card-addr">1038 Marigold Ave</h2>
               <div class="card-city">East Lansing, MI 48823 · 占地 0.15 英亩</div>
+              <div class="card-specs">5 房 / 2 卫 (5 间全地上) · 1,221 sf (总计 2,038 sf) · 1948年</div>
+            </div>
+            <div class="header-right">
+              <div class="deal-price">$345,000</div>
+              <div class="deal-roi-badge">7.30% (东兰辛净回报之王)</div>
             </div>
           </div>
 
@@ -600,34 +607,30 @@
             </a>
           </div>
         </div>
+        </div>
       </article>
     
       <!-- Property: 646 N Hagadorn Rd, East Lansing -->
       <article class="deal-card" data-category="student">
         <div class="card-media">
           <img src="photos/646_n_hagadorn.jpg" alt="646 N Hagadorn Rd, East Lansing" loading="lazy">
-          <div class="media-overlay"></div>
-          <div class="media-badges">
-            <span class="pill pill-emerald">MSU 边境 Class IV 四人执照学生公寓</span>
-            <span class="pill pill-blue">高防守性学生独栋出租</span>
-          </div>
-          <div class="media-price">
-            <div>
-              <div class="price-num">$260,000</div>
-              <div class="price-sub">4 房 / 1.5 卫 · 1,373 sf · 1940年</div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">6.19% – 6.80% (净回报)</div>
-            </div>
-          </div>
         </div>
 
         <div class="card-content">
+          <div class="card-badges">
+            <span class="pill pill-emerald">MSU 边境 Class IV 四人执照学生公寓</span>
+            <span class="pill pill-blue">高防守性学生独栋出租</span>
+          </div>
+
           <div class="card-header-row">
-            <div>
+            <div class="header-left">
               <h2 class="card-addr">646 N Hagadorn Rd</h2>
               <div class="card-city">East Lansing, MI 48823 · 占地 0.14 英亩</div>
+              <div class="card-specs">4 房 / 1.5 卫 · 1,373 sf · 1940年</div>
+            </div>
+            <div class="header-right">
+              <div class="deal-price">$260,000</div>
+              <div class="deal-roi-badge">6.19% – 6.80% (净回报)</div>
             </div>
           </div>
 
@@ -682,34 +685,30 @@
             </a>
           </div>
         </div>
+        </div>
       </article>
     
       <!-- Property: 1800 Coolidge Rd, East Lansing -->
       <article class="deal-card" data-category="student">
         <div class="card-media">
           <img src="photos/1800_coolidge.jpg" alt="1800 Coolidge Rd, East Lansing" loading="lazy">
-          <div class="media-overlay"></div>
-          <div class="media-badges">
-            <span class="pill pill-emerald">全满租双拼平房 (Duplex)</span>
-            <span class="pill pill-blue">低维护稳健多家庭长租</span>
-          </div>
-          <div class="media-price">
-            <div>
-              <div class="price-num">$289,900</div>
-              <div class="price-sub">4 房 / 2 卫 (上下各 2b/1ba) · 2,380 sf · 1971年</div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">4.83% – 5.38% (稳健抗通胀)</div>
-            </div>
-          </div>
         </div>
 
         <div class="card-content">
+          <div class="card-badges">
+            <span class="pill pill-emerald">全满租双拼平房 (Duplex)</span>
+            <span class="pill pill-blue">低维护稳健多家庭长租</span>
+          </div>
+
           <div class="card-header-row">
-            <div>
+            <div class="header-left">
               <h2 class="card-addr">1800 Coolidge Rd</h2>
               <div class="card-city">East Lansing, MI 48823 · 占地 0.30 英亩</div>
+              <div class="card-specs">4 房 / 2 卫 (上下各 2b/1ba) · 2,380 sf · 1971年</div>
+            </div>
+            <div class="header-right">
+              <div class="deal-price">$289,900</div>
+              <div class="deal-roi-badge">4.83% – 5.38% (稳健抗通胀)</div>
             </div>
           </div>
 
@@ -764,34 +763,30 @@
             </a>
           </div>
         </div>
+        </div>
       </article>
     
       <!-- Property: 1784 Mirabeau Dr, Okemos -->
       <article class="deal-card" data-category="okemos">
         <div class="card-media">
           <img src="photos/1784_mirabeau.jpg" alt="1784 Mirabeau Dr, Okemos" loading="lazy">
-          <div class="media-overlay"></div>
-          <div class="media-badges">
-            <span class="pill pill-purple">Shaker Heights 4,400 sf 豪宅单价 $96/sf</span>
-            <span class="pill pill-blue">高净值豪宅精翻 (Luxury Flip) / 暴利盘</span>
-          </div>
-          <div class="media-price">
-            <div>
-              <div class="price-num">$425,000</div>
-              <div class="price-sub">5 房 / 3.5 卫 · 4,404 sf (单价仅 $96/sf) · 1972年</div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">Flip ROI 18.5% (绝对利润之王)</div>
-            </div>
-          </div>
         </div>
 
         <div class="card-content">
+          <div class="card-badges">
+            <span class="pill pill-purple">Shaker Heights 4,400 sf 豪宅单价 $96/sf</span>
+            <span class="pill pill-blue">高净值豪宅精翻 (Luxury Flip) / 暴利盘</span>
+          </div>
+
           <div class="card-header-row">
-            <div>
+            <div class="header-left">
               <h2 class="card-addr">1784 Mirabeau Dr</h2>
               <div class="card-city">Okemos, MI 48864 · 占地 0.84 英亩 (私密林地尽头)</div>
+              <div class="card-specs">5 房 / 3.5 卫 · 4,404 sf (单价仅 $96/sf) · 1972年</div>
+            </div>
+            <div class="header-right">
+              <div class="deal-price">$425,000</div>
+              <div class="deal-roi-badge">Flip ROI 18.5% (绝对利润之王)</div>
             </div>
           </div>
 
@@ -846,34 +841,30 @@
             </a>
           </div>
         </div>
+        </div>
       </article>
     
       <!-- Property: 2162 Kent St, Okemos -->
       <article class="deal-card" data-category="okemos">
         <div class="card-media">
           <img src="photos/2162_kent.jpg" alt="2162 Kent St, Okemos" loading="lazy">
-          <div class="media-overlay"></div>
-          <div class="media-badges">
-            <span class="pill pill-emerald">Okemos 顶尖学区 24 万独栋 (三大件全包)</span>
-            <span class="pill pill-blue">低风险翻转 / 顶级学区高租售比</span>
-          </div>
-          <div class="media-price">
-            <div>
-              <div class="price-num">$239,900</div>
-              <div class="price-sub">4 房 / 1.5 卫 (带 3 车位独立车库) · 1,920 sf (单价 $125/sf) · 1958年</div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">Flip ROI 21.2% / 出租 Cap 7.0%</div>
-            </div>
-          </div>
         </div>
 
         <div class="card-content">
+          <div class="card-badges">
+            <span class="pill pill-emerald">Okemos 顶尖学区 24 万独栋 (三大件全包)</span>
+            <span class="pill pill-blue">低风险翻转 / 顶级学区高租售比</span>
+          </div>
+
           <div class="card-header-row">
-            <div>
+            <div class="header-left">
               <h2 class="card-addr">2162 Kent St</h2>
               <div class="card-city">Okemos, MI 48864 · 占地 0.27 英亩</div>
+              <div class="card-specs">4 房 / 1.5 卫 (带 3 车位独立车库) · 1,920 sf (单价 $125/sf) · 1958年</div>
+            </div>
+            <div class="header-right">
+              <div class="deal-price">$239,900</div>
+              <div class="deal-roi-badge">Flip ROI 21.2% / 出租 Cap 7.0%</div>
             </div>
           </div>
 
@@ -928,34 +919,30 @@
             </a>
           </div>
         </div>
+        </div>
       </article>
     
       <!-- Property: 2320 Seminole Dr, Okemos -->
       <article class="deal-card" data-category="okemos">
         <div class="card-media">
           <img src="photos/2320_seminole.jpg" alt="2320 Seminole Dr, Okemos" loading="lazy">
-          <div class="media-overlay"></div>
-          <div class="media-badges">
-            <span class="pill pill-emerald">Ottawa Hills 20 万以内书房改 3 房小钢炮</span>
-            <span class="pill pill-blue">户型空间套利 (BRRRR 极品)</span>
-          </div>
-          <div class="media-price">
-            <div>
-              <div class="price-num">$198,900 (当前 Pending)</div>
-              <div class="price-sub">2 房 / 1 卫 (自带独立书房，秒变 3 房) · 1,568 sf · 1953年</div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">BRRRR 全额回收本金 / ROI 25.5%</div>
-            </div>
-          </div>
         </div>
 
         <div class="card-content">
+          <div class="card-badges">
+            <span class="pill pill-emerald">Ottawa Hills 20 万以内书房改 3 房小钢炮</span>
+            <span class="pill pill-blue">户型空间套利 (BRRRR 极品)</span>
+          </div>
+
           <div class="card-header-row">
-            <div>
+            <div class="header-left">
               <h2 class="card-addr">2320 Seminole Dr</h2>
               <div class="card-city">Okemos, MI 48864 · 占地 0.48 英亩 (转角地块)</div>
+              <div class="card-specs">2 房 / 1 卫 (自带独立书房，秒变 3 房) · 1,568 sf · 1953年</div>
+            </div>
+            <div class="header-right">
+              <div class="deal-price">$198,900 (当前 Pending)</div>
+              <div class="deal-roi-badge">BRRRR 全额回收本金 / ROI 25.5%</div>
             </div>
           </div>
 
@@ -1010,34 +997,30 @@
             </a>
           </div>
         </div>
+        </div>
       </article>
     
       <!-- Property: 3715 Hulett Rd, Okemos -->
       <article class="deal-card" data-category="okemos">
         <div class="card-media">
           <img src="photos/3715_hulett.jpg" alt="3715 Hulett Rd, Okemos" loading="lazy">
-          <div class="media-overlay"></div>
-          <div class="media-badges">
-            <span class="pill pill-purple">Okemos 高中旁 1.04 英亩庄园 Cape Cod</span>
-            <span class="pill pill-blue">现代农庄翻转 / 大地块学区豪宅化</span>
-          </div>
-          <div class="media-price">
-            <div>
-              <div class="price-num">$269,900</div>
-              <div class="price-sub">4 房 / 2 卫 · 2,400 sf (单价仅 $112/sf) · 1969年</div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">Flip ROI 24.0% / 出租 Cap 6.7%</div>
-            </div>
-          </div>
         </div>
 
         <div class="card-content">
+          <div class="card-badges">
+            <span class="pill pill-purple">Okemos 高中旁 1.04 英亩庄园 Cape Cod</span>
+            <span class="pill pill-blue">现代农庄翻转 / 大地块学区豪宅化</span>
+          </div>
+
           <div class="card-header-row">
-            <div>
+            <div class="header-left">
               <h2 class="card-addr">3715 Hulett Rd</h2>
               <div class="card-city">Okemos, MI 48864 · 占地 1.04 英亩 (超大独立庄园)</div>
+              <div class="card-specs">4 房 / 2 卫 · 2,400 sf (单价仅 $112/sf) · 1969年</div>
+            </div>
+            <div class="header-right">
+              <div class="deal-price">$269,900</div>
+              <div class="deal-roi-badge">Flip ROI 24.0% / 出租 Cap 6.7%</div>
             </div>
           </div>
 
@@ -1092,34 +1075,30 @@
             </a>
           </div>
         </div>
+        </div>
       </article>
     
       <!-- Property: 2120 LA Mer Ln, Haslett -->
       <article class="deal-card" data-category="haslett">
         <div class="card-media">
           <img src="photos/2120_la_mer.jpg" alt="2120 LA Mer Ln, Haslett" loading="lazy">
-          <div class="media-overlay"></div>
-          <div class="media-badges">
-            <span class="pill pill-emerald">Lakeside Village 兰辛湖畔带租约执照公寓</span>
-            <span class="pill pill-blue">低总价全包式省心长租</span>
-          </div>
-          <div class="media-price">
-            <div>
-              <div class="price-num">$149,900</div>
-              <div class="price-sub">2 房 / 1 卫 (含全完工地下室) · 1,686 sf (单价仅 $88/sf) · 1979年</div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">5.77% (自管) / 4.88% (代管)</div>
-            </div>
-          </div>
         </div>
 
         <div class="card-content">
+          <div class="card-badges">
+            <span class="pill pill-emerald">Lakeside Village 兰辛湖畔带租约执照公寓</span>
+            <span class="pill pill-blue">低总价全包式省心长租</span>
+          </div>
+
           <div class="card-header-row">
-            <div>
+            <div class="header-left">
               <h2 class="card-addr">2120 LA Mer Ln</h2>
               <div class="card-city">Haslett, MI 48840 · 占地 Condo 社区</div>
+              <div class="card-specs">2 房 / 1 卫 (含全完工地下室) · 1,686 sf (单价仅 $88/sf) · 1979年</div>
+            </div>
+            <div class="header-right">
+              <div class="deal-price">$149,900</div>
+              <div class="deal-roi-badge">5.77% (自管) / 4.88% (代管)</div>
             </div>
           </div>
 
@@ -1174,34 +1153,30 @@
             </a>
           </div>
         </div>
+        </div>
       </article>
     
       <!-- Property: 8876 E State Rd, Haslett -->
       <article class="deal-card" data-category="haslett">
         <div class="card-media">
           <img src="photos/8876_e_state.jpg" alt="8876 E State Rd, Haslett" loading="lazy">
-          <div class="media-overlay"></div>
-          <div class="media-badges">
-            <span class="pill pill-blue">翻新商急售降价 2,434 sf 牧场平房</span>
-            <span class="pill pill-blue">趁卖家资金链承压深度砍价捡漏</span>
-          </div>
-          <div class="media-price">
-            <div>
-              <div class="price-num">$298,900 (多次降价)</div>
-              <div class="price-sub">3 房 / 2 卫 · 2,434 sf (含局部完工地下室) · 1968年</div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">深砍至 $270k 进场自住/长租极具性价比</div>
-            </div>
-          </div>
         </div>
 
         <div class="card-content">
+          <div class="card-badges">
+            <span class="pill pill-blue">翻新商急售降价 2,434 sf 牧场平房</span>
+            <span class="pill pill-blue">趁卖家资金链承压深度砍价捡漏</span>
+          </div>
+
           <div class="card-header-row">
-            <div>
+            <div class="header-left">
               <h2 class="card-addr">8876 E State Rd</h2>
               <div class="card-city">Haslett, MI 48840 · 占地 1.25 英亩</div>
+              <div class="card-specs">3 房 / 2 卫 · 2,434 sf (含局部完工地下室) · 1968年</div>
+            </div>
+            <div class="header-right">
+              <div class="deal-price">$298,900 (多次降价)</div>
+              <div class="deal-roi-badge">深砍至 $270k 进场自住/长租极具性价比</div>
             </div>
           </div>
 
@@ -1256,34 +1231,30 @@
             </a>
           </div>
         </div>
+        </div>
       </article>
     
       <!-- Property: 6150 Birch Row Dr, Meridian Twp (East Lansing 邮编) -->
       <article class="deal-card" data-category="haslett">
         <div class="card-media">
           <img src="photos/6150_birch_row.jpg" alt="6150 Birch Row Dr, Meridian Twp (East Lansing 邮编)" loading="lazy">
-          <div class="media-overlay"></div>
-          <div class="media-badges">
-            <span class="pill pill-amber">四单元公寓 (Fourplex) 需深度砍价</span>
-            <span class="pill pill-blue">多家庭规模化运营 (需纠正估值)</span>
-          </div>
-          <div class="media-price">
-            <div>
-              <div class="price-num">$640,000 (叫价偏高)</div>
-              <div class="price-sub">8 房 / 4 卫 (4 套独立 2b/1ba) · 4,004 sf · 1970年</div>
-            </div>
-            <div style="text-align: right;">
-              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
-              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">挂牌价 Cap 仅 4.50% (需砍至 $460k 达 6.5%)</div>
-            </div>
-          </div>
         </div>
 
         <div class="card-content">
+          <div class="card-badges">
+            <span class="pill pill-amber">四单元公寓 (Fourplex) 需深度砍价</span>
+            <span class="pill pill-blue">多家庭规模化运营 (需纠正估值)</span>
+          </div>
+
           <div class="card-header-row">
-            <div>
+            <div class="header-left">
               <h2 class="card-addr">6150 Birch Row Dr</h2>
               <div class="card-city">Meridian Township, MI 48823 · 占地 0.33 英亩</div>
+              <div class="card-specs">8 房 / 4 卫 (4 套独立 2b/1ba) · 4,004 sf · 1970年</div>
+            </div>
+            <div class="header-right">
+              <div class="deal-price">$640,000 (叫价偏高)</div>
+              <div class="deal-roi-badge">挂牌价 Cap 仅 4.50% (需砍至 $460k 达 6.5%)</div>
             </div>
           </div>
 
@@ -1337,6 +1308,7 @@
               <span>📍 Google 地图导航实勘</span>
             </a>
           </div>
+        </div>
         </div>
       </article>
     
