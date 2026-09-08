@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>TokNotch · 屏幕边缘 AI 编码用量指示器</title>
-  <meta name="description" content="TokNotch 是一款为 macOS 打造的轻量原生小组件，可常驻屏幕边缘或硬件刘海，实时掌握 Claude Code、Cursor、Codex、Antigravity、GLM 等 AI 助手的用量限额与工作状态。">
+  <title>TokNotch · 屏幕边缘 AI Token 账本指示器</title>
+  <meta name="description" content="把 tokscale 搬进刘海。TokNotch 是一款专为 macOS 打造的轻量原生工具，常驻屏幕边缘或 MacBook 原生硬件刘海，今日、本月与累计三环随时一瞥，实时追踪模型 Token 真实消耗、等效 API 价值与订阅回本。">
   <link rel="icon" type="image/webp" href="./assets/icon.webp">
   <link rel="stylesheet" href="../shared/theme.css">
   <script src="../shared/theme.js"></script>
@@ -637,11 +637,11 @@
 
       <div class="title-row">
         <h1>TokNotch</h1>
-        <span class="hero-version">v1.5.0 最新版</span>
+        <span class="hero-version">v1.0.0 最新版</span>
       </div>
 
       <p class="hero-desc">
-        将 Claude Code、Codex、Cursor、Grok、OpenCode、Antigravity、GLM 等主流 AI 助手的用量限额与实时会话状态，优雅常驻于屏幕边缘或硬件刘海。
+        把 tokscale 搬进刘海 — 今日 · 本月 · 累计三个常驻环，随时一瞥。实时洞察各家大模型真实 Token 消耗、等效 API 价值与订阅回本。
       </p>
 
       <!-- 下载主 CTA -->
@@ -663,7 +663,7 @@
         </div>
 
         <div class="spec-line">
-          <span>安装包体积 2.9 MB</span>
+          <span>安装包体积 19.4 MB</span>
           <span>适用 macOS 14.0+</span>
           <span>Apple Silicon 原生加速</span>
           <span>零配置免登录</span>
@@ -690,11 +690,11 @@
       <div class="showcase-grid">
         <div class="showcase-card">
           <div class="showcase-media">
-            <img src="./assets/preview-tooltip.webp" alt="TokNotch 悬浮环形用量与重置倒计时" loading="lazy">
+            <img src="./assets/preview-tooltip.webp" alt="TokNotch 悬浮环形用量与详细账本卡片" loading="lazy">
           </div>
           <div class="showcase-info">
             <h3>屏幕右侧停靠 · 气嘴精准对齐</h3>
-            <p>常驻屏幕右侧边沿的纯黑 Side Notch。鼠标悬停即可向左平滑展开毛玻璃卡片，气嘴指针水平直指当前模型环，实时洞察各主力模型配额与重置倒计时。</p>
+            <p>常驻屏幕右侧边沿的深黑 Side Notch。鼠标悬停向左平滑展开毛玻璃卡片，气嘴指针水平直指当前模型环，清晰呈现输入输出 Token 分布、等效 API 价值与请求频次。</p>
           </div>
         </div>
 
@@ -704,7 +704,7 @@
           </div>
           <div class="showcase-info">
             <h3>屏幕顶部刘海 · 灵活无缝停靠</h3>
-            <p>亦可随心切换停靠至屏幕顶部。气嘴垂直向上精准吸附对应模型环，与 macOS 顶部菜单栏浑然一体，绝不遮挡主屏核心代码区域。</p>
+            <p>亦可随心切换停靠至屏幕顶部。气嘴垂直向上精准吸附对应环，与 macOS 顶部菜单栏和硬件刘海浑然一体，绝不遮挡主屏核心工作区。</p>
           </div>
         </div>
       </div>
@@ -718,73 +718,78 @@
           <div class="feat-icon">
             <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
           </div>
-          <h4>零配置 · 凭证无感直读</h4>
-          <p>无需手动输入任何 API Key。自动借用本机已登录工具的 Keychain 与本地会话，既保安全，又省心力。</p>
+          <h4>零配置 · 装好即用</h4>
+          <p>已内置 tokscale 引擎（MIT 协议），无需安装 Node.js、npm 或 Homebrew。纯本地 SQLite 账本直读，不碰钥匙串、不弹密码框、不上传任何数据。</p>
         </div>
 
         <div class="feat-card">
           <div class="feat-icon">
-            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
-          <h4>忙碌感知 · 旋转与脉冲</h4>
-          <p>薄弧旋转提示后台仍在极速生成；脉冲琥珀光环提示会话正阻塞等待你的输入。随时掌握全局节奏。</p>
+          <h4>今日 · 本月 · 累计三环</h4>
+          <p>弧度含义清晰明确：今日对比近 30 天最高单日，本月对比上月同期，累计对比下一里程碑。弧走到 100% 代表超越了自己，而非告警警告。</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h4>真实订阅回本计算</h4>
+          <p>在设置中填入月费与扣费日，实时计算当前周期产生的等效 API 价值是订阅费的几倍（还差多少或已超出多少），按真实扣费账期精准核算。</p>
         </div>
 
         <div class="feat-card">
           <div class="feat-icon">
             <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
           </div>
-          <h4>边缘自适应 · 刘海无缝融合</h4>
-          <p>吸附顶部时完美融入 MacBook 硬件刘海；吸附左/右呈现小巧纵列；吸附底部时跟随 Dock 自动贴紧。</p>
-        </div>
-
-        <div class="feat-card">
-          <div class="feat-icon">
-            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
-          </div>
-          <h4>轻量原生 · 静默安全更新</h4>
-          <p>Swift 原生开发，毫秒级响应与超低内存消耗。内置 Sparkle 签名更新体系，稳定且随时保持最新。</p>
+          <h4>按服务商拆分 · 用到才出现</h4>
+          <p>Anthropic、OpenAI、Google、DeepSeek、通义千问、智谱等各家独立成环，默认关闭，在设置中按需勾选。基于本地真实记录生成，无调用不展示。</p>
         </div>
       </div>
     </section>
 
     <!-- 支持的平台数据源 -->
     <section class="providers-section">
-      <h2 class="section-title">全方位覆盖主流 AI 编程助手</h2>
+      <h2 class="section-title">原生归属识别，覆盖主流 AI 模型</h2>
       <div class="providers-table-wrap">
         <table class="providers-table">
           <thead>
             <tr>
-              <th>开发工具 / 平台</th>
-              <th>读取方式</th>
-              <th>原理与安全性</th>
+              <th>模型提供方 / 厂商</th>
+              <th>覆盖模型系列</th>
+              <th>归属合并与账本统计</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Claude Code</strong></td>
-              <td><span class="source-tag">官方直读</span></td>
-              <td>直读登录钥匙串中的 OAuth 凭据，与官方 <code>/usage</code> 终端输出完全一致；支持多账号隔离。</td>
+              <td><strong>Anthropic</strong></td>
+              <td><span class="source-tag">Claude 3.5 / 3.7 / Opus / Sonnet</span></td>
+              <td>按模型名称精准归属，不论走官方 API 还是第三方代理，均自动聚合统计。</td>
             </tr>
             <tr>
-              <td><strong>Cursor</strong></td>
-              <td><span class="source-tag">本地会话</span></td>
-              <td>直读本地编辑器已登录的 SQLite 会话状态，无需额外登录。</td>
+              <td><strong>OpenAI</strong></td>
+              <td><span class="source-tag">GPT-4o / o1 / o3 / o4 / Codex</span></td>
+              <td>自动汇总各代推理与代码模型，输入输出按官方基准费率换算等效价值。</td>
             </tr>
             <tr>
-              <td><strong>Codex</strong></td>
-              <td><span class="source-tag">原生服务</span></td>
-              <td>实时查询本地 Codex App Server 的速率限额，未运行时回退至运行日志。</td>
+              <td><strong>Google</strong></td>
+              <td><span class="source-tag">Gemini 1.5 / 2.0 / 2.5 / Flash / Pro</span></td>
+              <td>全面支持上下文长窗口模型的 Token 账本追踪与消耗分析。</td>
             </tr>
             <tr>
-              <td><strong>Antigravity / Gemini</strong></td>
-              <td><span class="source-tag">本地接口</span></td>
-              <td>优先读取本地语言服务器与 Google Quota 接口，清晰展示模型配额。</td>
+              <td><strong>DeepSeek</strong></td>
+              <td><span class="source-tag">DeepSeek-V3 / R1 / Coder</span></td>
+              <td>多端调用统一聚合，不论通过 OpenCode 还是原生 API 均并入 DeepSeek 独立账目。</td>
             </tr>
             <tr>
-              <td><strong>GLM (智谱)</strong></td>
-              <td><span class="source-tag">凭证借用</span></td>
-              <td>自动借用 Claude Code、ZCode 或 OpenCode 中已配置的密钥，查询 Coding Plan 额度。</td>
+              <td><strong>Alibaba / 智谱 / Moonshot</strong></td>
+              <td><span class="source-tag">通义千问 Qwen / GLM-4 / Kimi</span></td>
+              <td>针对中文高频模型原生支持，本地运行与云端路由智能归类，不乱归属。</td>
+            </tr>
+            <tr>
+              <td><strong>更多厂商</strong></td>
+              <td><span class="source-tag">MiniMax · xAI · Meta Llama · Mistral</span></td>
+              <td>动态自适应识别，本机真实产生 Token 账单的服务商才会出现在配置列表。</td>
             </tr>
           </tbody>
         </table>
