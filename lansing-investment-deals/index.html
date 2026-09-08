@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>大兰辛核心都市圈（East Lansing / Okemos / Haslett）房产投资实勘决策指南 · 2026</title>
+  <meta name="description" content="覆盖东兰辛 MSU 核心 Class IV 执照学生公寓、Okemos 全美顶尖学区豪宅翻修与空间套利、Haslett 兰辛湖畔带租约公寓及四单元多家庭。全真实实勘照片、官网直达外链、工程预算清单与风险穿透。">
+  <link rel="stylesheet" href="../shared/theme.css">
+  <script src="../shared/theme.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 5rem;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    ::selection { background: var(--accent); color: #000; }
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Top Bar */
+    nav.top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: var(--nav-bg);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--hairline);
+      height: 52px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .back-btn {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      transition: color 0.15s, background 0.15s;
+    }
+    .back-btn:hover { color: var(--text); background: var(--hairline); }
+
+    .nav-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Header */
+    header.hero {
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.85rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+    .pill-emerald { background: rgba(112, 227, 181, 0.12); color: var(--green); border: 1px solid rgba(112, 227, 181, 0.25); }
+    .pill-amber { background: rgba(255, 200, 92, 0.12); color: var(--amber); border: 1px solid rgba(255, 200, 92, 0.25); }
+    .pill-blue { background: rgba(92, 200, 236, 0.12); color: var(--accent); border: 1px solid rgba(92, 200, 236, 0.25); }
+    .pill-purple { background: rgba(186, 104, 200, 0.12); color: #ba68c8; border: 1px solid rgba(186, 104, 200, 0.25); }
+    .pill-red { background: rgba(255, 99, 132, 0.12); color: #ff6384; border: 1px solid rgba(255, 99, 132, 0.25); }
+
+    h1.hero-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+
+    p.hero-desc {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      position: sticky;
+      top: 52px;
+      z-index: 50;
+      background: var(--anchor-bar-bg);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--hairline);
+      margin-bottom: 1.75rem;
+    }
+
+    .filter-scroll {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 2px 0;
+    }
+    .filter-scroll::-webkit-scrollbar { display: none; }
+
+    .filter-btn {
+      white-space: nowrap;
+      padding: 0.4rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border-radius: 999px;
+      background: var(--anchor-pill-bg);
+      color: var(--text-dim);
+      border: 1px solid var(--stroke);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .filter-btn:hover { color: var(--text); border-color: var(--stroke-hover); }
+    .filter-btn.active {
+      background: var(--anchor-pill-active-bg);
+      color: var(--anchor-pill-active-text);
+      border-color: var(--anchor-pill-active-bg);
+      font-weight: 600;
+    }
+
+    /* Deal Cards */
+    .deal-card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .deal-card:hover {
+      border-color: var(--stroke-hover);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-media {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      background: #111;
+      overflow: hidden;
+    }
+    @media (max-width: 600px) {
+      .card-media { height: 230px; }
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+    .deal-card:hover .card-media img {
+      transform: scale(1.02);
+    }
+
+    .media-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .media-badges {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .media-price {
+      position: absolute;
+      bottom: 1rem;
+      left: 1.25rem;
+      right: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      color: #fff;
+    }
+
+    .price-num {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    .price-sub {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .card-content {
+      padding: 1.25rem 1.25rem 1.5rem;
+    }
+
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      gap: 1rem;
+    }
+
+    .card-addr {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .card-city {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    /* Metrics Table Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.65rem;
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      border-radius: 10px;
+      padding: 0.85rem;
+      margin: 1rem 0;
+    }
+    @media (max-width: 600px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    }
+
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .metric-label {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      margin-bottom: 0.2rem;
+    }
+    .metric-val {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .metric-val.green { color: var(--green); }
+    .metric-val.amber { color: var(--amber); }
+
+    /* Highlights Section */
+    .section-block {
+      margin-top: 1.15rem;
+    }
+    .section-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+    .bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0.25rem;
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1;
+      top: 0.15rem;
+    }
+
+    /* Risk Box */
+    .risk-box {
+      background: rgba(255, 99, 132, 0.05);
+      border: 1px solid rgba(255, 99, 132, 0.2);
+      border-radius: 9px;
+      padding: 0.85rem 1rem;
+      margin-top: 1rem;
+    }
+    .risk-header {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #ff6384;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.45rem;
+    }
+    .risk-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .risk-list li {
+      position: relative;
+      padding-left: 1.1rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.45;
+    }
+    .risk-list li::before {
+      content: "⚠️";
+      position: absolute;
+      left: 0;
+      font-size: 0.72rem;
+      top: 0.25rem;
+    }
+
+    /* Action Callout */
+    .action-callout {
+      background: var(--tip-bg);
+      border-left: 3px solid var(--tip-border);
+      border-radius: 0 8px 8px 0;
+      padding: 0.75rem 0.95rem;
+      margin-top: 1rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .action-callout strong {
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    /* CTAs Row */
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+      margin-top: 1.25rem;
+    }
+    @media (max-width: 500px) {
+      .btn-row { grid-template-columns: 1fr; }
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .primary-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.88rem;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .secondary-btn:hover { background: var(--hairline); border-color: var(--stroke-hover); }
+
+    /* Blacklist Card Special */
+    .blacklist-card {
+      background: rgba(255, 99, 132, 0.03);
+      border: 1px solid rgba(255, 99, 132, 0.25);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      gap: 1.15rem;
+      align-items: center;
+    }
+    @media (max-width: 600px) {
+      .blacklist-card { flex-direction: column; align-items: flex-start; }
+    }
+    .bl-photo {
+      width: 140px;
+      height: 100px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #222;
+    }
+    .bl-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .bl-body {
+      flex: 1;
+    }
+    .bl-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ff6384;
+      margin-bottom: 0.35rem;
+    }
+    .bl-flaw {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Nav -->
+  <nav class="top-nav">
+    <div class="shell nav-inner">
+      <div class="nav-left">
+        <a href="../" class="back-btn">← 返回 Hub</a>
+        <span class="nav-title">大兰辛房产实勘决策</span>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="切换主题" title="切换模式">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <!-- Hero Header -->
+    <header class="hero">
+      <div class="badge-bar">
+        <span class="pill pill-emerald">MSU 核心学生公寓</span>
+        <span class="pill pill-purple">Okemos 顶尖学区房</span>
+        <span class="pill pill-blue">Haslett 湖滨长租走廊</span>
+        <span class="pill pill-red">4 套避坑黑名单</span>
+      </div>
+      <h1 class="hero-title">大兰辛都市圈（East Lansing / Okemos / Haslett）房产投资实勘决策报告</h1>
+      <p class="hero-desc">穿透覆盖 293 套在售全量房源与 292 套已售 ARV 真实对标。深度剖析东兰辛 1997 年冻结政策与 Class IV 执照天价溢价、Okemos 全州第 8 顶尖公立学区豪宅翻新套利，以及 Haslett 湖滨多家庭公寓真实财务模型。</p>
+    </header>
+
+    <!-- Quick Category Filter -->
+    <div class="filter-bar">
+      <div class="filter-scroll">
+        <button class="filter-btn active" onclick="filterDeals('all', this)">全部核心标的 (10)</button>
+        <button class="filter-btn" onclick="filterDeals('student', this)">🎓 MSU 学生公寓 (Class IV 执照)</button>
+        <button class="filter-btn" onclick="filterDeals('okemos', this)">🏆 Okemos 顶尖学区翻转/套利</button>
+        <button class="filter-btn" onclick="filterDeals('haslett', this)">🌊 Haslett 湖滨与小多家庭</button>
+        <button class="filter-btn" onclick="filterDeals('blacklist', this)">⚠️ 避坑黑名单 (4)</button>
+      </div>
+    </div>
+
+    <!-- Deals Container -->
+    <div id="deals-container">
+
+      <!-- Property: 1038 Marigold Ave, East Lansing -->
+      <article class="deal-card" data-category="student">
+        <div class="card-media">
+          <img src="photos/1038_marigold.jpg" alt="1038 Marigold Ave, East Lansing" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-emerald">Breslin 核心 Class IV 五人执照学生公寓</span>
+            <span class="pill pill-blue">顶级现金牛 / 抗周期学生蓝筹</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$345,000</div>
+              <div class="price-sub">5 房 / 2 卫 (5 间全地上) · 1,221 sf (总计 2,038 sf) · 1948年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">7.30% (东兰辛净回报之王)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">1038 Marigold Ave</h2>
+              <div class="card-city">East Lansing, MI 48823 · 占地 0.15 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$5,000 (免重大改造，已满租至2027年8月)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$380,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">现租约月租 $3,500 ($42,000/年)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">$25,200 / 年</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>【绝版执照护城河】自带合法稀缺的 Class IV 租赁执照（核准 5 名非亲属学生合租），在东兰辛 1997 年冻结政策下，5 人执照单张市场估值即达 15-18 万美元！</li><li>【顶尖步行圈位置】紧邻 Breslin Center 体育馆与主校区核心区，步行 5-7 分钟上学，深受学生与联谊会追捧，全城招租最快</li><li>【5 间卧室全地上】完全无地下室逃生窗合规隐患，采光极佳，租客满意度高，租约已锁定至 2027 年 8 月，无缝交割收租</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【执照初始重新登记流程】东兰辛规定产权过户后执照不随产权自动转移，买家必须在过户后立即支付 $1,860 提交初始申请，并配合市府 13 个月周期的全工种综合验收（All-Trades Inspection）。</li><li>【Proposal A 地税解绑】次年 TV 将解绑至约 $17.2 万，按 Non-PRE 53 mills 计，年地税账单将升至约 $9,200，已全额纳入 NOI 精算。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 以 $335,000 – $345,000 提交确定性现金或投资贷报价，合同必须要求卖方提供完整的市府 BS&A 租赁档案及 2027 年到期租约原件。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/1038-Marigold-Ave_East-Lansing_MI_48823_M33658-06757" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=1038+Marigold+Ave,+East+Lansing,+MI+48823" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 646 N Hagadorn Rd, East Lansing -->
+      <article class="deal-card" data-category="student">
+        <div class="card-media">
+          <img src="photos/646_n_hagadorn.jpg" alt="646 N Hagadorn Rd, East Lansing" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-emerald">MSU 边境 Class IV 四人执照学生公寓</span>
+            <span class="pill pill-blue">高防守性学生独栋出租</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$260,000</div>
+              <div class="price-sub">4 房 / 1.5 卫 · 1,373 sf · 1940年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">6.19% – 6.80% (净回报)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">646 N Hagadorn Rd</h2>
+              <div class="card-city">East Lansing, MI 48823 · 占地 0.14 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$8,000 (租约到期后轻度软装提租)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$295,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">现租约 $2,400/月，2027年可提至 $2,650/月</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">$16,100 – $18,200 / 年</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>【带合法 Class IV 执照】合法核准 4 名学生入住，单张 4 人执照市场含金量超 10-12 万美元</li><li>【三大核心 CapEx 全新】前业主已换新屋顶（Roof）、新高效燃气暖炉（Furnace）和新热水器，彻底避开老房大修地雷</li><li>紧邻 Hagadorn 交通主走廊与 MSU 东校区商学院宿舍群，出门即有 CATA 公交直达全校</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【临主干道路边停车禁令】东兰辛严禁凌晨 2:00-6:00 路边停宿，必须确保后院与车道具备至少 4 个铺装合法车位，否则市府年检会面临削减核准人数处罚。</li><li>【1940 年老宅铅漆披露】需保持门窗与外立面无油漆剥落，避免在市府年检中产生除铅整改违规。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 出价 $250,000 – $258,000，锁定 2026 年底租约交接，为 2027 年秋季提租至 $2,650/月做准备。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/646-N-Hagadorn-Rd_East-Lansing_MI_48823_M33203-88358" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=646+N+Hagadorn+Rd,+East+Lansing,+MI+48823" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 1800 Coolidge Rd, East Lansing -->
+      <article class="deal-card" data-category="student">
+        <div class="card-media">
+          <img src="photos/1800_coolidge.jpg" alt="1800 Coolidge Rd, East Lansing" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-emerald">全满租双拼平房 (Duplex)</span>
+            <span class="pill pill-blue">低维护稳健多家庭长租</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$289,900</div>
+              <div class="price-sub">4 房 / 2 卫 (上下各 2b/1ba) · 2,380 sf · 1971年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">4.83% – 5.38% (稳健抗通胀)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">1800 Coolidge Rd</h2>
+              <div class="card-city">East Lansing, MI 48823 · 占地 0.30 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$3,000 (交割免大修)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$315,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">现满租 $2,250/月 ($27,000/年)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">$14,000 – $15,600 / 年</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>【非学生派对客群】位于北东兰辛成熟住宅片区，客群以 MSU 博士后、访问学者及专业年轻白领为主，租约稳定度高，房屋折旧轻</li><li>上下双层全独立入户与后院露台，占地 0.3 英亩，砖石结构坚实耐候</li><li>当前双单元均已满租在租，交割首日即刻产生正向现金流</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【非高利差翻转盘】属于稳健型现金流资产，租金天花板在 $1,200-$1,250/单元，更适合长期抗通胀资产配置而非短期暴利翻转。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 出价 $275,000 – $282,000，核实两户租客近 12 个月按时交租流水及押金托管。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/1800-Coolidge-Rd_East-Lansing_MI_48823_M33010-85153" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=1800+Coolidge+Rd,+East+Lansing,+MI+48823" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 1784 Mirabeau Dr, Okemos -->
+      <article class="deal-card" data-category="okemos">
+        <div class="card-media">
+          <img src="photos/1784_mirabeau.jpg" alt="1784 Mirabeau Dr, Okemos" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-purple">Shaker Heights 4,400 sf 豪宅单价 $96/sf</span>
+            <span class="pill pill-blue">高净值豪宅精翻 (Luxury Flip) / 暴利盘</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$425,000</div>
+              <div class="price-sub">5 房 / 3.5 卫 · 4,404 sf (单价仅 $96/sf) · 1972年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">Flip ROI 18.5% (绝对利润之王)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">1784 Mirabeau Dr</h2>
+              <div class="card-city">Okemos, MI 48864 · 占地 0.84 英亩 (私密林地尽头)</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$115,000 (顶奢厨卫+大宅通体现代化重塑)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$685,000 – $700,000+</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">净翻转利润超 $95,000 – $115,000+</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">若出租 $3,900 – $4,200/月</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>【全场最大估值倒挂】单价仅 $96/sf！正对门 1785 Mirabeau（仅 2,216 sf，面积只有它的一半）于 2025 年 10 月以 $435,000 成交（单价 $196/sf）！建筑重置价值严重失真</li><li>【全公用管网护城河】坐落于 Okemos 顶级 Shaker Heights 豪宅区尽头死胡同，拥有近 1 英亩私密林地，且**市政自来水 + 市政公用排污全接通**，彻底免除化粪池大坑</li><li>Okemos 顶尖公立学区（密歇根公立第 8 名），翻修后受 MSU 医学院科室主任及企业高管疯抢</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【翻新体量大】4,400 sf 属于大型改造，需严格管控厨卫定制周期及地下室防潮除湿系统，施工期预计 3-4 个月。</li><li>【Proposal A 解绑税】翻新持有期间需按新估值承担约 $8,000-$9,000 年化地税，需快进快出完成转售。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 以 $415,000 – $420,000 全现金拿下。组织专业团队实施现代奢华美学重塑，锚定 $685,000 售价套现 $10 万级纯利。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/1784-Mirabeau-Dr_Okemos_MI_48864_M32420-13618" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=1784+Mirabeau+Dr,+Okemos,+MI+48864" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 2162 Kent St, Okemos -->
+      <article class="deal-card" data-category="okemos">
+        <div class="card-media">
+          <img src="photos/2162_kent.jpg" alt="2162 Kent St, Okemos" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-emerald">Okemos 顶尖学区 24 万独栋 (三大件全包)</span>
+            <span class="pill pill-blue">低风险翻转 / 顶级学区高租售比</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$239,900</div>
+              <div class="price-sub">4 房 / 1.5 卫 (带 3 车位独立车库) · 1,920 sf (单价 $125/sf) · 1958年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">Flip ROI 21.2% / 出租 Cap 7.0%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">2162 Kent St</h2>
+              <div class="card-city">Okemos, MI 48864 · 占地 0.27 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$40,000 (厨卫现代化升级与室内硬装)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$360,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">净翻转利润约 $63,000 (ROI 21%)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">若出租 $2,400/月 (Cap 7.0%)</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>【三大隐性风险已被前人消除】屋顶于 2021 年全新更换；暖通锅炉于 2018 年更新；**地基已于 2023 年完成专业调平加固并带终身可转让质保**！</li><li>市政自来水 + 市政排污双通；罕见的 3 车位超大独立车库（3-car detached garage）与干爽全地下室</li><li>在普遍 35-50 万的 Okemos 核心学区，23.9 万总价属于稀缺刚需入门门槛，转售去化速度极快</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【卫浴改造】目前为 1.5 卫，建议在翻新时增设淋浴花洒提升为 2 全卫，最大化吸引多子女就读 Okemos 的刚需家庭。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 出价 $232,000 – $238,000 迅速锁盘，进场做 4 周轻度快翻，或长租锁定 $2,400/月无忧现金流。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/2162-Kent-St_Okemos_MI_48864_M47612-77959" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=2162+Kent+St,+Okemos,+MI+48864" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 2320 Seminole Dr, Okemos -->
+      <article class="deal-card" data-category="okemos">
+        <div class="card-media">
+          <img src="photos/2320_seminole.jpg" alt="2320 Seminole Dr, Okemos" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-emerald">Ottawa Hills 20 万以内书房改 3 房小钢炮</span>
+            <span class="pill pill-blue">户型空间套利 (BRRRR 极品)</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$198,900 (当前 Pending)</div>
+              <div class="price-sub">2 房 / 1 卫 (自带独立书房，秒变 3 房) · 1,568 sf · 1953年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">BRRRR 全额回收本金 / ROI 25.5%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">2320 Seminole Dr</h2>
+              <div class="card-city">Okemos, MI 48864 · 占地 0.48 英亩 (转角地块)</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$42,000 (书房改第3卧+增设半卫+厨卫更新)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$325,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">净翻转利润约 $66,000 (ROI 25.5%)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">改3房后月租 $2,250 (Cap 7.1%)</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>【户型认知差捡漏】1,568 sf 平层仅标 2 房导致被过滤。自带独立带窗 Study 书房，只需加装衣橱即可合法跃升为 3 房，总价瞬间对标 30 万以上标杆！</li><li>市政自来水 + 市政排污，0.48 英亩平整转角地块，附带 2 车位车库与全地下室</li><li>Okemos 绝版低于 20 万独立住宅，具备极强的下行防守厚度</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【合同处于 Pending 状态】可能存在检房或买方贷款意外，需递交现金 Backup Offer 候补截胡。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 提交 $198,000 全现金 Backup Offer。一旦原买家脱靶，立即接盘并执行“书房改 3 房”手术。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/2320-Seminole-Dr_Okemos_MI_48864_M47385-45734" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=2320+Seminole+Dr,+Okemos,+MI+48864" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 3715 Hulett Rd, Okemos -->
+      <article class="deal-card" data-category="okemos">
+        <div class="card-media">
+          <img src="photos/3715_hulett.jpg" alt="3715 Hulett Rd, Okemos" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-purple">Okemos 高中旁 1.04 英亩庄园 Cape Cod</span>
+            <span class="pill pill-blue">现代农庄翻转 / 大地块学区豪宅化</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$269,900</div>
+              <div class="price-sub">4 房 / 2 卫 · 2,400 sf (单价仅 $112/sf) · 1969年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">Flip ROI 24.0% / 出租 Cap 6.7%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">3715 Hulett Rd</h2>
+              <div class="card-city">Okemos, MI 48864 · 占地 1.04 英亩 (超大独立庄园)</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$75,000 (半成品收口+现代美式农庄装修)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$450,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">净翻转利润约 $87,000 (ROI 24%)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">若出租 $2,950/月 (Cap 6.7%)</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>【稀缺地利位置】北接 Hartrick Park 公园步道，南邻 Okemos High School 体育场，直通小学，步行安全上学</li><li>1.04 英亩罕见大占地，带鸡舍与成熟果木，2,400 sf 空间充裕，大件暖气锅炉与热水器较新</li><li>打造现代 Farmhouse 风格后，在 Okemos 极受高收入中产家庭追捧</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【水井与化粪池检修】目前未接入市政排污，必须加入 Ingham County Time-of-Sale 卫生局化粪池检验条款，必要时申请接入市政主干管（预算需预留 $1.5 万）。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 出价 $255,000 – $262,000，合同加入化粪池专项核验，翻修定位为精致农庄庄园。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/3715-Hulett-Rd_Okemos_MI_48864_M33927-12114" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=3715+Hulett+Rd,+Okemos,+MI+48864" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 2120 LA Mer Ln, Haslett -->
+      <article class="deal-card" data-category="haslett">
+        <div class="card-media">
+          <img src="photos/2120_la_mer.jpg" alt="2120 LA Mer Ln, Haslett" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-emerald">Lakeside Village 兰辛湖畔带租约执照公寓</span>
+            <span class="pill pill-blue">低总价全包式省心长租</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$149,900</div>
+              <div class="price-sub">2 房 / 1 卫 (含全完工地下室) · 1,686 sf (单价仅 $88/sf) · 1979年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">5.77% (自管) / 4.88% (代管)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">2120 LA Mer Ln</h2>
+              <div class="card-city">Haslett, MI 48840 · 占地 Condo 社区</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$3,000 (免重大装修)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$165,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">现成租金 $1,450/月 ($17,400/年)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">$8,644 / 年 (自管)</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>【带现成租赁执照】规避了 Lakeside Village 严格的 Rental Cap 出租排队限制，买入可立即合法对外招租</li><li>【物业费涵盖全面】月 HOA $266 包含水费、排污费、垃圾清运、铲雪、割草及外部建筑保险与泳池维护，房东极为省心</li><li>紧邻 Lake Lansing 休闲景区与 Haslett A 级公立学区，深受医院轮转护士及访问学者喜爱</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【仅有 1 个卫生间】1,686 sf 空间只有 1 卫，限制了合租租金上限，只适合单身专业人士或小家庭。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 出价 $140,000 – $145,000 现金，合同锁定 HOA 租赁许可完整转移条款。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/2120-LA-Mer-Ln_Haslett_MI_48840_M37917-57323" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=2120+LA+Mer+Ln,+Haslett,+MI+48840" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 8876 E State Rd, Haslett -->
+      <article class="deal-card" data-category="haslett">
+        <div class="card-media">
+          <img src="photos/8876_e_state.jpg" alt="8876 E State Rd, Haslett" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-blue">翻新商急售降价 2,434 sf 牧场平房</span>
+            <span class="pill pill-blue">趁卖家资金链承压深度砍价捡漏</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$298,900 (多次降价)</div>
+              <div class="price-sub">3 房 / 2 卫 · 2,434 sf (含局部完工地下室) · 1968年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">深砍至 $270k 进场自住/长租极具性价比</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">8876 E State Rd</h2>
+              <div class="card-city">Haslett, MI 48840 · 占地 1.25 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$0 (已由前任完全精翻)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$295,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">现成省下 $60,000+ 施工成本</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">若出租 $2,200/月</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>【卖家底细完全穿透】翻新商于 2026 年 2 月以 $166,000 拍卖买入，投入巨资翻新后挂牌 $329.5k，因错过 8 月学区开学季持续降价</li><li>翻新商每月承担 11% 硬钱贷款高额利息，心理防线接近崩溃，极度渴望快速回款</li><li>室内全新厨房、花岗岩台面、奢华主卧套房、全新地面与油漆，1.25 英亩大占地</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【公路车流噪音】临 State Rd 双向快车道（50-55mph），后院有路噪；打井与化粪池需常规复检。</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 利用卖家资金链高压，甩出 $268,000 – $275,000 不讲理低价 Offer 逼其割肉交割。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/8876-E-State-Rd_Haslett_MI_48840_M36427-51424" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=8876+E+State+Rd,+Haslett,+MI+48840" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Property: 6150 Birch Row Dr, Meridian Twp (East Lansing 邮编) -->
+      <article class="deal-card" data-category="haslett">
+        <div class="card-media">
+          <img src="photos/6150_birch_row.jpg" alt="6150 Birch Row Dr, Meridian Twp (East Lansing 邮编)" loading="lazy">
+          <div class="media-overlay"></div>
+          <div class="media-badges">
+            <span class="pill pill-amber">四单元公寓 (Fourplex) 需深度砍价</span>
+            <span class="pill pill-blue">多家庭规模化运营 (需纠正估值)</span>
+          </div>
+          <div class="media-price">
+            <div>
+              <div class="price-num">$640,000 (叫价偏高)</div>
+              <div class="price-sub">8 房 / 4 卫 (4 套独立 2b/1ba) · 4,004 sf · 1970年</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.8rem; opacity: 0.85;">预期 Cap / ROI</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--green);">挂牌价 Cap 仅 4.50% (需砍至 $460k 达 6.5%)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-row">
+            <div>
+              <h2 class="card-addr">6150 Birch Row Dr</h2>
+              <div class="card-city">Meridian Township, MI 48823 · 占地 0.33 英亩</div>
+            </div>
+          </div>
+
+          <!-- Metrics Table -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label">预计翻修预算</span>
+              <span class="metric-val">$10,000 (家电补齐与细部收口)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">翻新后市值 (ARV)</span>
+              <span class="metric-val green">$550,000</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">租金 / 现金流</span>
+              <span class="metric-val">实际月租 $5,200 ($62,400/年)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">年净收益 (NOI)</span>
+              <span class="metric-val amber">$28,779 / 年</span>
+            </div>
+          </div>
+
+          <!-- Value Highlights -->
+          <div class="section-block">
+            <div class="section-title">🌟 核心价值亮点与套利杠杆</div>
+            <ul class="bullet-list">
+              <li>4 套全 2 房 1 卫规整格局，每套约 1,000 sf，带中央空调、独立阳台及全新 LVP 地板</li><li>月租金 $5,200（$1,300/单元）极其扎实，租赁需求旺盛</li><li>位于 Meridian Township，无 East Lansing 叠加区限制</li>
+            </ul>
+          </div>
+
+          <!-- Risk Box -->
+          <div class="risk-box">
+            <div class="risk-header">⚠️ 核心风险识别与防控对策</div>
+            <ul class="risk-list">
+              <li>【高地税与房东全包费用挤压利润】地税高达 $13,059/年，房东全包水污垃圾（$4,400/年），导致在 $640k 价格下如果贷款会出现负现金流！</li>
+            </ul>
+          </div>
+
+          <!-- Action Callout -->
+          <div class="action-callout">
+            <strong>🎯 落地出价与实操建议：</strong> 切勿以 $640k 高位接盘！保持观望，待其流拍或挂牌 150 天后，以 $450,000 – $480,000 提交机构式低吸报价。
+          </div>
+
+          <!-- CTAs -->
+          <div class="btn-row">
+            <a href="https://www.realtor.com/realestateandhomes-detail/6150-Birch-Row-Dr_East-Lansing_MI_48823_M93525-75309" target="_blank" rel="noopener" class="primary-btn">
+              <span>🔗 在线查看房源官网详情 (Realtor)</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=6150+Birch+Row+Dr,+East+Lansing,+MI+48823" target="_blank" rel="noopener" class="secondary-btn">
+              <span>📍 Google 地图导航实勘</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    
+      <!-- Blacklist section -->
+      <div id="blacklist-wrapper" data-category="blacklist" style="display: none; margin-top: 1rem;">
+        <div style="margin-bottom: 1.25rem;">
+          <h2 style="font-size: 1.35rem; font-weight: 700; color: #ff6384; margin-bottom: 0.35rem;">⚠️ 严禁碰触的“高危陷阱房”黑名单</h2>
+          <p style="font-size: 0.9rem; color: var(--text-dim);">表面标价低廉诱人，但在市政法案（Overlay 禁令）、地基沉降工程或经济账面上存在无法挽回的死穴：</p>
+        </div>
+
+        <div class="blacklist-card">
+          <div class="bl-photo">
+            <img src="photos/537_gunson.jpg" alt="537 Gunson St, East Lansing">
+          </div>
+          <div class="bl-body">
+            <div class="bl-title">537 Gunson St, East Lansing · 标价 $229,900</div>
+            <div class="bl-flaw">【租赁叠加限制区（Overlay District）绝对地雷】该房无 Class IV 执照！且位于 Central Bailey R-O-1 租赁限制区（Ordinance 1097），市政法案严厉永久禁止发放任何新的学生租赁执照。若买入企图按 4 间卧室合租给学生，将面临每日 $1,000 市政重罚与法庭禁令！只能以单家庭低价自住，绝无投资价值。</div>
+            <div style="margin-top: 0.5rem;">
+              <a href="https://www.realtor.com/realestateandhomes-detail/537-Gunson-St_East-Lansing_MI_48823_M33682-12497" target="_blank" rel="noopener" style="font-size: 0.8rem; color: var(--accent); text-decoration: underline;">查看挂牌记录存证 →</a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="blacklist-card">
+          <div class="bl-photo">
+            <img src="photos/5588_marsh.jpg" alt="5588 Marsh Rd, Haslett">
+          </div>
+          <div class="bl-body">
+            <div class="bl-title">5588 Marsh Rd, Haslett · 标价 $188,000</div>
+            <div class="bl-flaw">【地下室结构性下沉 + 超高地下水位深坑】挂牌明确披露存在地下室沉降（Settling in basement，需专业打桩加固 $2-3 万）。院内 3 个水塘反映地层地下水位极浅、土壤饱和，静水压力导致地基开裂渗水；紧贴 Haslett 高中体育场球赛灯光与广播噪音严重。</div>
+            <div style="margin-top: 0.5rem;">
+              <a href="https://www.realtor.com/realestateandhomes-detail/5588-Marsh-Rd_Haslett_MI_48840_M33134-42993" target="_blank" rel="noopener" style="font-size: 0.8rem; color: var(--accent); text-decoration: underline;">查看挂牌记录存证 →</a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="blacklist-card">
+          <div class="bl-photo">
+            <img src="photos/15723_park_lake.jpg" alt="15723 Park Lake Rd, East Lansing (Bath Twp)">
+          </div>
+          <div class="bl-body">
+            <div class="bl-title">15723 Park Lake Rd, East Lansing (Bath Twp) · 标价 $55,500 (超级毛坯)</div>
+            <div class="bl-flaw">【850 sf 翻修倒挂负利润陷阱】虽写 East Lansing 邮编，实际隶属 Clinton 县 Bath 镇（Bath 学区）。1940 年乱石泥土密歇根地下室，彻底重修需 $9.5 万，总成本超 $16 万，而当地 850 sf 售价天花板仅 $16.5-$17 万，商业 Flip 净亏损 $2,400，仅适合自住水电木工 DIY。</div>
+            <div style="margin-top: 0.5rem;">
+              <a href="https://www.realtor.com/realestateandhomes-detail/15723-Park-Lake-Rd_East-Lansing_MI_48823_M41586-54071" target="_blank" rel="noopener" style="font-size: 0.8rem; color: var(--accent); text-decoration: underline;">查看挂牌记录存证 →</a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="blacklist-card">
+          <div class="bl-photo">
+            <img src="photos/288_w_saginaw.jpg" alt="288 W Saginaw St #104, East Lansing">
+          </div>
+          <div class="bl-body">
+            <div class="bl-title">288 W Saginaw St #104, East Lansing · 标价 $224,000</div>
+            <div class="bl-flaw">【高 HOA 侵蚀与 Class III 人数锁死】虽标明 Class III 执照，但依法仅限租给 2 人（非学生合租金矿）。月 HOA 高达 $350-$420，加上地税后，年毛租金 $2.1 万被扣除大半，净 Cap Rate 仅剩 3.13%，资金使用效率极低。</div>
+            <div style="margin-top: 0.5rem;">
+              <a href="https://www.realtor.com/realestateandhomes-detail/288-W-Saginaw-St_East-Lansing_MI_48823_M33658-06757" target="_blank" rel="noopener" style="font-size: 0.8rem; color: var(--accent); text-decoration: underline;">查看挂牌记录存证 →</a>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function filterDeals(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.deal-card');
+      const blWrapper = document.getElementById('blacklist-wrapper');
+
+      if (cat === 'all') {
+        cards.forEach(c => c.style.display = 'block');
+        blWrapper.style.display = 'none';
+      } else if (cat === 'blacklist') {
+        cards.forEach(c => c.style.display = 'none');
+        blWrapper.style.display = 'block';
+      } else {
+        cards.forEach(c => {
+          if (c.getAttribute('data-category') === cat) {
+            c.style.display = 'block';
+          } else {
+            c.style.display = 'none';
+          }
+        });
+        blWrapper.style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>
