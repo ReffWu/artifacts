@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>经典经折诵读典藏 · 大字拼音版（心经 / 金刚经 / 能断金刚经）</title>
-  <meta name="description" content="佛教大字拼音经本在线诵读与下载典藏中心。严守大32开（140mm×210mm）经典经折装开本与离散字位网格公理制作。正统佛门绀青泥金宝蓝、楷书大字、全经逐字拼音对位校勘。收录玄奘本《心经》、玄奘本《能断金刚经》与鸠摩罗什本《金刚经》，支持沉浸翻页、长卷流式、三套经典配色、拼音显隐与送印级矢量PDF一键免扣下载。">
+  <title>经典经折诵读典藏 · 大字拼音版（心经 / 能断金刚经）</title>
+  <meta name="description" content="佛教大字拼音经本在线诵读与下载典藏中心。严守大32开（140mm×210mm）经典经折装开本与离散字位网格公理制作。正统佛门绀青泥金宝蓝、楷书大字、全经逐字拼音对位校勘。收录玄奘三藏译本《般若波罗蜜多心经》与《能断金刚般若波罗蜜多经》，支持沉浸翻页、长卷流式、三套经典配色、拼音显隐与送印级矢量PDF一键免扣下载。">
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="../shared/theme.css">
   <script src="../shared/theme.js"></script>
@@ -211,7 +211,10 @@
 
     @media (min-width: 768px) {
       .download-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 880px;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
 
@@ -1039,7 +1042,7 @@
       <div class="hero-badge">大 32 开诵读本 · 140mm × 210mm · 绀青泥金原色</div>
       <h1>经典经折诵读典藏 · 大字拼音版</h1>
       <p class="hero-lead">
-        严守大 32 开经典经折装比例与离散字位网格公理制作。全书正统佛门绀青宝蓝底、明亮泥金楷书大字、全经逐字拼音对位校勘。收录玄奘三藏译本《心经》、玄奘三藏译本《能断金刚经》与鸠摩罗什三藏译本《金刚经》。支持免扣下载送印级矢量 PDF 与随时在线沉浸诵读。
+        严守大 32 开经典经折装比例与离散字位网格公理制作。全书正统佛门绀青宝蓝底、明亮泥金楷书大字、全经逐字拼音对位校勘。收录玄奘三藏译本《般若波罗蜜多心经》与《能断金刚般若波罗蜜多经》最新诵读定本。支持免扣下载送印级矢量 PDF 与随时在线沉浸诵读。
       </p>
       <div class="anchor-nav">
         <a href="#downloads" class="anchor-pill">📥 经本一键下载</a>
@@ -1132,41 +1135,6 @@
           </div>
         </div>
 
-        <!-- Card 3: 金刚般若波罗蜜经 -->
-        <div class="sutra-card">
-          <div class="sutra-card-media">
-            <img src="./assets/kumarajiva-diamond-page5.webp" alt="金刚般若波罗蜜经鸠摩罗什译本" loading="lazy">
-            <span class="sutra-card-floating-tag">53 页三十二分本</span>
-          </div>
-          <div class="sutra-card-body">
-            <div>
-              <div class="sutra-card-meta">
-                <span>后秦 · 三藏法师鸠摩罗什 译</span>
-                <span>·</span>
-                <span>2.6 MB 矢量 PDF</span>
-              </div>
-              <h3>《金刚般若波罗蜜经》</h3>
-              <p class="sutra-card-desc">
-                流传千古的罗什本经典科判。包含开经偈、玄奘大字经题、梁昭明太子三十二分经典科判分节、大字拼音正文、金刚经赞及圆满回向文。
-              </p>
-              <div class="sutra-specs-pills">
-                <span class="spec-pill">53 物理页</span>
-                <span class="spec-pill">昭明三十二分</span>
-                <span class="spec-pill">千古诵读定本</span>
-              </div>
-            </div>
-            <div class="sutra-card-actions">
-              <button class="btn-read-now" onclick="switchSutra('kumarajiva')">
-                <span>📖 立即在线诵读</span>
-              </button>
-              <a href="./pdf/金刚般若波罗蜜经_大字拼音诵读版.pdf" download="金刚般若波罗蜜经_大字拼音诵读版.pdf" class="btn-download-pdf">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                <span>下载 PDF (2.6 MB)</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -1187,7 +1155,6 @@
             <span class="toolbar-label">经本：</span>
             <button class="tool-btn active" id="btnSutraHeart" onclick="switchSutra('heart')">般若心经</button>
             <button class="tool-btn" id="btnSutraXuanzang" onclick="switchSutra('xuanzang')">能断金刚经</button>
-            <button class="tool-btn" id="btnSutraKumarajiva" onclick="switchSutra('kumarajiva')">金刚经 (罗什)</button>
           </div>
 
           <!-- 模式切换 -->
@@ -1344,15 +1311,6 @@
         jsonUrl: './data/xuanzang.json',
         totalPages: 76,
         standaloneUrl: './reader/xuanzang-diamond.html'
-      },
-      kumarajiva: {
-        id: 'kumarajiva',
-        title: '金刚般若波罗蜜经',
-        translator: '后秦·三藏法师鸠摩罗什 译',
-        pdf: './pdf/金刚般若波罗蜜经_大字拼音诵读版.pdf',
-        jsonUrl: './data/kumarajiva.json',
-        totalPages: 53,
-        standaloneUrl: './reader/kumarajiva-diamond.html'
       }
     };
 
@@ -1379,7 +1337,7 @@
       currentPageIndex = 1;
 
       // Update Toolbar Buttons
-      ['heart', 'xuanzang', 'kumarajiva'].forEach(id => {
+      ['heart', 'xuanzang'].forEach(id => {
         const btn = document.getElementById('btnSutra' + id.charAt(0).toUpperCase() + id.slice(1));
         if (btn) {
           if (id === sutraId) btn.classList.add('active');
