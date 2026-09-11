@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>iPhone Duo · 交互式开合展台 (Product Viewer)</title>
+  <meta name="description" content="复刻 Apple 官网 iPhone Duo 核心交互：底部手柄拖动、连续开合动画、3D自由旋转与多姿态探索。">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../shared/theme.css">
+  <script src="../shared/theme.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #000;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* 顶部统一导航 (Strict Standard) */
+    nav.top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: var(--nav-bg);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--hairline);
+      height: 54px;
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.86rem;
+      color: var(--text-dim);
+      transition: color 0.15s;
+    }
+
+    .back-link:hover {
+      color: var(--text);
+    }
+
+    .back-link svg {
+      width: 15px;
+      height: 15px;
+      stroke-width: 2.2;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.22rem 0.65rem;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      color: var(--text-dim);
+    }
+
+    .theme-toggle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--stroke);
+      background: var(--surface);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .theme-toggle:hover {
+      background: var(--stroke);
+    }
+
+    /* 主内容区 */
+    main.viewer-stage {
+      position: relative;
+      width: 100%;
+      min-height: calc(100vh - 54px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 1.5rem 2.5rem;
+      overflow: hidden;
+    }
+
+    /* 标题区域 */
+    .hero-header {
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+      max-width: 680px;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-kicker {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-title {
+      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.45;
+    }
+
+    /* 3D 视口容器 */
+    .viewport-canvas-box {
+      position: relative;
+      width: 100%;
+      max-width: 960px;
+      height: clamp(380px, 52vh, 600px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: none;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .viewport-canvas-box:active {
+      cursor: grabbing;
+    }
+
+    #webgl-canvas {
+      width: 100%;
+      height: 100%;
+      outline: none;
+      border-radius: 20px;
+    }
+
+    /* 3D 浮动提示 */
+    .orbit-hint {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 0.76rem;
+      color: var(--text-faint);
+      background: var(--surface);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0.3rem 0.65rem;
+      border-radius: 20px;
+      border: 1px solid var(--hairline);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: opacity 0.3s;
+    }
+
+    .reset-cam-btn {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      font-size: 0.76rem;
+      color: var(--text-dim);
+      background: var(--surface);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0.3rem 0.65rem;
+      border-radius: 20px;
+      border: 1px solid var(--stroke);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s;
+    }
+
+    .reset-cam-btn:hover {
+      color: var(--text);
+      border-color: var(--text-dim);
+    }
+
+    /* 核心互动控制器：Apple Detent Slider */
+    .control-cluster {
+      width: 100%;
+      max-width: 620px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      z-index: 10;
+      margin-top: 0.5rem;
+    }
+
+    .detent-card {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 22px;
+      padding: 1.25rem 1.6rem 1.4rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .detent-caption {
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-dim);
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .detent-angle-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* 滑块本体 (Slider Track & Thumb) */
+    .slider-track-wrap {
+      position: relative;
+      width: 100%;
+      height: 44px;
+      display: flex;
+      align-items: center;
+    }
+
+    .slider-rail {
+      position: absolute;
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .slider-rail-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 33.3%;
+      background: linear-gradient(90deg, var(--accent), #a78bfa);
+      border-radius: 999px;
+      transition: width 0.04s linear;
+    }
+
+    /* 原生 Input 叠在上层透明接收事件 */
+    .slider-input {
+      position: absolute;
+      width: 100%;
+      height: 44px;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 5;
+      margin: 0;
+    }
+
+    /* 视觉手柄 (Apple Detent Thumb) */
+    .slider-thumb-visual {
+      position: absolute;
+      top: 50%;
+      left: 33.3%;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 4;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .slider-track-wrap:hover .slider-thumb-visual,
+    .slider-track-wrap:active .slider-thumb-visual {
+      transform: translate(-50%, -50%) scale(1.08);
+      box-shadow: 0 4px 16px rgba(92, 200, 236, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.4);
+    }
+
+    .slider-thumb-visual svg {
+      width: 16px;
+      height: 16px;
+      color: #1d1d1f;
+    }
+
+    /* 刻度吸附与文字标记 */
+    .detent-stops {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.6rem;
+      padding: 0 6px;
+    }
+
+    .stop-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      cursor: pointer;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      transition: color 0.15s;
+      user-select: none;
+    }
+
+    .stop-item:hover {
+      color: var(--text);
+    }
+
+    .stop-item.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .stop-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--text-faint);
+      transition: all 0.2s;
+    }
+
+    .stop-item.active .stop-dot {
+      background: var(--accent);
+      transform: scale(1.5);
+    }
+
+    /* 辅助控制条 (姿态、颜色、巡航) */
+    .dock-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+    }
+
+    .dock-group {
+      display: inline-flex;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 999px;
+      padding: 0.25rem 0.35rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .dock-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.18s ease;
+    }
+
+    .dock-btn:hover {
+      color: var(--text);
+      background: var(--surface);
+    }
+
+    .dock-btn.active {
+      color: var(--btn-text);
+      background: var(--btn-bg);
+      font-weight: 600;
+    }
+
+    .dock-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* 配色圆点切换 */
+    .color-swatch-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      padding: 0;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.15s;
+    }
+
+    .color-swatch-btn:hover {
+      transform: scale(1.15);
+    }
+
+    .color-swatch-btn.active {
+      border-color: var(--accent);
+    }
+
+    .color-swatch-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: block;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15);
+    }
+
+    /* 状态与硬件参数卡片 */
+    .specs-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 0.8rem;
+      font-size: 0.78rem;
+      color: var(--text-faint);
+    }
+
+    .specs-strip span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .specs-strip strong {
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 1.7rem;
+      }
+      .detent-card {
+        padding: 1rem 1.1rem 1.2rem;
+      }
+      .stop-item span {
+        font-size: 0.7rem;
+      }
+      .specs-strip {
+        gap: 0.8rem;
+        font-size: 0.72rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 统一顶部导航栏 -->
+  <nav class="top-nav">
+    <div class="shell nav-inner">
+      <a href="../index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+        </svg>
+        <span>返回 Artifacts 中心</span>
+      </a>
+      <div class="nav-right">
+        <span class="nav-tag">交互工坊 · iPhone Duo 真实开合展台</span>
+        <button class="theme-toggle" aria-label="切换深浅主题"></button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="viewer-stage">
+    <!-- 顶部文案 -->
+    <header class="hero-header">
+      <div class="hero-kicker">Apple Product Viewer · 100% 交互复刻</div>
+      <h1 class="hero-title">iPhone Duo 开合展台</h1>
+      <p class="hero-subtitle">拖动底部的触觉手柄，左右滑动探索 0°~180° 连续折叠流转。纯本地 WebGL 物理级光影，随时随地离线珍藏。</p>
+    </header>
+
+    <!-- 3D 渲染舞台 -->
+    <div class="viewport-canvas-box" id="canvas-container">
+      <canvas id="webgl-canvas"></canvas>
+      <button class="reset-cam-btn" id="reset-cam" title="重置视角">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+        <span>重置视角</span>
+      </button>
+      <div class="orbit-hint">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+          <path d="M2 12h20"/>
+        </svg>
+        <span>按住拖动 360° 旋转机身</span>
+      </div>
+    </div>
+
+    <!-- 核心控件：Apple 官方同款 Detent Slider -->
+    <div class="control-cluster">
+      <div class="detent-card">
+        <div class="detent-caption">
+          <span>Drag below to open and close</span>
+          <span class="detent-angle-badge" id="angle-badge">60.0° · 帐篷姿态</span>
+        </div>
+
+        <div class="slider-track-wrap" id="slider-wrap">
+          <div class="slider-rail">
+            <div class="slider-rail-fill" id="slider-fill"></div>
+          </div>
+          <div class="slider-thumb-visual" id="slider-thumb">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="m17.7 12.6-2.9 3.7c-.2.2-.5.4-.8.4-.2 0-.4-.1-.6-.2-.4-.3-.5-1-.2-1.4l2.4-3-2.4-3c-.3-.4-.3-1 .2-1.4.4-.3 1-.3 1.4.2l2.9 3.7c.3.3.3.8 0 1.2zm-9.4-.6 2.4-3c.3-.4.3-1-.2-1.4-.4-.3-1-.3-1.4.2l-2.9 3.7c-.3.4-.3.9 0 1.2l2.9 3.7c.2.2.5.4.8.4.2 0 .4-.1.6-.2.4-.3.5-1 .2-1.4l-2.4-3.1z"/>
+            </svg>
+          </div>
+          <input type="range" min="0" max="1" step="0.001" value="0.333" class="slider-input" id="detent-slider" aria-label="iPhone Duo 开合手柄">
+        </div>
+
+        <!-- 5 个姿态吸附标记点 -->
+        <div class="detent-stops">
+          <div class="stop-item" data-val="0">
+            <div class="stop-dot"></div>
+            <span>0° 闭合</span>
+          </div>
+          <div class="stop-item active" data-val="0.333">
+            <div class="stop-dot"></div>
+            <span>60° 帐篷</span>
+          </div>
+          <div class="stop-item" data-val="0.5">
+            <div class="stop-dot"></div>
+            <span>90° 笔记本</span>
+          </div>
+          <div class="stop-item" data-val="0.75">
+            <div class="stop-dot"></div>
+            <span>135° 书本</span>
+          </div>
+          <div class="stop-item" data-val="1">
+            <div class="stop-dot"></div>
+            <span>180° 全开</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 快速切换姿态、配色与巡游功能坞 -->
+      <div class="dock-actions">
+        <!-- 姿态预设 -->
+        <div class="dock-group">
+          <button class="dock-btn" data-pose="0">闭合</button>
+          <button class="dock-btn active" data-pose="0.333">帐篷</button>
+          <button class="dock-btn" data-pose="0.5">笔记本</button>
+          <button class="dock-btn" data-pose="0.75">书本</button>
+          <button class="dock-btn" data-pose="1">完全展开</button>
+        </div>
+
+        <!-- 配色切换 -->
+        <div class="dock-group" style="gap: 0.4rem; padding: 0.3rem 0.6rem;">
+          <button class="color-swatch-btn active" data-color="white" title="Star White 星光白">
+            <span class="color-swatch-inner" style="background: #e8e8ed;"></span>
+          </button>
+          <button class="color-swatch-btn" data-color="black" title="Night Sky 暗夜黑">
+            <span class="color-swatch-inner" style="background: #25262a;"></span>
+          </button>
+        </div>
+
+        <!-- 巡游与原生AR -->
+        <div class="dock-group">
+          <button class="dock-btn" id="tour-toggle">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <span id="tour-label">自动巡游</span>
+          </button>
+          <a class="dock-btn" href="./assets/iPhone_Duo_Star-White.usdz" rel="ar" id="ar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+            <span>Apple AR</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 硬件参数微标 -->
+      <div class="specs-strip">
+        <span>外屏 <strong>5.4″ Super Retina XDR</strong></span>
+        <span>•</span>
+        <span>内屏 <strong>7.6″ 柔性无界屏</strong></span>
+        <span>•</span>
+        <span>机身 <strong>5 级钛金属 + 精密铰链</strong></span>
+      </div>
+    </div>
+  </main>
+
+  <!-- 引入离线/本地 Three.js 与 OrbitControls -->
+  <script src="./js/three.min.js"></script>
+  <script src="./js/OrbitControls.js"></script>
+
+  <script>
+    (function() {
+      // 1. 初始化场景与渲染器
+      const container = document.getElementById('canvas-container');
+      const canvas = document.getElementById('webgl-canvas');
+      const slider = document.getElementById('detent-slider');
+      const sliderFill = document.getElementById('slider-fill');
+      const sliderThumb = document.getElementById('slider-thumb');
+      const angleBadge = document.getElementById('angle-badge');
+      const stopItems = document.querySelectorAll('.stop-item');
+      const poseButtons = document.querySelectorAll('.dock-btn[data-pose]');
+      const colorButtons = document.querySelectorAll('.color-swatch-btn');
+      const tourBtn = document.getElementById('tour-toggle');
+      const tourLabel = document.getElementById('tour-label');
+      const resetCamBtn = document.getElementById('reset-cam');
+
+      let width = container.clientWidth;
+      let height = container.clientHeight;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+      camera.position.set(0, 1.2, 7.5);
+
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance"
+      });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.15;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+      const controls = new THREE.OrbitControls(camera, canvas);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.06;
+      controls.minDistance = 3.5;
+      controls.maxDistance = 12;
+      controls.maxPolarAngle = Math.PI / 2 + 0.15; // 限制不钻入地面
+
+      // 2. 灯光体系 (Apple Studio 摄影棚柔光)
+      const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+      scene.add(ambientLight);
+
+      const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
+      keyLight.position.set(5, 8, 5);
+      keyLight.castShadow = true;
+      keyLight.shadow.mapSize.width = 1024;
+      keyLight.shadow.mapSize.height = 1024;
+      keyLight.shadow.bias = -0.0001;
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0xbad7ff, 1.4);
+      fillLight.position.set(-6, 4, 3);
+      scene.add(fillLight);
+
+      const rimLight = new THREE.DirectionalLight(0xffebd2, 1.8);
+      rimLight.position.set(0, -3, -6);
+      scene.add(rimLight);
+
+      // 地面接触柔和阴影平面
+      const shadowGeo = new THREE.PlaneGeometry(8, 8);
+      const shadowMat = new THREE.ShadowMaterial({ opacity: 0.28 });
+      const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
+      shadowMesh.rotation.x = -Math.PI / 2;
+      shadowMesh.position.y = -2.2;
+      shadowMesh.receiveShadow = true;
+      scene.add(shadowMesh);
+
+      // 3. 动态纹理生成器 (Canvas 生成超精细 iOS 屏幕界面)
+      function createScreenTexture(isInnerLeft, isInnerRight, isOuter) {
+        const c = document.createElement('canvas');
+        c.width = 1024;
+        c.height = 1280;
+        const ctx = c.getContext('2d');
+
+        // 背景渐变
+        const grad = ctx.createLinearGradient(0, 0, c.width, c.height);
+        if (isOuter) {
+          // 外屏：深邃暗夜沙漠光影
+          grad.addColorStop(0, '#10141f');
+          grad.addColorStop(0.5, '#281c30');
+          grad.addColorStop(1, '#0c0d14');
+        } else {
+          // 内屏：宽幅无界空间流光
+          grad.addColorStop(0, '#141829');
+          grad.addColorStop(0.35, '#2e1c44');
+          grad.addColorStop(0.7, '#1b324d');
+          grad.addColorStop(1, '#0e121e');
+        }
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, c.width, c.height);
+
+        // 柔和弥散光球
+        ctx.save();
+        ctx.filter = 'blur(60px)';
+        ctx.fillStyle = isOuter ? 'rgba(255, 120, 80, 0.35)' : 'rgba(92, 200, 236, 0.35)';
+        ctx.beginPath();
+        ctx.arc(c.width * 0.5, c.height * 0.45, 260, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // 状态栏
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 38px -apple-system, sans-serif';
+        ctx.fillText('9:41', 70, 70);
+
+        // 右上角电量与信号
+        ctx.fillRect(c.width - 130, 48, 48, 24);
+        ctx.strokeRect(c.width - 134, 44, 56, 32);
+
+        if (isOuter) {
+          // 外屏大时钟
+          ctx.textAlign = 'center';
+          ctx.font = '300 130px -apple-system, sans-serif';
+          ctx.fillText('09:41', c.width / 2, 340);
+          ctx.font = '500 36px -apple-system, sans-serif';
+          ctx.fillStyle = 'rgba(255,255,255,0.7)';
+          ctx.fillText('9月11日 星期五', c.width / 2, 410);
+
+          // 灵动岛药丸
+          ctx.fillStyle = '#000000';
+          ctx.beginPath();
+          ctx.roundRect(c.width / 2 - 70, 36, 140, 38, 19);
+          ctx.fill();
+        } else if (isInnerLeft) {
+          // 内屏左半屏：多任务视窗 (备忘录 / 邮件)
+          ctx.textAlign = 'left';
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+          ctx.beginPath();
+          ctx.roundRect(50, 120, c.width - 70, c.height - 240, 24);
+          ctx.fill();
+
+          ctx.fillStyle = '#ffffff';
+          ctx.font = '600 44px -apple-system, sans-serif';
+          ctx.fillText('Split View · 备忘录', 85, 195);
+          ctx.font = '400 30px -apple-system, sans-serif';
+          ctx.fillStyle = 'rgba(255,255,255,0.75)';
+          ctx.fillText('• 7.6 英寸超视网膜 XDR 柔性屏', 85, 270);
+          ctx.fillText('• 100+ 精密微结构水滴铰链', 85, 330);
+          ctx.fillText('• A20 Pro 旗舰芯片无缝双屏协同', 85, 390);
+          ctx.fillText('• 纯平无痕展开，微弧舒适握持', 85, 450);
+        } else if (isInnerRight) {
+          // 内屏右半屏：多任务视窗 (Safari / 媒体)
+          ctx.textAlign = 'left';
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+          ctx.beginPath();
+          ctx.roundRect(20, 120, c.width - 70, c.height - 240, 24);
+          ctx.fill();
+
+          ctx.fillStyle = '#ffffff';
+          ctx.font = '600 44px -apple-system, sans-serif';
+          ctx.fillText('Safari · 沉浸浏览', 55, 195);
+          ctx.font = '400 30px -apple-system, sans-serif';
+          ctx.fillStyle = 'rgba(255,255,255,0.75)';
+          ctx.fillText('apple.com/iphone-duo', 55, 270);
+          ctx.fillText('多任务两端自由拖拽交互', 55, 330);
+          ctx.fillText('支持双屏 FaceTime 与双向预览', 55, 390);
+
+          // 悬浮毛玻璃 Dock 模拟
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.18)';
+          ctx.beginPath();
+          ctx.roundRect(c.width * 0.1, c.height - 100, c.width * 0.8, 70, 35);
+          ctx.fill();
+        }
+
+        const texture = new THREE.CanvasTexture(c);
+        texture.anisotropy = 8;
+        return texture;
+      }
+
+      const outerTexture = createScreenTexture(false, false, true);
+      const innerLeftTexture = createScreenTexture(true, false, false);
+      const innerRightTexture = createScreenTexture(false, true, false);
+
+      // 4. 材质配置 (支持 Star White 与 Night Sky)
+      const colorThemes = {
+        white: {
+          titaniumColor: 0xd8d8de,
+          backGlassColor: 0xf4f4f7,
+          hingeColor: 0xc4c4cb,
+          cameraRingColor: 0xcccccc
+        },
+        black: {
+          titaniumColor: 0x27282b,
+          backGlassColor: 0x141517,
+          hingeColor: 0x222325,
+          cameraRingColor: 0x333438
+        }
+      };
+
+      let currentTheme = colorThemes.white;
+
+      // 钛金属物理材质
+      const titaniumMaterial = new THREE.MeshStandardMaterial({
+        color: currentTheme.titaniumColor,
+        metalness: 0.88,
+        roughness: 0.26
+      });
+
+      // 磨砂玻璃背板
+      const backGlassMaterial = new THREE.MeshStandardMaterial({
+        color: currentTheme.backGlassColor,
+        metalness: 0.15,
+        roughness: 0.42
+      });
+
+      // 铰链核心材质
+      const hingeMaterial = new THREE.MeshStandardMaterial({
+        color: currentTheme.hingeColor,
+        metalness: 0.92,
+        roughness: 0.22
+      });
+
+      // 外屏发光玻璃材质
+      const outerScreenMaterial = new THREE.MeshStandardMaterial({
+        map: outerTexture,
+        metalness: 0.05,
+        roughness: 0.12,
+        emissive: 0xffffff,
+        emissiveMap: outerTexture,
+        emissiveIntensity: 0.25
+      });
+
+      // 内屏柔性发光玻璃材质
+      const innerLeftScreenMaterial = new THREE.MeshStandardMaterial({
+        map: innerLeftTexture,
+        metalness: 0.05,
+        roughness: 0.1,
+        emissive: 0xffffff,
+        emissiveMap: innerLeftTexture,
+        emissiveIntensity: 0.28
+      });
+
+      const innerRightScreenMaterial = new THREE.MeshStandardMaterial({
+        map: innerRightTexture,
+        metalness: 0.05,
+        roughness: 0.1,
+        emissive: 0xffffff,
+        emissiveMap: innerRightTexture,
+        emissiveIntensity: 0.28
+      });
+
+      // 镜头镜片物理材质
+      const cameraLensMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0x050508,
+        metalness: 0.95,
+        roughness: 0.05,
+        reflectivity: 0.9,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.05
+      });
+
+      // 5. 3D 几何装配 (iPhone Duo 左右两翼与铰链)
+      const phoneRoot = new THREE.Group();
+      scene.add(phoneRoot);
+
+      // 机身参数规格
+      const H = 4.8;       // 高度
+      const W = 1.95;      // 单扇机身宽度
+      const D = 0.14;      // 单扇机身厚度 (折叠后总厚约 0.29)
+      const cornerR = 0.25;
+
+      // 辅助函数：创建圆角拉伸立方体
+      function createRoundedChassis(width, height, depth, radius) {
+        const shape = new THREE.Shape();
+        const x = -width / 2;
+        const y = -height / 2;
+        shape.moveTo(x + radius, y);
+        shape.lineTo(x + width - radius, y);
+        shape.quadraticCurveTo(x + width, y, x + width, y + radius);
+        shape.lineTo(x + width, y + height - radius);
+        shape.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        shape.lineTo(x + radius, y + height);
+        shape.quadraticCurveTo(x, y + height, x, y + height - radius);
+        shape.lineTo(x, y + radius);
+        shape.quadraticCurveTo(x, y, x + radius, y);
+
+        const extrudeSettings = {
+          depth: depth,
+          bevelEnabled: true,
+          bevelSegments: 5,
+          steps: 1,
+          bevelSize: 0.025,
+          bevelThickness: 0.025
+        };
+        const geom = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+        geom.center();
+        return geom;
+      }
+
+      // --- 左扇机身 (Left Wing) ---
+      const leftWing = new THREE.Group();
+      // 铰链在 X = 0, 所以将左翼几何中心置于 -W/2
+      const leftChassisMesh = new THREE.Mesh(
+        createRoundedChassis(W, H, D, cornerR),
+        titaniumMaterial
+      );
+      leftChassisMesh.position.set(-W / 2, 0, 0);
+      leftChassisMesh.castShadow = true;
+      leftWing.add(leftChassisMesh);
+
+      // 左翼内屏 (Z 轴正向)
+      const innerLeftScreenMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(W - 0.08, H - 0.12),
+        innerLeftScreenMaterial
+      );
+      innerLeftScreenMesh.position.set(-W / 2 + 0.02, 0, D / 2 + 0.016);
+      leftWing.add(innerLeftScreenMesh);
+
+      // 左翼外屏 (Z 轴负向，面朝外)
+      const outerScreenMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(W - 0.12, H - 0.14),
+        outerScreenMaterial
+      );
+      outerScreenMesh.rotation.y = Math.PI; // 朝向背面
+      outerScreenMesh.position.set(-W / 2, 0, -D / 2 - 0.016);
+      leftWing.add(outerScreenMesh);
+
+      phoneRoot.add(leftWing);
+
+      // --- 右扇机身 (Right Wing) ---
+      const rightWing = new THREE.Group();
+      const rightChassisMesh = new THREE.Mesh(
+        createRoundedChassis(W, H, D, cornerR),
+        titaniumMaterial
+      );
+      rightChassisMesh.position.set(W / 2, 0, 0);
+      rightChassisMesh.castShadow = true;
+      rightWing.add(rightChassisMesh);
+
+      // 右翼内屏 (Z 轴正向)
+      const innerRightScreenMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(W - 0.08, H - 0.12),
+        innerRightScreenMaterial
+      );
+      innerRightScreenMesh.position.set(W / 2 - 0.02, 0, D / 2 + 0.016);
+      rightWing.add(innerRightScreenMesh);
+
+      // 右翼背面磨砂玻璃板 (Z 轴负向)
+      const backGlassMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(W - 0.06, H - 0.08),
+        backGlassMaterial
+      );
+      backGlassMesh.rotation.y = Math.PI;
+      backGlassMesh.position.set(W / 2, 0, -D / 2 - 0.016);
+      rightWing.add(backGlassMesh);
+
+      // 右翼背面双摄火山口模组
+      const cameraIsland = new THREE.Group();
+      cameraIsland.position.set(W * 0.58, H * 0.32, -D / 2 - 0.035);
+
+      // 火山口底座
+      const plateauMesh = new THREE.Mesh(
+        createRoundedChassis(0.72, 1.35, 0.04, 0.18),
+        titaniumMaterial
+      );
+      cameraIsland.add(plateauMesh);
+
+      // 双镜头 (主摄与超广角/长焦)
+      function createLens(posY) {
+        const lensGroup = new THREE.Group();
+        lensGroup.position.set(0, posY, -0.03);
+
+        const ring = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.24, 0.25, 0.04, 32),
+          titaniumMaterial
+        );
+        ring.rotation.x = Math.PI / 2;
+        lensGroup.add(ring);
+
+        const glass = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.2, 0.2, 0.045, 32),
+          cameraLensMaterial
+        );
+        glass.rotation.x = Math.PI / 2;
+        lensGroup.add(glass);
+
+        return lensGroup;
+      }
+
+      cameraIsland.add(createLens(0.32));
+      cameraIsland.add(createLens(-0.32));
+
+      // 闪光灯与微麦克风孔
+      const flash = new THREE.Mesh(
+        new THREE.CircleGeometry(0.08, 16),
+        new THREE.MeshBasicMaterial({ color: 0xfff2cc })
+      );
+      flash.position.set(0.22, 0.02, -0.025);
+      flash.rotation.y = Math.PI;
+      cameraIsland.add(flash);
+
+      rightWing.add(cameraIsland);
+      phoneRoot.add(rightWing);
+
+      // --- 中间精密铰链机构 (Hinge Spine) ---
+      const hingeSpine = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.065, 0.065, H - 0.1, 32),
+        hingeMaterial
+      );
+      hingeSpine.position.set(0, 0, 0);
+      phoneRoot.add(hingeSpine);
+
+      // 6. 核心联动：开合运动学计算 (Folding Kinematics)
+      // progress t: 0 (完全闭合) -> 1 (完全展开 180°)
+      let currentProgress = 0.333; // 初始为 60° 帐篷/悬停姿态
+      let targetProgress = 0.333;
+      let isAutoTour = false;
+      let tourTime = 0;
+
+      function updateFolding(t) {
+        currentProgress = t;
+
+        // 两翼旋转角度：
+        // 展开 t=1 时，两翼旋转角为 0 (平角 180°)
+        // 闭合 t=0 时，左翼绕 Y 旋转 +90°，右翼绕 Y 旋转 -90° (夹角 0°，两内屏紧密对贴)
+        const foldAngle = (1 - t) * (Math.PI / 2); // 0 到 90 度
+        leftWing.rotation.y = foldAngle;
+        rightWing.rotation.y = -foldAngle;
+
+        // 铰链脊柱在闭合时微向后移动收纳，展现工业机械美感
+        hingeSpine.position.z = -Math.sin(foldAngle) * 0.08;
+
+        // 当机身闭合 (t < 0.15) 时降低内屏亮度，提亮外屏；展开时内屏亮起
+        const innerBrightness = Math.min(1.0, (t - 0.05) / 0.3);
+        innerLeftScreenMaterial.emissiveIntensity = Math.max(0.02, innerBrightness * 0.28);
+        innerRightScreenMaterial.emissiveIntensity = Math.max(0.02, innerBrightness * 0.28);
+        outerScreenMaterial.emissiveIntensity = t < 0.3 ? 0.3 : 0.08;
+
+        // 接触阴影随着开合宽度自适应收放
+        const shadowScaleX = 0.45 + 0.55 * t;
+        shadowMesh.scale.set(shadowScaleX, 1, 1);
+
+        // 更新 UI 手柄和填充条
+        const pct = t * 100;
+        sliderFill.style.width = pct + '%';
+        sliderThumb.style.left = pct + '%';
+
+        // 角度与文字提示
+        const angleDeg = Math.round(t * 180);
+        let poseName = '自定义角度';
+        if (t <= 0.05) poseName = '完全闭合';
+        else if (t >= 0.28 && t <= 0.38) poseName = '帐篷形态';
+        else if (t >= 0.45 && t <= 0.55) poseName = '笔记本姿态';
+        else if (t >= 0.70 && t <= 0.80) poseName = '书本阅读';
+        else if (t >= 0.95) poseName = '完全展开';
+
+        angleBadge.textContent = `${angleDeg}° · ${poseName}`;
+
+        // 更新底栏 Active 状态
+        updateActiveStops(t);
+      }
+
+      function updateActiveStops(t) {
+        stopItems.forEach(item => {
+          const val = parseFloat(item.dataset.val);
+          if (Math.abs(val - t) < 0.06) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+
+        poseButtons.forEach(btn => {
+          const poseVal = parseFloat(btn.dataset.pose);
+          if (Math.abs(poseVal - t) < 0.06) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+
+      // 7. 手柄事件监听 (Detent Slider Drag)
+      slider.addEventListener('input', function(e) {
+        isAutoTour = false;
+        tourLabel.textContent = '自动巡游';
+        targetProgress = parseFloat(e.target.value);
+        updateFolding(targetProgress);
+      });
+
+      // 刻度点击直接跳转
+      stopItems.forEach(item => {
+        item.addEventListener('click', () => {
+          isAutoTour = false;
+          tourLabel.textContent = '自动巡游';
+          const target = parseFloat(item.dataset.val);
+          smoothAnimateTo(target);
+        });
+      });
+
+      // 姿态按钮快捷跳转
+      poseButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          isAutoTour = false;
+          tourLabel.textContent = '自动巡游';
+          const target = parseFloat(btn.dataset.pose);
+          smoothAnimateTo(target);
+        });
+      });
+
+      // 8. 缓动动画器 (Smooth Spring-like Lerp)
+      let animating = false;
+      function smoothAnimateTo(targetVal) {
+        slider.value = targetVal;
+        targetProgress = targetVal;
+        animating = true;
+      }
+
+      // 9. 配色切换
+      colorButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          colorButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const colorKey = btn.dataset.color;
+          currentTheme = colorThemes[colorKey];
+
+          // 平滑更新材质颜色
+          titaniumMaterial.color.setHex(currentTheme.titaniumColor);
+          backGlassMaterial.color.setHex(currentTheme.backGlassColor);
+          hingeMaterial.color.setHex(currentTheme.hingeColor);
+        });
+      });
+
+      // 10. 自动巡游模式 (Auto Tour)
+      tourBtn.addEventListener('click', () => {
+        isAutoTour = !isAutoTour;
+        tourLabel.textContent = isAutoTour ? '暂停巡游' : '自动巡游';
+        tourBtn.classList.toggle('active', isAutoTour);
+      });
+
+      // 重置视角
+      resetCamBtn.addEventListener('click', () => {
+        controls.reset();
+        camera.position.set(0, 1.2, 7.5);
+      });
+
+      // 11. 渲染主循环
+      const clock = new THREE.Clock();
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const delta = clock.getDelta();
+
+        // 自动巡游逻辑：正弦波动平滑开合 + 整体优雅环绕
+        if (isAutoTour) {
+          tourTime += delta * 0.7;
+          // 0 到 1 之间正弦往复
+          const wave = (Math.sin(tourTime) + 1) / 2;
+          updateFolding(wave);
+          slider.value = wave;
+          // 机身微幅自转
+          phoneRoot.rotation.y += delta * 0.35;
+          phoneRoot.rotation.x = Math.sin(tourTime * 0.5) * 0.12;
+        } else {
+          // 平滑缓动跟随
+          if (animating) {
+            const diff = targetProgress - currentProgress;
+            if (Math.abs(diff) < 0.002) {
+              updateFolding(targetProgress);
+              animating = false;
+            } else {
+              updateFolding(currentProgress + diff * 0.14);
+            }
+          }
+          // 手动模式下平滑回正机身俯仰
+          phoneRoot.rotation.y += (0 - phoneRoot.rotation.y) * 0.05;
+          phoneRoot.rotation.x += (0 - phoneRoot.rotation.x) * 0.05;
+        }
+
+        controls.update();
+        renderer.render(scene, camera);
+      }
+
+      // 12. 视口自适应 Resize
+      function onResize() {
+        width = container.clientWidth;
+        height = container.clientHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      }
+      window.addEventListener('resize', onResize);
+
+      // 初始化折叠状态
+      updateFolding(currentProgress);
+      animate();
+
+    })();
+  </script>
+</body>
+</html>
