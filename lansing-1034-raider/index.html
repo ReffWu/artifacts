@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>1034 Raider St · 房产投资尽调与报价模型</title>
+  <meta name="description" content="Lansing 1034 Raider St 房产投资尽调：现状价值、ARV、翻修、出租、BRRRR、税务、产权与可执行报价。">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../shared/theme.css">
+  <script src="../shared/theme.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 112px; }
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color .25s ease, color .25s ease;
+    }
+    a { color: inherit; }
+    ::selection { background: var(--pill-red-bg); color: var(--text); }
+    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      color: var(--text-faint);
+      font-size: .78rem;
+      font-weight: 650;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; }
+
+    .hero { padding: 44px 0 28px; }
+    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 28px; align-items: stretch; }
+    .hero-copy {
+      min-height: 510px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px 6px 12px 0;
+    }
+    h1 {
+      margin-top: 18px;
+      max-width: 760px;
+      font-size: clamp(2.65rem, 6vw, 5.35rem);
+      font-weight: 720;
+      letter-spacing: -.064em;
+      line-height: .93;
+    }
+    .address { display: block; color: var(--text-dim); font-size: .36em; letter-spacing: -.025em; line-height: 1.25; margin-top: 16px; }
+    .verdict-line {
+      max-width: 660px;
+      margin-top: 28px;
+      padding-left: 18px;
+      border-left: 3px solid #ef4444;
+      font-size: clamp(1.04rem, 2vw, 1.22rem);
+      color: var(--text-dim);
+    }
+    .verdict-line strong { color: var(--text); font-weight: 700; }
+    .decision-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 34px; }
+    .decision-tile { padding: 15px 16px; border: 1px solid var(--stroke); border-radius: 14px; background: var(--surface); }
+    .decision-tile span { display: block; color: var(--text-faint); font-size: .75rem; margin-bottom: 3px; }
+    .decision-tile strong { display: block; font-size: 1.16rem; letter-spacing: -.03em; }
+    .decision-tile.danger { border-color: var(--pill-red-border); background: var(--pill-red-bg); color: var(--pill-red-text); }
+    .decision-tile.good { border-color: var(--pill-emerald-border); background: var(--pill-emerald-bg); color: var(--pill-emerald-text); }
+
+    .hero-photo {
+      min-height: 510px;
+      border-radius: 24px;
+      border: 1px solid var(--stroke);
+      box-shadow: 0 24px 80px rgba(0,0,0,.2);
+    }
+    .hero-photo img { min-height: 510px; }
+    .photo-badge {
+      position: absolute;
+      z-index: 3;
+      top: 18px;
+      left: 18px;
+      padding: .48rem .74rem;
+      border-radius: 999px;
+      background: rgba(35, 8, 12, .86);
+      border: 1px solid rgba(251, 113, 133, .46);
+      color: #fecdd3;
+      box-shadow: 0 8px 24px rgba(0,0,0,.38);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+    .photo-dock {
+      position: absolute;
+      z-index: 3;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      color: white;
+      text-shadow: 0 2px 16px rgba(0,0,0,.75);
+    }
+    .photo-price { font-size: clamp(2rem, 4vw, 3.15rem); font-weight: 760; letter-spacing: -.055em; line-height: 1; }
+    .photo-spec { font-size: .83rem; margin-top: 8px; opacity: .82; }
+    .score-ring {
+      width: 74px;
+      height: 74px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(#fb7185 0 40%, rgba(255,255,255,.2) 40% 100%);
+      box-shadow: 0 10px 26px rgba(0,0,0,.35);
+    }
+    .score-ring::before { content: "2.0\A/ 5"; white-space: pre; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: rgba(12,12,13,.9); text-align: center; line-height: 1.05; font-weight: 720; font-size: .9rem; }
+
+    .anchor-bar { position: sticky; top: 54px; z-index: 50; background: var(--anchor-bar-bg); border-block: 1px solid var(--hairline); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .anchor-scroll { display: flex; gap: 6px; overflow-x: auto; padding-block: 9px; scrollbar-width: none; }
+    .anchor-scroll::-webkit-scrollbar { display: none; }
+    .anchor-scroll a { flex: 0 0 auto; padding: 7px 12px; border-radius: 999px; background: var(--anchor-pill-bg); text-decoration: none; color: var(--text-dim); font-size: .78rem; font-weight: 600; }
+    .anchor-scroll a:hover { color: var(--text); background: var(--card-hover); }
+
+    section { padding: 76px 0; border-bottom: 1px solid var(--hairline); }
+    .section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: end; margin-bottom: 32px; }
+    h2 { font-size: clamp(2rem, 4.5vw, 3.45rem); line-height: 1.02; letter-spacing: -.052em; font-weight: 710; }
+    .section-intro { color: var(--text-dim); max-width: 580px; justify-self: end; }
+    h3 { font-size: 1.08rem; letter-spacing: -.02em; }
+    .muted { color: var(--text-dim); }
+
+    .model-shell { display: grid; grid-template-columns: .84fr 1.16fr; gap: 16px; }
+    .model-controls, .model-results { border: 1px solid var(--stroke); border-radius: 20px; background: var(--card); padding: 22px; }
+    .control { padding: 17px 0; border-bottom: 1px solid var(--hairline); }
+    .control:last-child { border-bottom: 0; }
+    .control-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 11px; }
+    .control label { font-size: .85rem; color: var(--text-dim); }
+    .control output { font-size: 1.25rem; font-weight: 700; letter-spacing: -.035em; }
+    input[type="range"] { width: 100%; accent-color: #fb7185; cursor: pointer; }
+    .range-ends { display: flex; justify-content: space-between; margin-top: 5px; font-size: .68rem; color: var(--text-faint); }
+    .assumption-note { margin-top: 14px; font-size: .74rem; color: var(--text-faint); }
+    .result-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .result-card { min-height: 132px; padding: 18px; border-radius: 15px; background: var(--surface); border: 1px solid var(--stroke); display: flex; flex-direction: column; justify-content: space-between; }
+    .result-card .label { color: var(--text-faint); font-size: .76rem; }
+    .result-card strong { font-size: clamp(1.55rem, 3.5vw, 2.35rem); letter-spacing: -.055em; line-height: 1; }
+    .result-card small { color: var(--text-dim); font-size: .72rem; }
+    .result-card.primary { grid-column: 1 / -1; background: var(--pill-red-bg); border-color: var(--pill-red-border); }
+    .result-card.primary strong { color: var(--pill-red-text); }
+    .result-card.positive { background: var(--pill-emerald-bg); border-color: var(--pill-emerald-border); }
+    .result-card.positive strong { color: var(--pill-emerald-text); }
+
+    .fact-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--stroke); border-radius: 18px; overflow: hidden; }
+    .fact { padding: 20px; min-height: 112px; background: var(--card); border-right: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+    .fact:nth-child(4n) { border-right: 0; }
+    .fact:nth-last-child(-n+4) { border-bottom: 0; }
+    .fact span { display: block; color: var(--text-faint); font-size: .75rem; margin-bottom: 9px; }
+    .fact strong { font-size: 1.14rem; letter-spacing: -.025em; }
+
+    .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .evidence-card { border: 1px solid var(--stroke); border-radius: 20px; overflow: hidden; background: var(--card); }
+    .evidence-card .card-media { aspect-ratio: 16/10; }
+    .evidence-card-body { padding: 20px; }
+    .risk-list { list-style: none; margin-top: 15px; display: grid; gap: 10px; }
+    .risk-list li { position: relative; padding-left: 20px; color: var(--text-dim); font-size: .88rem; }
+    .risk-list li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 7px; height: 7px; border-radius: 50%; background: #fb7185; box-shadow: 0 0 0 4px var(--pill-red-bg); }
+
+    .table-wrap { overflow-x: auto; border: 1px solid var(--stroke); border-radius: 18px; }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; background: var(--card); }
+    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--hairline); }
+    th { color: var(--text-faint); font-size: .71rem; text-transform: uppercase; letter-spacing: .065em; font-weight: 650; }
+    td { color: var(--text-dim); font-size: .88rem; }
+    td strong { color: var(--text); }
+    tbody tr:last-child td { border-bottom: 0; }
+    .status-pill { display: inline-flex; padding: .22rem .52rem; border-radius: 999px; font-size: .7rem; font-weight: 700; border: 1px solid; }
+
+    .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .scenario { border: 1px solid var(--stroke); border-radius: 18px; padding: 20px; background: var(--card); }
+    .scenario .scenario-top { display: flex; justify-content: space-between; gap: 12px; color: var(--text-faint); font-size: .76rem; }
+    .scenario .profit { margin: 18px 0 10px; font-size: 2rem; font-weight: 750; letter-spacing: -.055em; }
+    .scenario p { color: var(--text-dim); font-size: .83rem; }
+
+    .tax-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .tax-card { padding: 22px; border: 1px solid var(--stroke); border-radius: 18px; background: var(--card); }
+    .tax-total { margin: 14px 0 6px; font-size: 2.65rem; letter-spacing: -.06em; line-height: 1; }
+    .line-items { margin-top: 18px; display: grid; gap: 10px; }
+    .line-item { display: flex; justify-content: space-between; gap: 16px; padding-top: 10px; border-top: 1px solid var(--hairline); color: var(--text-dim); font-size: .83rem; }
+
+    .offer-band { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: center; padding: 28px; border-radius: 22px; background: linear-gradient(135deg, var(--pill-red-bg), var(--card)); border: 1px solid var(--pill-red-border); }
+    .offer-band h3 { font-size: clamp(1.55rem, 3vw, 2.25rem); }
+    .offer-band p { color: var(--text-dim); margin-top: 8px; max-width: 720px; }
+    .offer-number { font-size: clamp(2.3rem, 6vw, 4.4rem); font-weight: 780; letter-spacing: -.065em; color: var(--pill-red-text); white-space: nowrap; }
+
+    .checklist { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; counter-reset: diligence; }
+    .checklist li { counter-increment: diligence; display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; padding: 16px; border: 1px solid var(--stroke); background: var(--card); border-radius: 14px; color: var(--text-dim); font-size: .86rem; }
+    .checklist li::before { content: counter(diligence); width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--surface); color: var(--text); font-size: .75rem; font-weight: 700; }
+
+    .sources { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .source { display: block; min-height: 116px; padding: 16px; border: 1px solid var(--stroke); border-radius: 14px; background: var(--card); text-decoration: none; transition: transform .16s ease, border-color .16s ease; }
+    .source:hover { transform: translateY(-2px); border-color: var(--stroke-hover); }
+    .source strong { display: block; font-size: .86rem; margin-bottom: 6px; }
+    .source span { display: block; color: var(--text-faint); font-size: .73rem; }
+
+    footer { padding: 34px 0 52px; color: var(--text-faint); font-size: .76rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 18px; }
+
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) .photo-badge { background: rgba(255,255,255,.92); color: #9f1239; border-color: #fecdd3; box-shadow: 0 8px 26px rgba(15,23,42,.14); }
+      :root:not([data-theme="dark"]) .photo-dock { color: #0f172a; text-shadow: none; background: rgba(255,255,255,.92); border: 1px solid rgba(255,255,255,.95); border-radius: 14px; padding: 13px 14px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 10px 30px rgba(15,23,42,.14); }
+      :root:not([data-theme="dark"]) .photo-spec { color: #475569; opacity: 1; }
+    }
+    html[data-theme="light"] .photo-badge { background: rgba(255,255,255,.92); color: #9f1239; border-color: #fecdd3; box-shadow: 0 8px 26px rgba(15,23,42,.14); }
+    html[data-theme="light"] .photo-dock { color: #0f172a; text-shadow: none; background: rgba(255,255,255,.92); border: 1px solid rgba(255,255,255,.95); border-radius: 14px; padding: 13px 14px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 10px 30px rgba(15,23,42,.14); }
+    html[data-theme="light"] .photo-spec { color: #475569; opacity: 1; }
+
+    @media (max-width: 860px) {
+      .hero-grid, .model-shell, .section-head, .tax-grid { grid-template-columns: 1fr; }
+      .hero-copy { min-height: auto; }
+      .hero-photo, .hero-photo img { min-height: 440px; }
+      .section-intro { justify-self: start; }
+      .fact-grid { grid-template-columns: repeat(2, 1fr); }
+      .fact:nth-child(2n) { border-right: 0; }
+      .fact:nth-child(5), .fact:nth-child(6) { border-bottom: 1px solid var(--hairline); }
+      .scenario-grid, .sources { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 28px, 1120px); }
+      .nav-tag { display: none; }
+      .hero { padding-top: 28px; }
+      h1 { font-size: 3rem; }
+      .decision-row, .result-grid, .evidence-grid, .checklist { grid-template-columns: 1fr; }
+      .result-card.primary { grid-column: auto; }
+      .hero-photo, .hero-photo img { min-height: 360px; }
+      .fact { min-height: 98px; }
+      .offer-band { grid-template-columns: 1fr; }
+      section { padding: 58px 0; }
+      .footer-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="shell nav-inner">
+      <a href="../index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+        </svg>
+        <span>返回 Artifacts 中心</span>
+      </a>
+      <div class="nav-right">
+        <span class="nav-tag">房产投资 · 单体深度尽调</span>
+        <button class="theme-toggle" aria-label="切换深浅主题"></button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero shell">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div>
+            <span class="eyebrow">Investment memo · 2026.09.11</span>
+            <h1>挂牌价下，<br>没有安全边际。<span class="address">1034 Raider St · Lansing, Michigan</span></h1>
+            <p class="verdict-line"><strong>结论：暂不购买。</strong>现状价格基本合理，但高税负、现金交易限制与老屋系统风险，会吞掉出租和翻售利润。大幅折价且五大系统通过检查后，才值得重开模型。</p>
+          </div>
+          <div class="decision-row" aria-label="核心决策数字">
+            <div class="decision-tile danger"><span>挂牌价</span><strong>$39,900</strong></div>
+            <div class="decision-tile good"><span>建议开价</span><strong>$24k–$26k</strong></div>
+            <div class="decision-tile"><span>常规封顶</span><strong>约 $30k</strong></div>
+          </div>
+        </div>
+
+        <div class="card-media hero-photo">
+          <img src="./photos/exterior.jpg" alt="1034 Raider St 房屋正面实景">
+          <div class="media-overlay"></div>
+          <span class="photo-badge">谨慎 / PASS AT ASK</span>
+          <div class="photo-dock">
+            <div>
+              <div class="photo-price">$39,900</div>
+              <div class="photo-spec">2房 · 1卫 · 770 ft² · 1929年 · 仅现金</div>
+            </div>
+            <div class="score-ring" aria-label="投资评分 2.0 分，满分 5 分"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="anchor-bar">
+      <nav class="shell anchor-scroll" aria-label="页面章节">
+        <a href="#model">动态模型</a>
+        <a href="#property">房屋事实</a>
+        <a href="#condition">状况风险</a>
+        <a href="#comps">可比与ARV</a>
+        <a href="#flip">翻售测算</a>
+        <a href="#tax">税务产权</a>
+        <a href="#offer">报价策略</a>
+        <a href="#diligence">尽调清单</a>
+      </nav>
+    </div>
+
+    <section id="model">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="eyebrow">Underwriting lab</span><h2>亲手压力测试</h2></div>
+          <p class="section-intro">拖动四个核心假设，结果即时更新。默认值采用本次尽调的基准情景，而不是房源平台的乐观估值。</p>
+        </div>
+        <div class="model-shell">
+          <div class="model-controls">
+            <div class="control">
+              <div class="control-top"><label for="buyPrice">买入价格</label><output id="buyPriceOut">$39,900</output></div>
+              <input id="buyPrice" type="range" min="20000" max="50000" step="100" value="39900">
+              <div class="range-ends"><span>$20k</span><span>$50k</span></div>
+            </div>
+            <div class="control">
+              <div class="control-top"><label for="rehab">翻修预算</label><output id="rehabOut">$45,000</output></div>
+              <input id="rehab" type="range" min="25000" max="85000" step="1000" value="45000">
+              <div class="range-ends"><span>$25k</span><span>$85k</span></div>
+            </div>
+            <div class="control">
+              <div class="control-top"><label for="rent">完工后月租</label><output id="rentOut">$1,100</output></div>
+              <input id="rent" type="range" min="900" max="1500" step="25" value="1100">
+              <div class="range-ends"><span>$900</span><span>$1,500</span></div>
+            </div>
+            <div class="control">
+              <div class="control-top"><label for="arv">翻修后价值 ARV</label><output id="arvOut">$100,000</output></div>
+              <input id="arv" type="range" min="80000" max="125000" step="1000" value="100000">
+              <div class="range-ends"><span>$80k</span><span>$125k</span></div>
+            </div>
+            <p class="assumption-note">模型固定假设：买方成交及持有成本 $8,000；出售成本为ARV的8%；空置8%；管理9%；维修8%；CapEx储备8%；房产税、保险、许可及户外维护合计 $6,500/年；再融资为65% ARV、7.25%、30年。</p>
+          </div>
+          <div class="model-results" aria-live="polite">
+            <div class="result-grid">
+              <div class="result-card primary" id="decisionCard"><span class="label">当前情景投资结论</span><strong id="decisionResult">不买</strong><small id="decisionReason">翻售利润与持有现金流均未达标</small></div>
+              <div class="result-card"><span class="label">总投入</span><strong id="allInResult">$93k</strong><small>买价 + 翻修 + 成交/持有</small></div>
+              <div class="result-card"><span class="label">真实资本化率</span><strong id="capResult">2.6%</strong><small>含管理、维修与CapEx储备</small></div>
+              <div class="result-card"><span class="label">再融资后月现金流</span><strong id="cashFlowResult">−$240</strong><small id="dscrResult">DSCR 0.46</small></div>
+              <div class="result-card"><span class="label">翻售预计利润</span><strong id="flipResult">−$1k</strong><small>未计所得税</small></div>
+              <div class="result-card positive"><span class="label">15%目标利润最高买价</span><strong id="maoResult">$24k</strong><small id="maoGap">低于当前买价约 $16k</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="property">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="eyebrow">Verified facts</span><h2>房屋事实</h2></div>
+          <p class="section-intro">以MLS与Lansing官方地籍为主；平台自动估值不用于决定报价。</p>
+        </div>
+        <div class="fact-grid">
+          <div class="fact"><span>MLS / 地块编号</span><strong>299124<br>33-01-01-22-106-031</strong></div>
+          <div class="fact"><span>地上面积</span><strong>770 ft²</strong></div>
+          <div class="fact"><span>卧室 / 卫生间</span><strong>2 / 1</strong></div>
+          <div class="fact"><span>建造年份</span><strong>1929</strong></div>
+          <div class="fact"><span>地块</span><strong>7,840 ft² · 0.18 ac</strong></div>
+          <div class="fact"><span>地下室 / 车库</span><strong>770 ft² / 216 ft²</strong></div>
+          <div class="fact"><span>暖通</span><strong>天然气强制送风 · 无中央空调</strong></div>
+          <div class="fact"><span>销售条件</span><strong>Cash only · As-is</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="condition">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="eyebrow">Physical condition</span><h2>照片已经发出警报</h2></div>
+          <p class="section-intro">室内不是简单“换漆换地板”。浴室、墙面、系统年龄与地下室水分共同构成预算上行风险。</p>
+        </div>
+        <div class="evidence-grid">
+          <article class="evidence-card">
+            <div class="card-media"><img src="./photos/photo-2.jpg" alt="1034 Raider St 室内现状"><div class="media-overlay"></div></div>
+            <div class="evidence-card-body">
+              <h3>主层：至少需要完整出租级翻修</h3>
+              <ul class="risk-list">
+                <li>木地板严重磨损，墙面与天花板存在污渍及损坏。</li>
+                <li>厨房老旧且不含电器，不能只按表面翻新预算。</li>
+                <li>1929年房屋应验证电气、供排水、暖炉和保险适格性。</li>
+              </ul>
+            </div>
+          </article>
+          <article class="evidence-card">
+            <div class="card-media"><img src="./photos/photo-7.jpg" alt="1034 Raider St 浴室现状"><div class="media-overlay"></div></div>
+            <div class="evidence-card-body">
+              <h3>浴室与湿区：预算最容易失控</h3>
+              <ul class="risk-list">
+                <li>浴缸围护、地面、洁具和暴露管线均需更新。</li>
+                <li>地下室照片存在潮湿或泛碱可能，必须做渗水与地基检查。</li>
+                <li>主下水道摄像、铅漆、氡气及可疑石棉材料不能省略。</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="comps">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="eyebrow">Comparable sales</span><h2>现状值不低，ARV有天花板</h2></div>
+          <p class="section-intro">最接近的破旧现金成交支持约 $38k–$48k 现状价值；同街与邻近已翻修成交支持 $90k–$110k 的审慎ARV。</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>可比房</th><th>面积</th><th>状态</th><th>成交价</th><th>作用</th></tr></thead>
+            <tbody>
+              <tr><td><strong>942 Dakin St</strong></td><td>748 ft²</td><td>大量维修 · 现金 · As-is</td><td><strong>$43,000</strong></td><td><span class="status-pill pill-red">现状锚点</span></td></tr>
+              <tr><td><strong>1001 Raider St</strong></td><td>744 ft²</td><td>同街 · 较好状况</td><td><strong>$80,000</strong></td><td><span class="status-pill pill-amber">低ARV锚点</span></td></tr>
+              <tr><td><strong>617 S Hosmer St</strong></td><td>796 ft²</td><td>已更新</td><td><strong>$87,000</strong></td><td><span class="status-pill pill-blue">保守ARV</span></td></tr>
+              <tr><td><strong>910 S Holmes St</strong></td><td>800 ft²</td><td>可出租状态</td><td><strong>$95,500</strong></td><td><span class="status-pill pill-blue">基准ARV</span></td></tr>
+              <tr><td><strong>520 S Leslie St</strong></td><td>840 ft²</td><td>翻修较好</td><td><strong>$113,000</strong></td><td><span class="status-pill pill-purple">乐观ARV</span></td></tr>
+              <tr><td><strong>916 Dakin St</strong></td><td>748 ft²</td><td>较好装修 · 大地块</td><td><strong>$116,000</strong></td><td><span class="status-pill pill-neutral">上沿参考</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="flip">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="eyebrow">Flip sensitivity</span><h2>只有乐观情景赚钱</h2></div>
+          <p class="section-intro">以下均按挂牌价买入。基准情景几乎没有利润，任何屋顶、下水道或电气意外都会把项目推入亏损。</p>
+        </div>
+        <div class="scenario-grid">
+          <article class="scenario"><div class="scenario-top"><span>悲观</span><span>ARV $90k · Rehab $65k</span></div><div class="profit" style="color:var(--pill-red-text)">−$32,000</div><p>适用于五大系统中出现两项以上重大问题。</p></article>
+          <article class="scenario"><div class="scenario-top"><span>基准</span><span>ARV $100k · Rehab $45k</span></div><div class="profit" style="color:var(--pill-red-text)">−$900</div><p>没有给投资者的时间、资金成本与执行风险留下回报。</p></article>
+          <article class="scenario"><div class="scenario-top"><span>乐观</span><span>ARV $110k · Rehab $30k</span></div><div class="profit" style="color:var(--pill-emerald-text)">+$25,350</div><p>要求系统基本健康、施工极精简且售价达到区间上沿。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tax">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="eyebrow">Tax & title</span><h2>真正的杀手是税与产权摩擦</h2></div>
+          <p class="section-intro">低价房不代表低持有成本。投资用途没有自住PRE减免，税负占租金比例异常高。</p>
+        </div>
+        <div class="tax-grid">
+          <article class="tax-card">
+            <h3>长期持有税负</h3>
+            <div class="tax-total">$4.0k–$4.3k</div>
+            <p class="muted">建议使用的年度非自住房产税；翻修后压力测试至 $4.7k。</p>
+            <div class="line-items">
+              <div class="line-item"><span>2026 Taxable Value</span><strong>$47,500</strong></div>
+              <div class="line-item"><span>PRE自住减免</span><strong>0%</strong></div>
+              <div class="line-item"><span>表面可见税务余额</span><strong>约 $4,956.87</strong></div>
+            </div>
+          </article>
+          <article class="tax-card">
+            <h3>交割前必须清零</h3>
+            <div class="tax-total">Title first</div>
+            <p class="muted">历史含法拍、land contract及多次quitclaim deed，并非自动等于产权不清，但不能省略承诺书与保险。</p>
+            <div class="line-items">
+              <div class="line-item"><span>历史水费账户显示</span><strong>$111.30</strong></div>
+              <div class="line-item"><span>Building Department记录</span><strong>约 $215</strong></div>
+              <div class="line-item"><span>必要文件</span><strong>Title commitment + Owner policy</strong></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="offer">
+      <div class="shell">
+        <div class="offer-band">
+          <div><span class="eyebrow">Acquisition rule</span><h3>从 $25k 附近开始谈，常规不超过 $30k。</h3><p>仅当屋顶、地基、下水道、电气、暖炉全部通过检查，且书面翻修预算不超过 $35k、ARV至少 $105k，才可把上限提高到 $32k–$35k。</p></div>
+          <div class="offer-number">≤ $30k</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="diligence">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="eyebrow">Before earnest money</span><h2>十二项买前闸门</h2></div>
+          <p class="section-intro">其中任何一项没有答案，都不应取消检查条件或交付不可退押金。</p>
+        </div>
+        <ol class="checklist">
+          <li>要求经纪人书面说明“Cash only”的具体原因。</li>
+          <li>全屋检查，并单独完成主下水道摄像。</li>
+          <li>由屋顶承包商确认剩余寿命和近期更换成本。</li>
+          <li>电工核实配电箱、布线方式、容量和保险适格性。</li>
+          <li>检查地基、地下室渗水、泛碱与霉菌。</li>
+          <li>确认暖炉、热水器、供水管及排水管年代与状态。</li>
+          <li>完成氡气、铅漆及可疑石棉材料风险评估。</li>
+          <li>至少取得两个承包商书面预算，并预留15%–20%。</li>
+          <li>取得空置翻修期及完工后出租房保险报价。</li>
+          <li>取得产权承诺、市政留置和全部余额正式结清单。</li>
+          <li>书面核实R-3分区、阁楼卧室资格与出租证书要求。</li>
+          <li>让当地物业经理以完工标准书面确认可实现租金。</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="eyebrow">Primary sources</span><h2>资料与证据</h2></div>
+          <p class="section-intro">房源会变化；报价前应重新拉取MLS、税务与产权资料。</p>
+        </div>
+        <div class="sources">
+          <a class="source" href="https://www.redfin.com/MI/Lansing/1034-Raider-St-48912/home/132081510" target="_blank" rel="noopener"><strong>Redfin · 当前MLS</strong><span>挂牌、照片、房屋事实、自动估值与风险</span></a>
+          <a class="source" href="https://www.zillow.com/homedetails/1034-Raider-St-Lansing-MI-48912/140827913_zpid/" target="_blank" rel="noopener"><strong>Zillow · 当前房源</strong><span>Zestimate、Rent Zestimate与历史记录</span></a>
+          <a class="source" href="https://bsaonline.com/Home/MunicipalityHome?uid=384" target="_blank" rel="noopener"><strong>City of Lansing · BS&amp;A</strong><span>官方地籍、税单、产权链与市政余额</span></a>
+          <a class="source" href="https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY2026_FMR_Schedule.pdf" target="_blank" rel="noopener"><strong>HUD · 2026 FMR</strong><span>Lansing–East Lansing租金基准</span></a>
+          <a class="source" href="https://www.epa.gov/lead/reduce-risk-lead-exposure-home" target="_blank" rel="noopener"><strong>EPA · 老房铅风险</strong><span>1929年住宅施工与安全背景</span></a>
+          <a class="source" href="https://www.michigan.gov/egle/about/organization/materials-management/indoor-radon" target="_blank" rel="noopener"><strong>Michigan EGLE · 氡气</strong><span>地下室检测与州级风险资料</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row"><span>1034 Raider St · 投资尽调备忘录</span><span>数据截止 2026.09.11 · 非验房、法律或贷款承诺</span></div>
+  </footer>
+
+  <script>
+    (() => {
+      const ids = ['buyPrice', 'rehab', 'rent', 'arv'];
+      const els = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
+      const money = value => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+      const shortMoney = value => `${value < 0 ? '−' : ''}$${Math.abs(value / 1000).toFixed(Math.abs(value) < 10000 ? 1 : 0)}k`;
+      const payment = (principal, annualRate, years) => {
+        const r = annualRate / 12;
+        const n = years * 12;
+        return principal * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+      };
+
+      function update() {
+        const buy = Number(els.buyPrice.value);
+        const rehab = Number(els.rehab.value);
+        const rent = Number(els.rent.value);
+        const arv = Number(els.arv.value);
+        document.getElementById('buyPriceOut').textContent = money(buy);
+        document.getElementById('rehabOut').textContent = money(rehab);
+        document.getElementById('rentOut').textContent = money(rent);
+        document.getElementById('arvOut').textContent = money(arv);
+
+        const allIn = buy + rehab + 8000;
+        const gross = rent * 12;
+        const effective = gross * .92;
+        const noi = effective - effective * .09 - gross * .08 - gross * .08 - 6500;
+        const cap = noi / allIn;
+        const debt = arv * .65;
+        const annualDebt = payment(debt, .0725, 30) * 12;
+        const monthlyCash = (noi - annualDebt) / 12;
+        const dscr = noi / annualDebt;
+        const flip = arv - buy - rehab - 8000 - arv * .08;
+        const mao = arv * .77 - rehab - 8000;
+
+        document.getElementById('allInResult').textContent = shortMoney(allIn);
+        document.getElementById('capResult').textContent = `${(cap * 100).toFixed(1)}%`;
+        document.getElementById('cashFlowResult').textContent = `${monthlyCash < 0 ? '−' : '+'}${money(Math.abs(monthlyCash))}`;
+        document.getElementById('dscrResult').textContent = `DSCR ${dscr.toFixed(2)}`;
+        document.getElementById('flipResult').textContent = `${flip < 0 ? '−' : '+'}${money(Math.abs(flip))}`;
+        document.getElementById('maoResult').textContent = shortMoney(Math.max(0, mao));
+        const gap = mao - buy;
+        document.getElementById('maoGap').textContent = gap >= 0 ? `当前买价保留约 ${money(gap)} 缓冲` : `当前买价高出约 ${money(Math.abs(gap))}`;
+        const decision = document.getElementById('decisionResult');
+        const reason = document.getElementById('decisionReason');
+        const decisionCard = document.getElementById('decisionCard');
+        decisionCard.classList.remove('positive');
+        if (flip >= arv * .15 && dscr >= 1.25) {
+          decision.textContent = '双策略通过';
+          reason.textContent = '翻售利润与出租偿债均达到基准';
+          decisionCard.classList.add('positive');
+        } else if (flip >= arv * .15) {
+          decision.textContent = '仅适合翻售';
+          reason.textContent = '翻售利润达标，但长期持有现金流不足';
+          decisionCard.classList.add('positive');
+        } else if (dscr >= 1.25 && cap >= .07) {
+          decision.textContent = '仅适合持有';
+          reason.textContent = '出租模型通过，但翻售利润不足';
+          decisionCard.classList.add('positive');
+        } else {
+          decision.textContent = '不买';
+          reason.textContent = '翻售利润与持有现金流均未达标';
+        }
+      }
+
+      ids.forEach(id => els[id].addEventListener('input', update));
+      update();
+    })();
+  </script>
+</body>
+</html>
